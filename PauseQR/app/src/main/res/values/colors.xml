@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#3949AB</color>
+    <color name="red">#D32F2F</color>
+    <color name="green">#2E7D32</color>
+    <color name="warn_bg">#FFF3E0</color>
+    <color name="warn_text">#8A4B00</color>
+    <color name="overlay_bg">#F2101418</color>
+</resources>
