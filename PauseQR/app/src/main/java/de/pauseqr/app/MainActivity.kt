@@ -101,8 +101,9 @@ class MainActivity : AppCompatActivity() {
 
     /** Erkennt den eigenen QR-Code und schaltet die Pause um. */
     private fun handleScan(text: String) {
-        if (text != Prefs.getSecret(this)) {
-            toast(R.string.wrong_qr)
+        val expected = Prefs.getSecret(this)
+        if (text != expected) {
+            Toast.makeText(this, "DEBUG:\nGescannt: '$text'\nErwartet: '$expected'", Toast.LENGTH_LONG).show()
             return
         }
         if (Prefs.isLocked(this)) {
