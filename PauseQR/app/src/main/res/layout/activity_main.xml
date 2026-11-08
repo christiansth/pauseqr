@@ -91,6 +91,23 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <EditText
+                android:id="@+id/etUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="@string/username_hint"
+                android:inputType="textCapWords"
+                android:maxLength="10"
+                android:singleLine="true" />
+
+            <Button
+                android:id="@+id/btnGenerateQr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/btn_generate_qr" />
+
             <ImageView
                 android:id="@+id/ivQr"
                 android:layout_width="260dp"

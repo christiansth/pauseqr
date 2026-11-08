@@ -41,9 +41,6 @@
 
     <string name="accessibility_desc">Erkennt, wenn eine blockierte App geöffnet wird, und zeigt dann den Pause-Bildschirm. Es werden keine Inhalte gelesen oder gespeichert.</string>
 
-    <string name="email_qr_label">QR-Code per E-Mail versenden</string>
-    <string name="email_hint">Deine E-Mail-Adresse</string>
-    <string name="btn_send_qr_email">QR-Code per Mail versenden</string>
-    <string name="email_sent">QR-Code wird versendet…</string>
-    <string name="email_error">E-Mail-Adresse erforderlich</string>
+    <string name="username_hint">Dein Name (max. 10 Zeichen)</string>
+    <string name="btn_generate_qr">QR-Code generieren</string>
 </resources>

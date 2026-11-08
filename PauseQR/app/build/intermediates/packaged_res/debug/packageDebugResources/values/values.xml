@@ -10,17 +10,13 @@
     <string name="app_name">Pause QR</string>
     <string name="apps_count">%1$d App(s) ausgewählt</string>
     <string name="btn_accessibility">Bedienungshilfen öffnen</string>
+    <string name="btn_generate_qr">QR-Code generieren</string>
     <string name="btn_lock">Pause starten – Apps blockieren</string>
     <string name="btn_new_qr">Neuen QR-Code erzeugen</string>
     <string name="btn_save_qr">QR-Code in Galerie speichern</string>
     <string name="btn_scan_test">QR-Code testen / per Scan starten</string>
     <string name="btn_select_apps">Apps zum Blockieren auswählen</string>
-    <string name="btn_send_qr_email">QR-Code per Mail versenden</string>
     <string name="btn_unlock">QR scannen zum Entsperren</string>
-    <string name="email_error">E-Mail-Adresse erforderlich</string>
-    <string name="email_hint">Deine E-Mail-Adresse</string>
-    <string name="email_qr_label">QR-Code per E-Mail versenden</string>
-    <string name="email_sent">QR-Code wird versendet…</string>
     <string name="locked">Pause gestartet – ausgewählte Apps sind blockiert</string>
     <string name="need_apps">Bitte zuerst mindestens eine App auswählen.</string>
     <string name="need_service">Bitte zuerst den Bedienungshilfe-Dienst aktivieren.</string>
@@ -42,6 +38,7 @@
     <string name="status_locked">🔒 Pause aktiv – Apps sind blockiert</string>
     <string name="status_unlocked">🔓 Keine Pause – alle Apps sind frei</string>
     <string name="unlocked">Pause beendet – Apps sind wieder frei 🎉</string>
+    <string name="username_hint">Dein Name (max. 10 Zeichen)</string>
     <string name="wrong_qr">Das ist nicht dein Pause-QR-Code.</string>
     <style name="Theme.PauseQR" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/primary</item>

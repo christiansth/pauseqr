@@ -732,6 +732,7 @@ id beginning
 id blocking
 id bottom
 id btnAccessibility
+id btnGenerateQr
 id btnNewQr
 id btnOverlayHome
 id btnOverlayScan
@@ -758,6 +759,7 @@ id disableHome
 id edit_query
 id edit_text_id
 id end
+id etUsername
 id expand_activities_button
 id expanded_menu
 id fitCenter
@@ -974,12 +976,12 @@ string app_name
 string app_version
 string apps_count
 string btn_accessibility
+string btn_generate_qr
 string btn_lock
 string btn_new_qr
 string btn_save_qr
 string btn_scan_test
 string btn_select_apps
-string btn_send_qr_email
 string btn_unlock
 string call_notification_answer_action
 string call_notification_answer_video_action
@@ -989,10 +991,6 @@ string call_notification_incoming_text
 string call_notification_ongoing_text
 string call_notification_screening_text
 string define_zxingandroidembedded
-string email_error
-string email_hint
-string email_qr_label
-string email_sent
 string library_zxingandroidembedded_author
 string library_zxingandroidembedded_authorWebsite
 string library_zxingandroidembedded_isOpenSource
@@ -1025,6 +1023,7 @@ string status_bar_notification_info_overflow
 string status_locked
 string status_unlocked
 string unlocked
+string username_hint
 string wrong_qr
 string zxing_app_name
 string zxing_button_ok

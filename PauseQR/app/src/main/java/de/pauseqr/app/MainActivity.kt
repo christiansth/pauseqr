@@ -4,18 +4,26 @@ import android.content.ComponentName
 import android.content.ContentValues
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Rect
+import android.graphics.RectF
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.provider.Settings
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.BarcodeFormat
+import com.google.zxing.EncodeHintType
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanOptions
@@ -34,6 +42,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnPrimary: Button
     private lateinit var btnScan: Button
     private lateinit var qrSection: View
+    private lateinit var etUsername: EditText
+    private lateinit var btnGenerateQr: Button
     private lateinit var ivQr: ImageView
     private lateinit var btnSaveQr: Button
     private lateinit var btnNewQr: Button
@@ -55,9 +65,13 @@ class MainActivity : AppCompatActivity() {
         btnPrimary = findViewById(R.id.btnPrimary)
         btnScan = findViewById(R.id.btnScan)
         qrSection = findViewById(R.id.qrSection)
+        etUsername = findViewById(R.id.etUsername)
+        btnGenerateQr = findViewById(R.id.btnGenerateQr)
         ivQr = findViewById(R.id.ivQr)
         btnSaveQr = findViewById(R.id.btnSaveQr)
         btnNewQr = findViewById(R.id.btnNewQr)
+
+        etUsername.setText(Prefs.getUsername(this))
 
         btnAccessibility.setOnClickListener {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
@@ -69,6 +83,10 @@ class MainActivity : AppCompatActivity() {
             if (Prefs.isLocked(this)) startScan() else lock()
         }
         btnScan.setOnClickListener { startScan() }
+        btnGenerateQr.setOnClickListener {
+            Prefs.setUsername(this, etUsername.text.toString().trim())
+            refresh()
+        }
         btnSaveQr.setOnClickListener { saveQrToGallery() }
         btnNewQr.setOnClickListener { confirmNewQr() }
 
@@ -101,9 +119,8 @@ class MainActivity : AppCompatActivity() {
 
     /** Erkennt den eigenen QR-Code und schaltet die Pause um. */
     private fun handleScan(text: String) {
-        val expected = Prefs.getSecret(this)
-        if (text != expected) {
-            Toast.makeText(this, "DEBUG:\nGescannt: '$text'\nErwartet: '$expected'", Toast.LENGTH_LONG).show()
+        if (text != Prefs.getSecret(this)) {
+            toast(R.string.wrong_qr)
             return
         }
         if (Prefs.isLocked(this)) {
@@ -159,8 +176,45 @@ class MainActivity : AppCompatActivity() {
 
     // ---------- QR ----------
 
-    private fun makeQr(size: Int): Bitmap =
-        BarcodeEncoder().encodeBitmap(Prefs.getSecret(this), BarcodeFormat.QR_CODE, size, size)
+    private fun makeQr(size: Int): Bitmap {
+        val hints = mapOf(EncodeHintType.ERROR_CORRECTION to ErrorCorrectionLevel.H)
+        val qr = BarcodeEncoder().encodeBitmap(Prefs.getSecret(this), BarcodeFormat.QR_CODE, size, size, hints)
+
+        val username = Prefs.getUsername(this)
+        if (username.isBlank()) return qr
+
+        val result = qr.copy(Bitmap.Config.ARGB_8888, true)
+        val canvas = Canvas(result)
+        val cx = size / 2f
+        val cy = size / 2f
+
+        val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.BLACK
+            textAlign = Paint.Align.CENTER
+            isFakeBoldText = true
+            textSize = size * 0.09f
+        }
+        val textBounds = Rect()
+        textPaint.getTextBounds(username, 0, username.length, textBounds)
+
+        val boxPadding = size * 0.04f
+        val boxWidth = (textBounds.width() + boxPadding * 2).coerceAtMost(size * 0.75f)
+        val boxHeight = textBounds.height() + boxPadding * 2
+        val box = RectF(cx - boxWidth / 2, cy - boxHeight / 2, cx + boxWidth / 2, cy + boxHeight / 2)
+        val cornerRadius = size * 0.02f
+
+        canvas.drawRoundRect(box, cornerRadius, cornerRadius, Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE })
+        canvas.drawRoundRect(box, cornerRadius, cornerRadius, Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.BLACK
+            style = Paint.Style.STROKE
+            strokeWidth = size * 0.006f
+        })
+
+        val textY = cy - (textPaint.descent() + textPaint.ascent()) / 2
+        canvas.drawText(username, cx, textY, textPaint)
+
+        return result
+    }
 
     private fun saveQrToGallery() {
         try {

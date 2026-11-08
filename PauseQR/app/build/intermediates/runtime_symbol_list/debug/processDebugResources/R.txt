@@ -731,6 +731,7 @@ int id beginning 0x7f08003e
 int id blocking 0x7f08003f
 int id bottom 0x7f080040
 int id btnAccessibility 0x7f080041
+int id btnGenerateQr 0x7f0800d7
 int id btnNewQr 0x7f080042
 int id btnOverlayHome 0x7f080043
 int id btnOverlayScan 0x7f080044
@@ -757,6 +758,7 @@ int id disableHome 0x7f080058
 int id edit_query 0x7f080059
 int id edit_text_id 0x7f08005a
 int id end 0x7f08005b
+int id etUsername 0x7f0800d8
 int id expand_activities_button 0x7f08005c
 int id expanded_menu 0x7f08005d
 int id fitCenter 0x7f08005e
@@ -973,12 +975,12 @@ int string app_name 0x7f0d001d
 int string app_version 0x7f0d001e
 int string apps_count 0x7f0d001f
 int string btn_accessibility 0x7f0d0020
+int string btn_generate_qr 0x7f0d0059
 int string btn_lock 0x7f0d0021
 int string btn_new_qr 0x7f0d0022
 int string btn_save_qr 0x7f0d0023
 int string btn_scan_test 0x7f0d0024
 int string btn_select_apps 0x7f0d0025
-int string btn_send_qr_email 0x7f0d0026
 int string btn_unlock 0x7f0d0027
 int string call_notification_answer_action 0x7f0d0028
 int string call_notification_answer_video_action 0x7f0d0029
@@ -988,10 +990,6 @@ int string call_notification_incoming_text 0x7f0d002c
 int string call_notification_ongoing_text 0x7f0d002d
 int string call_notification_screening_text 0x7f0d002e
 int string define_zxingandroidembedded 0x7f0d002f
-int string email_error 0x7f0d0030
-int string email_hint 0x7f0d0031
-int string email_qr_label 0x7f0d0032
-int string email_sent 0x7f0d0033
 int string library_zxingandroidembedded_author 0x7f0d0034
 int string library_zxingandroidembedded_authorWebsite 0x7f0d0035
 int string library_zxingandroidembedded_isOpenSource 0x7f0d0036
@@ -1024,6 +1022,7 @@ int string status_bar_notification_info_overflow 0x7f0d0050
 int string status_locked 0x7f0d0051
 int string status_unlocked 0x7f0d0052
 int string unlocked 0x7f0d0053
+int string username_hint 0x7f0d005a
 int string wrong_qr 0x7f0d0054
 int string zxing_app_name 0x7f0d0055
 int string zxing_button_ok 0x7f0d0056

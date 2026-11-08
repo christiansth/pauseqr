@@ -8,6 +8,7 @@ color warn_bg
 color warn_text
 drawable ic_launcher
 id btnAccessibility
+id btnGenerateQr
 id btnNewQr
 id btnOverlayHome
 id btnOverlayScan
@@ -16,6 +17,7 @@ id btnSaveQr
 id btnScan
 id btnSelectApps
 id cbBlocked
+id etUsername
 id ivIcon
 id ivQr
 id listApps
@@ -34,17 +36,13 @@ string accessibility_desc
 string app_name
 string apps_count
 string btn_accessibility
+string btn_generate_qr
 string btn_lock
 string btn_new_qr
 string btn_save_qr
 string btn_scan_test
 string btn_select_apps
-string btn_send_qr_email
 string btn_unlock
-string email_error
-string email_hint
-string email_qr_label
-string email_sent
 string locked
 string need_apps
 string need_service
@@ -66,6 +64,7 @@ string service_warning
 string status_locked
 string status_unlocked
 string unlocked
+string username_hint
 string wrong_qr
 style Theme.PauseQR
 xml accessibility_service_config

@@ -1,30 +1,34 @@
 [
     {
-        "merged": "de.pauseqr.app-debug-4:/layout_item_app.xml.flat",
-        "source": "de.pauseqr.app-main-6:/layout/item_app.xml"
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\8.13\\de.pauseqr.app-debug-4:\\xml_file_paths.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\8.13\\de.pauseqr.app-main-6:\\xml\\file_paths.xml"
     },
     {
-        "merged": "de.pauseqr.app-debug-4:/layout_activity_app_select.xml.flat",
-        "source": "de.pauseqr.app-main-6:/layout/activity_app_select.xml"
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\8.13\\de.pauseqr.app-debug-4:\\xml_accessibility_service_config.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\8.13\\de.pauseqr.app-main-6:\\xml\\accessibility_service_config.xml"
     },
     {
         "merged": "de.pauseqr.app-debug-4:/layout_activity_main.xml.flat",
         "source": "de.pauseqr.app-main-6:/layout/activity_main.xml"
     },
     {
-        "merged": "de.pauseqr.app-debug-4:/layout_overlay_block.xml.flat",
-        "source": "de.pauseqr.app-main-6:/layout/overlay_block.xml"
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\8.13\\de.pauseqr.app-debug-4:\\layout_activity_app_select.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\8.13\\de.pauseqr.app-main-6:\\layout\\activity_app_select.xml"
     },
     {
-        "merged": "de.pauseqr.app-debug-4:/xml_file_paths.xml.flat",
-        "source": "de.pauseqr.app-main-6:/xml/file_paths.xml"
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\8.13\\de.pauseqr.app-debug-4:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\8.13\\de.pauseqr.app-main-6:\\layout\\activity_main.xml"
     },
     {
-        "merged": "de.pauseqr.app-debug-4:/xml_accessibility_service_config.xml.flat",
-        "source": "de.pauseqr.app-main-6:/xml/accessibility_service_config.xml"
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\8.13\\de.pauseqr.app-debug-4:\\layout_item_app.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\8.13\\de.pauseqr.app-main-6:\\layout\\item_app.xml"
     },
     {
-        "merged": "de.pauseqr.app-debug-4:/drawable_ic_launcher.xml.flat",
-        "source": "de.pauseqr.app-main-6:/drawable/ic_launcher.xml"
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\8.13\\de.pauseqr.app-debug-4:\\layout_overlay_block.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\8.13\\de.pauseqr.app-main-6:\\layout\\overlay_block.xml"
+    },
+    {
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\8.13\\de.pauseqr.app-debug-4:\\drawable_ic_launcher.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\8.13\\de.pauseqr.app-main-6:\\drawable\\ic_launcher.xml"
     }
 ]
