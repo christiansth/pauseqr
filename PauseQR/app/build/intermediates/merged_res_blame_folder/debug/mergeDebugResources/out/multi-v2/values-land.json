@@ -4,7 +4,7 @@
             "outputFile": "de.pauseqr.app-mergeDebugResources-2:/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\weich\\.gradle\\caches\\8.13\\transforms\\f7be424a2134316141d6a5296d86f880\\transformed\\appcompat-1.7.0\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\weich\\.gradle\\caches\\9.6.0\\transforms\\cc62b6aabbcae9017a440738ba7d5936\\transformed\\appcompat-1.7.0\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

@@ -4,7 +4,7 @@
             "outputFile": "de.pauseqr.app-mergeDebugResources-2:/values-mr/values-mr.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\weich\\.gradle\\caches\\8.13\\transforms\\e8bcc7a8f13892a57536f7f310d4581d\\transformed\\core-1.13.0\\res\\values-mr\\values-mr.xml",
+                    "source": "C:\\Users\\weich\\.gradle\\caches\\9.6.0\\transforms\\cafa50c5a3ea03c157938c517db59643\\transformed\\core-1.13.0\\res\\values-mr\\values-mr.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\weich\\.gradle\\caches\\8.13\\transforms\\f7be424a2134316141d6a5296d86f880\\transformed\\appcompat-1.7.0\\res\\values-mr\\values-mr.xml",
+                    "source": "C:\\Users\\weich\\.gradle\\caches\\9.6.0\\transforms\\cc62b6aabbcae9017a440738ba7d5936\\transformed\\appcompat-1.7.0\\res\\values-mr\\values-mr.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

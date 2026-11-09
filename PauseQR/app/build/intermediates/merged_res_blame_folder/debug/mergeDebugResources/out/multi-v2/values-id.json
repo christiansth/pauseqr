@@ -4,7 +4,7 @@
             "outputFile": "de.pauseqr.app-mergeDebugResources-2:/values-id/values-id.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\weich\\.gradle\\caches\\8.13\\transforms\\1920bad2a6a11f5e2e389793f6780983\\transformed\\zxing-android-embedded-4.3.0\\res\\values-id\\values-id.xml",
+                    "source": "C:\\Users\\weich\\.gradle\\caches\\9.6.0\\transforms\\22f3399dedac177574cce340ab809fec\\transformed\\zxing-android-embedded-4.3.0\\res\\values-id\\values-id.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
