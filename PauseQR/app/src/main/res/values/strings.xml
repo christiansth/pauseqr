@@ -1,114 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Englische Standardsprache (Fallback). Deutsche Übersetzung in values-de/strings.xml. -->
 <resources>
     <string name="app_name">ScanOff</string>
 
     <!-- Navigation -->
-    <string name="nav_overview">Übersicht</string>
-    <string name="nav_apps">Apps verwalten</string>
-    <string name="nav_qr">QR-Code</string>
-    <string name="nav_stats">Statistiken</string>
-    <string name="nav_settings">Einstellungen</string>
-    <string name="nav_help">Hilfe &amp; FAQ</string>
-    <string name="nav_about">Über ScanOff</string>
+    <string name="nav_overview">Home</string>
+    <string name="nav_apps">Manage apps</string>
+    <string name="nav_qr">My QR code</string>
+    <string name="nav_friends">ScanOff Friends</string>
+    <string name="nav_stats">Statistics</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_help">Help &amp; FAQ</string>
+    <string name="nav_about">About ScanOff</string>
 
-    <string name="status_locked">Pause aktiv – Apps sind blockiert</string>
-    <string name="status_locked_desc">Die ausgewählten Apps sind gerade blockiert.</string>
-    <string name="status_unlocked">Keine Pause – alle Apps sind frei</string>
-    <string name="status_unlocked_desc">Aktuell ist keine App blockiert.</string>
+    <!-- ScanOff Friends -->
+    <string name="friends_empty">No ScanOff friends saved yet.</string>
+    <string name="btn_add_friend">Add friend</string>
+    <string name="btn_import_gallery">Import from gallery</string>
+    <string name="switch_allow_unlock">Allow unlocking</string>
+    <string name="menu_view_qr">View QR code</string>
+    <string name="menu_change_unlock">Change unlock permission</string>
+    <string name="menu_remove_friend">Remove friend</string>
+    <string name="added_at_label">Added on %1$s</string>
 
-    <string name="dashboard_tagline">Scan. Pause. Focus.</string>
+    <string name="remove_friend_title">Remove friend?</string>
+    <string name="remove_friend_message">Do you really want to remove this ScanOff friend? Their QR code will no longer be able to unlock your apps afterwards.</string>
+    <string name="remove_friend_confirm">Remove</string>
 
-    <string name="service_warning">Damit Apps blockiert werden können, muss „ScanOff“ unter Einstellungen → Bedienungshilfen aktiviert werden.</string>
-    <string name="btn_accessibility">Bedienungshilfen öffnen</string>
+    <string name="friend_add_title">Add friend</string>
+    <string name="friend_add_desc">Scan another ScanOff user\'s personal QR code, or import it from your gallery.</string>
+    <string name="scan_recognized_title">ScanOff code recognized</string>
+    <string name="scan_not_valid">This is not a valid ScanOff QR code.</string>
+    <string name="btn_save_as_friend">Save friend</string>
+    <string name="friend_added">Friend saved.</string>
+    <string name="friend_duplicate">This friend has already been saved.</string>
+    <string name="friend_own_code">This is your own ScanOff code.</string>
+    <string name="import_not_found">No QR code was found in the selected image.</string>
 
-    <string name="action_accessibility_title">Bedienungshilfen</string>
-    <string name="action_apps_title">Apps auswählen</string>
-    <string name="action_apps_caption">Zum Blockieren</string>
-    <string name="action_scan_title">QR-Code testen</string>
-    <string name="action_scan_caption">Per Scan starten</string>
-    <string name="status_active">Aktiviert</string>
-    <string name="status_inactive">Nicht aktiviert</string>
+    <string name="friend_detail_unlock_on">Unlocking currently allowed</string>
+    <string name="friend_detail_unlock_off">Unlocking currently not allowed</string>
 
-    <string name="btn_select_apps">Apps zum Blockieren auswählen</string>
-    <string name="apps_count">%1$d App(s) ausgewählt</string>
-    <string name="select_apps_title">Apps auswählen</string>
+    <string name="status_locked">Pause active</string>
+    <string name="status_locked_desc">Selected apps are blocked.</string>
+    <string name="status_unlocked">No pause active</string>
+    <string name="status_unlocked_desc">All apps are available.</string>
 
-    <string name="pause_end_desc">Scanne deinen ScanOff-Code, um die Apps wieder freizugeben.</string>
-    <string name="btn_pause_start">Pause starten</string>
-    <string name="btn_pause_unlock">QR scannen zum Entsperren</string>
+    <string name="service_required_title">Accessibility service required</string>
+    <string name="service_warning">To block apps, \"ScanOff\" must be enabled under Settings → Accessibility.</string>
+    <string name="btn_accessibility">Open accessibility settings</string>
+    <string name="btn_activate">Activate</string>
 
-    <!-- QR-Code: Dashboard-Karte -->
-    <string name="qr_title">Dein ScanOff-Code</string>
-    <string name="qr_card_desc">Erstelle deinen persönlichen QR-Code.</string>
-    <string name="btn_manage_qr">QR-Code verwalten</string>
-    <string name="btn_create_qr">QR-Code erstellen</string>
-    <string name="btn_regenerate_qr">Neuen QR-Code generieren</string>
-    <string name="qr_load_error">Deine gespeicherten QR-Code-Daten konnten nicht geladen werden.</string>
-    <string name="btn_retry">Erneut versuchen</string>
+    <string name="accessibility_consent_title">Accessibility service for ScanOff</string>
+    <string name="accessibility_consent_message">ScanOff needs access to Android\'s accessibility service to detect when you open an app you have selected. While a pause is active, ScanOff can then block that app.\n\nScanOff only reads the package name of the app currently in the foreground. Screen content or text is never read, stored, or transmitted.</string>
+    <string name="accessibility_consent_confirm">Understood, continue</string>
+    <string name="accessibility_consent_cancel">Cancel</string>
 
-    <!-- QR-Code verwalten -->
-    <string name="qr_manage_title">QR-Code verwalten</string>
-    <string name="qr_screen_desc">Dein persönlicher ScanOff-Code zum Scannen, Speichern oder Ausdrucken.</string>
-    <string name="qr_hint">Speichere oder drucke diesen Code und leg ihn weit weg – z. B. in einen anderen Raum. Nur mit diesem Code kannst du die Pause wieder beenden. Während der Pause wird er hier nicht angezeigt.</string>
-    <string name="btn_save_qr">QR-Code in Galerie speichern</string>
-    <string name="btn_new_qr">Neuen QR-Code erstellen</string>
-    <string name="qr_saved">QR-Code gespeichert unter Bilder/ScanOff</string>
-    <string name="qr_save_failed">Speichern fehlgeschlagen</string>
-    <string name="created_at_label">Erstellt am %1$s</string>
-    <string name="created_at_unknown">Erstellungsdatum unbekannt</string>
+    <string name="action_accessibility_title">Accessibility</string>
+    <string name="action_apps_title">Select apps</string>
+    <string name="action_scan_title">Scan QR code</string>
+    <string name="status_active">Active</string>
+    <string name="status_inactive">Not active</string>
 
-    <!-- Neuen QR-Code erstellen -->
-    <string name="qr_create_title">Neuen QR-Code erstellen</string>
-    <string name="username_hint">Benutzername (max. 10 Zeichen)</string>
-    <string name="username_required">Bitte einen Benutzernamen eingeben.</string>
-    <string name="btn_generate_qr">QR-Code generieren</string>
-    <string name="qr_created">Neuer QR-Code erstellt.</string>
+    <string name="btn_select_apps">Select apps to block</string>
+    <string name="apps_count">%1$d app(s) selected</string>
+    <string name="select_apps_title">Select apps</string>
 
-    <string name="replace_qr_title">QR-Code ersetzen?</string>
-    <string name="replace_qr_message">Dein bisheriger QR-Code wird durch einen neuen ersetzt. Der alte Code funktioniert danach möglicherweise nicht mehr.</string>
-    <string name="replace_qr_confirm">Ersetzen</string>
-    <string name="replace_qr_cancel">Abbrechen</string>
+    <string name="pause_end_desc">Scan your ScanOff code to release the apps again.</string>
+    <string name="btn_pause_start">Start pause</string>
+    <string name="btn_pause_unlock">Scan QR to unlock</string>
 
-    <string name="scan_prompt">ScanOff-Code scannen</string>
-    <string name="wrong_qr">Das ist nicht dein ScanOff-Code.</string>
-    <string name="scan_invalid">Ungültiger oder beschädigter QR-Code.</string>
-    <string name="unlocked">Pause beendet – Apps sind wieder frei 🎉</string>
-    <string name="locked">Pause gestartet – ausgewählte Apps sind blockiert</string>
-    <string name="need_service">Bitte zuerst den Bedienungshilfe-Dienst aktivieren.</string>
-    <string name="need_apps">Bitte zuerst mindestens eine App auswählen.</string>
+    <!-- QR code: dashboard card -->
+    <string name="qr_title">Your ScanOff code</string>
+    <string name="qr_card_desc">Create and back up your personal QR code first, before you can start a pause.</string>
+    <string name="btn_manage_qr">Manage QR code</string>
+    <string name="btn_regenerate_qr">Generate new QR code</string>
+    <string name="qr_load_error">Your saved QR code data could not be loaded.</string>
+    <string name="btn_retry">Try again</string>
 
-    <string name="overlay_title">Pause</string>
-    <string name="overlay_app_blocked">%1$s ist gerade blockiert.</string>
-    <string name="overlay_hint">Scanne deinen ScanOff-Code, um die Apps wieder freizugeben.</string>
-    <string name="overlay_scan">QR scannen</string>
-    <string name="overlay_home">Zum Startbildschirm</string>
+    <!-- Backup status -->
+    <string name="qr_not_secured_hint">Back up your QR code so you can end your pause later.</string>
+    <string name="btn_share_qr">Share QR code</string>
+    <string name="btn_confirm_backup">I have backed up my QR code.</string>
+    <string name="qr_backup_confirmed">Backup confirmed. You can now start your pause.</string>
+    <string name="backup_status_saved">QR code backed up</string>
+    <string name="pause_disabled_hint">Create and back up your QR code first.</string>
+    <string name="need_qr_code">Please create your personal QR code first.</string>
+    <string name="need_qr_backup">Please back up your QR code first.</string>
 
-    <string name="accessibility_desc">Erkennt, wenn eine blockierte App geöffnet wird, und zeigt dann den Pause-Bildschirm. Es werden keine Inhalte gelesen oder gespeichert.</string>
+    <!-- Manage QR code -->
+    <string name="qr_manage_title">My ScanOff code</string>
+    <string name="qr_screen_desc">Your personal ScanOff code to scan, save, or print.</string>
+    <string name="qr_hint">Save or print this code and put it somewhere far away – e.g. in another room. Only this code can end your pause. It won\'t be shown here while a pause is active.</string>
+    <string name="btn_save_qr">Save QR code</string>
+    <string name="btn_new_qr">Create new QR code</string>
+    <string name="qr_saved">QR code saved. You can now start your pause.</string>
+    <string name="qr_save_failed">Save failed</string>
+    <string name="created_at_label">Created on %1$s</string>
+    <string name="created_at_unknown">Creation date unknown</string>
 
-    <!-- Einstellungen -->
-    <string name="settings_service_section">Bedienungshilfe-Dienst</string>
-    <string name="settings_service_desc_on">Aktiv – Apps können blockiert werden.</string>
-    <string name="settings_service_desc_off">Nicht aktiv – bitte aktivieren, damit Apps blockiert werden können.</string>
-    <string name="settings_apps_section">Blockierte Apps</string>
-    <string name="settings_qr_section">QR-Code</string>
-    <string name="settings_qr_desc">Deinen persönlichen ScanOff-Code anzeigen, speichern oder ersetzen.</string>
+    <!-- Create new QR code -->
+    <string name="qr_create_title">Create new QR code</string>
+    <string name="username_hint">Username (max. 10 characters)</string>
+    <string name="username_required">Please enter a username.</string>
+    <string name="btn_generate_qr">Generate QR code</string>
+    <string name="qr_created">New QR code created.</string>
 
-    <!-- Statistiken -->
-    <string name="stats_pause_count_label">Pausen gestartet</string>
-    <string name="stats_apps_label">Blockierte Apps ausgewählt</string>
-    <string name="stats_service_label">Bedienungshilfe-Status</string>
+    <string name="replace_qr_title">Replace QR code?</string>
+    <string name="replace_qr_message">Your previous QR code will be replaced by a new one. The old code may no longer work afterwards.</string>
+    <string name="replace_qr_confirm">Replace</string>
+    <string name="replace_qr_cancel">Cancel</string>
 
-    <!-- Hilfe & FAQ -->
-    <string name="faq_q1">Wie funktioniert ScanOff?</string>
-    <string name="faq_a1">Wähle Apps aus, die blockiert werden sollen, und starte die Pause. Erst wenn du deinen persönlichen QR-Code scannst, werden die Apps wieder freigegeben.</string>
-    <string name="faq_q2">Warum brauche ich die Bedienungshilfe?</string>
-    <string name="faq_a2">Die Bedienungshilfe erkennt, wenn eine blockierte App geöffnet wird, und zeigt dann den Pause-Bildschirm. Es werden keine Inhalte gelesen oder gespeichert.</string>
-    <string name="faq_q3">Was passiert, wenn ich meinen QR-Code verliere?</string>
-    <string name="faq_a3">Ohne den passenden QR-Code kann die Pause nicht beendet werden – das ist Absicht. Speichere oder drucke deinen Code deshalb an einem sicheren Ort.</string>
-    <string name="faq_q4">Kann ich einen neuen QR-Code erzeugen?</string>
-    <string name="faq_a4">Ja, über „QR-Code verwalten“ → „Neuen QR-Code erstellen“. Der alte Code wird dadurch sofort ungültig.</string>
+    <string name="qr_locked_title">Pause active</string>
+    <string name="qr_locked_message">You can\'t change your QR code while a pause is active. End the pause first to create a new code.</string>
 
-    <!-- Über ScanOff -->
+    <string name="scan_prompt">Scan ScanOff code</string>
+    <string name="scan_invalid">No valid ScanOff code recognized.</string>
+    <string name="scan_unrecognized">This ScanOff code is not authorized.</string>
+    <string name="scan_friend_disabled">This friend is not currently allowed to unlock your apps.</string>
+    <string name="unlocked">Pause ended – apps are free again 🎉</string>
+    <string name="unlocked_by_friend">Pause ended with %1$s\'s ScanOff code.</string>
+    <string name="friend_cannot_start_pause">You can\'t start a pause with a friend\'s code.</string>
+    <string name="locked">Pause started – selected apps are blocked</string>
+    <string name="need_service">Please enable the accessibility service first.</string>
+    <string name="need_apps">Please select at least one app first.</string>
+
+    <string name="pause_screen_hint">This app is paused.</string>
+    <string name="overlay_home">Go to Home Screen</string>
+
+    <string name="accessibility_desc">Detects when a blocked app is opened and then shows the pause screen. No content is read or stored.</string>
+
+    <!-- Settings -->
+    <string name="settings_service_section">Accessibility service</string>
+    <string name="settings_service_desc_on">Active – apps can be blocked.</string>
+    <string name="settings_service_desc_off">Not active – please enable it so apps can be blocked.</string>
+    <string name="settings_apps_section">Blocked apps</string>
+    <string name="settings_qr_section">QR code</string>
+    <string name="settings_qr_desc">View, save, or replace your personal ScanOff code.</string>
+    <string name="settings_language_section">Language</string>
+    <string name="language_german">Deutsch</string>
+    <string name="language_english">English</string>
+
+    <!-- Legal & Privacy -->
+    <string name="settings_legal_section">Legal &amp; Privacy</string>
+    <string name="legal_impressum">Legal notice</string>
+    <string name="legal_privacy_policy">Privacy policy</string>
+    <string name="legal_permissions">Permissions &amp; privacy</string>
+    <string name="legal_licenses">Open-source licenses</string>
+    <string name="legal_version">App version</string>
+
+    <!-- Statistics -->
+    <string name="stats_pause_count_label">Pauses started</string>
+    <string name="stats_apps_label">Blocked apps selected</string>
+    <string name="stats_service_label">Accessibility status</string>
+
+    <!-- Help & FAQ -->
+    <string name="faq_q1">How does ScanOff work?</string>
+    <string name="faq_a1">Select the apps you want to block and start the pause. The apps are only released again once you scan your personal QR code.</string>
+    <string name="faq_q2">Why do I need the accessibility service?</string>
+    <string name="faq_a2">The accessibility service detects when a blocked app is opened and then shows the pause screen. No content is read or stored.</string>
+    <string name="faq_q3">What happens if I lose my QR code?</string>
+    <string name="faq_a3">Without the matching QR code, the pause can\'t be ended – that\'s intentional. So save or print your code in a safe place.</string>
+    <string name="faq_q4">Can I generate a new QR code?</string>
+    <string name="faq_a4">Yes, via \"Manage QR code\" → \"Create new QR code\". The old code becomes invalid immediately.</string>
+
+    <!-- About ScanOff -->
     <string name="about_version">Version 1.0</string>
-    <string name="about_description">ScanOff hilft dir, Ablenkungen bewusst zu unterbrechen: Wähle Apps aus, starte eine Pause und beende sie erst wieder, wenn du deinen persönlichen QR-Code findest.</string>
+    <string name="about_description">ScanOff helps you consciously interrupt distractions: select apps, start a pause, and only end it once you find your personal QR code.</string>
 </resources>

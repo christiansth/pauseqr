@@ -4,9 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import java.util.UUID
 
-/** Ergebnis der Prüfung eines gescannten QR-Codes gegen den gespeicherten ScanOff-Code. */
-enum class ScanVerdict { MATCH, WRONG_CODE, INVALID }
-
 /** Speichert den persönlichen ScanOff-Code, Sperrstatus und die Liste der blockierten Apps. */
 object Prefs {
     private const val FILE = "pause_qr"
@@ -14,6 +11,9 @@ object Prefs {
     private const val KEY_APPS = "blocked_apps"
     private const val KEY_PAUSE_COUNT = "pause_count"
     private const val KEY_QR_RECORD = "qr_record_json"
+    private const val KEY_BACKUP_STATUS = "qr_backup_status"
+    private const val KEY_BACKUP_QR_ID = "qr_backup_id"
+    private const val KEY_BACKUP_TIMESTAMP = "qr_backup_timestamp"
 
     // Legacy-Schlüssel aus Versionen vor dem strukturierten QR-Format.
     private const val KEY_LEGACY_SECRET = "secret"
@@ -76,7 +76,11 @@ object Prefs {
         return QrCodeState.Existing(legacyRecord)
     }
 
-    /** Erstellt und speichert einen neuen, eindeutigen ScanOff-Code. Ersetzt einen evtl. bestehenden. */
+    /**
+     * Erstellt und speichert einen neuen, eindeutigen ScanOff-Code. Ersetzt einen evtl.
+     * bestehenden und setzt dessen Sicherungsstatus zurück – eine Sicherung des alten Codes gilt
+     * nie automatisch für den neuen.
+     */
     fun createNewQrCode(c: Context, username: String): QrCodeRecord {
         val record = QrCodeRecord(
             id = UUID.randomUUID().toString(),
@@ -88,30 +92,66 @@ object Prefs {
             .putString(KEY_QR_RECORD, QrPayload.encode(record))
             .remove(KEY_LEGACY_SECRET)
             .remove(KEY_LEGACY_USERNAME)
+            .remove(KEY_BACKUP_STATUS)
+            .remove(KEY_BACKUP_QR_ID)
+            .remove(KEY_BACKUP_TIMESTAMP)
             .apply()
         return record
     }
 
+    // ---------- Sicherungsstatus ----------
+
     /**
-     * Prüft einen gescannten Text gegen den gespeicherten Code. Autorisierung erfolgt
-     * ausschließlich über den Abgleich der eindeutigen ID – niemals über Benutzername oder
-     * Zeitstempel allein.
+     * Sicherungsstatus des AKTUELLEN Codes. Ist der gespeicherte Status an eine andere (ältere)
+     * QR-Code-ID gebunden, gilt er nicht – so kann die Sicherung eines alten Codes niemals
+     * fälschlich für einen neuen übernommen werden.
+     */
+    fun getBackupStatus(c: Context): QrBackupStatus {
+        val record = getQrCode(c) ?: return QrBackupStatus.NOT_BACKED_UP
+        if (sp(c).getString(KEY_BACKUP_QR_ID, null) != record.id) return QrBackupStatus.NOT_BACKED_UP
+        val raw = sp(c).getString(KEY_BACKUP_STATUS, null) ?: return QrBackupStatus.NOT_BACKED_UP
+        return try {
+            QrBackupStatus.valueOf(raw)
+        } catch (e: IllegalArgumentException) {
+            QrBackupStatus.NOT_BACKED_UP
+        }
+    }
+
+    fun isQrBackedUp(c: Context): Boolean = getBackupStatus(c) != QrBackupStatus.NOT_BACKED_UP
+
+    /** Markiert den aktuellen Code als gesichert. Wird nur nach einem bestätigten Erfolg aufgerufen. */
+    fun markQrBackedUp(c: Context, status: QrBackupStatus) {
+        val record = getQrCode(c) ?: return
+        sp(c).edit()
+            .putString(KEY_BACKUP_STATUS, status.name)
+            .putString(KEY_BACKUP_QR_ID, record.id)
+            .putLong(KEY_BACKUP_TIMESTAMP, System.currentTimeMillis())
+            .apply()
+    }
+
+    /**
+     * Zentrale Entsperrprüfung: ein gescannter Code darf eine Pause beenden, wenn er entweder dem
+     * eigenen gültigen ScanOff-Code entspricht, oder einem gespeicherten ScanOff-Freund mit
+     * aktivierter Entsperrfreigabe. Autorisierung erfolgt dabei ausschließlich über den Abgleich
+     * der eindeutigen ID – niemals über Benutzername oder Zeitstempel allein.
      */
     fun verifyScan(c: Context, scannedText: String): ScanVerdict {
-        val record = getQrCode(c) ?: return ScanVerdict.INVALID
+        val own = getQrCode(c)
 
-        if (record.version == 0) {
-            if (scannedText == record.id) return ScanVerdict.MATCH
-            return if (scannedText.startsWith(LEGACY_PREFIX) || QrPayload.decode(scannedText) != null) {
-                ScanVerdict.WRONG_CODE
-            } else {
-                ScanVerdict.INVALID
-            }
+        // Eigener Code im Legacy-Format (reiner Secret-String, kein JSON).
+        if (own != null && own.version == 0 && scannedText == own.id) {
+            return ScanVerdict.OwnCodeMatch
         }
 
         val decoded = QrPayload.decode(scannedText)
-            ?: return if (scannedText.startsWith(LEGACY_PREFIX)) ScanVerdict.WRONG_CODE else ScanVerdict.INVALID
-        return if (decoded.id == record.id) ScanVerdict.MATCH else ScanVerdict.WRONG_CODE
+            ?: return if (scannedText.startsWith(LEGACY_PREFIX)) ScanVerdict.Unrecognized else ScanVerdict.Invalid
+
+        if (own != null && own.version != 0 && decoded.id == own.id) {
+            return ScanVerdict.OwnCodeMatch
+        }
+
+        val friend = FriendsStore.findById(c, decoded.id) ?: return ScanVerdict.Unrecognized
+        return if (friend.unlockEnabled) ScanVerdict.FriendMatch(friend.username) else ScanVerdict.FriendDisabled
     }
 
     // ---------- Sperrstatus ----------

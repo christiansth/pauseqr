@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Das Overlay, das über blockierten Apps liegt -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Vollständig schwarzer Pausenbildschirm über gesperrten Apps. Ein Tippen auf den Hintergrund
+     öffnet ScanOff zum Scannen (siehe BlockerService); der Button führt ausschließlich zum
+     Home-Bildschirm und lässt die Pause selbst unverändert aktiv. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/pauseScreenRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/overlay_bg"
+    android:background="@color/pause_screen_bg"
     android:clickable="true"
-    android:focusable="true"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="32dp">
+    android:focusable="true">
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/overlay_title"
-        android:textColor="@android:color/white"
-        android:textSize="56sp"
-        android:textStyle="bold" />
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvOverlayApp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:gravity="center"
-        android:textColor="#CCFFFFFF"
-        android:textSize="18sp" />
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_scanoff_glyph" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="@string/overlay_hint"
-        android:textColor="#99FFFFFF"
-        android:textSize="15sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/app_name"
+            android:textColor="@android:color/white"
+            android:textSize="28sp" />
 
-    <Button
-        android:id="@+id/btnOverlayScan"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/overlay_scan"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/pause_screen_hint"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp" />
 
-    <Button
-        android:id="@+id/btnOverlayHome"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/overlay_home"
-        android:textColor="@android:color/white" />
-</LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOverlayHome"
+            style="@style/PauseQR.Button.Filled"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:minWidth="220dp"
+            android:text="@string/overlay_home"
+            app:icon="@drawable/ic_nav_home"
+            app:iconGravity="textStart"
+            app:iconTint="@color/on_primary" />
+    </LinearLayout>
+</FrameLayout>

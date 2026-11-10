@@ -7,8 +7,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-/** Einstellungen: Bedienungshilfe-Status, blockierte Apps, Zugang zur QR-Code-Verwaltung. */
+/** Einstellungen: Bedienungshilfe-Status, blockierte Apps, QR-Code-Verwaltung, Sprache. */
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private lateinit var tvServiceStatus: TextView
@@ -16,6 +18,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private lateinit var tvAppsCount: TextView
     private lateinit var btnSelectApps: Button
     private lateinit var btnManageQr: Button
+    private lateinit var cardLanguage: MaterialCardView
+    private lateinit var tvLanguageValue: TextView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,6 +29,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         tvAppsCount = view.findViewById(R.id.tvAppsCount)
         btnSelectApps = view.findViewById(R.id.btnSelectApps)
         btnManageQr = view.findViewById(R.id.btnManageQr)
+        cardLanguage = view.findViewById(R.id.cardLanguage)
+        tvLanguageValue = view.findViewById(R.id.tvLanguageValue)
 
         btnAccessibility.setOnClickListener {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
@@ -35,6 +41,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         btnManageQr.setOnClickListener {
             (activity as? MainActivity)?.pushFragment(QrFragment())
         }
+        cardLanguage.setOnClickListener { showLanguagePicker() }
     }
 
     override fun onResume() {
@@ -50,5 +57,26 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         )
         tvAppsCount.text = getString(R.string.apps_count, Prefs.getBlockedApps(context).size)
         btnSelectApps.isEnabled = !Prefs.isLocked(context)
+
+        tvLanguageValue.text = languageLabel(LanguageUtil.currentLanguage(context))
+    }
+
+    private fun languageLabel(languageTag: String): String =
+        getString(if (languageTag == LanguageUtil.GERMAN) R.string.language_german else R.string.language_english)
+
+    private fun showLanguagePicker() {
+        val context = context ?: return
+        val codes = arrayOf(LanguageUtil.GERMAN, LanguageUtil.ENGLISH)
+        val labels = codes.map { languageLabel(it) }.toTypedArray()
+        val selectedIndex = codes.indexOf(LanguageUtil.currentLanguage(context)).coerceAtLeast(0)
+
+        MaterialAlertDialogBuilder(context)
+            .setTitle(R.string.settings_language_section)
+            .setSingleChoiceItems(labels, selectedIndex) { dialog, which ->
+                LanguageUtil.setLanguage(codes[which])
+                dialog.dismiss()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
     }
 }

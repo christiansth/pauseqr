@@ -2,19 +2,18 @@ package de.pauseqr.app
 
 import android.accessibilityservice.AccessibilityService
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.PixelFormat
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
-import android.widget.Button
-import android.widget.TextView
 
 /**
  * Bedienungshilfe-Dienst: bekommt mit, wenn eine App in den Vordergrund kommt.
- * Ist die Pause aktiv und die App blockiert, wird ein Vollbild-Overlay darübergelegt.
+ * Ist die Pause aktiv und die App blockiert, legt ScanOff einen vollflächigen, schwarzen
+ * Pausenbildschirm darüber. Der Wechsel zum Home-Bildschirm erfolgt ausschließlich, wenn der
+ * Nutzer ausdrücklich den Button „Zum Startbildschirm“ antippt – niemals automatisch.
  */
 class BlockerService : AccessibilityService() {
 
@@ -35,20 +34,24 @@ class BlockerService : AccessibilityService() {
         if (pkg == packageName || pkg in ignored) return
 
         if (Prefs.isLocked(this) && pkg in Prefs.getBlockedApps(this)) {
-            showOverlay(pkg)
+            showOverlay()
         } else {
             hideOverlay()
         }
     }
 
-    private fun showOverlay(pkg: String) {
+    private fun showOverlay() {
+        // Nur beim ERSTEN Erkennen der gesperrten App ausführen – wiederholte Accessibility-
+        // Events für dieselbe gesperrte App dürfen das Overlay nicht erneut aufbauen (kein
+        // Flackern, keine doppelten Overlay-Instanzen).
+        if (overlay != null) return
         if (!::wm.isInitialized) wm = getSystemService(WINDOW_SERVICE) as WindowManager
 
-        val view = overlay ?: LayoutInflater
+        val view = LayoutInflater
             .from(ContextThemeWrapper(this, R.style.Theme_PauseQR))
             .inflate(R.layout.overlay_block, null)
             .also { v ->
-                v.findViewById<Button>(R.id.btnOverlayScan).setOnClickListener {
+                v.findViewById<View>(R.id.pauseScreenRoot).setOnClickListener {
                     startActivity(
                         Intent(this, MainActivity::class.java)
                             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -56,25 +59,32 @@ class BlockerService : AccessibilityService() {
                     )
                     hideOverlay()
                 }
-                v.findViewById<Button>(R.id.btnOverlayHome).setOnClickListener {
-                    performGlobalAction(GLOBAL_ACTION_HOME)
+                v.findViewById<View>(R.id.btnOverlayHome).setOnClickListener {
+                    // Reihenfolge ist wichtig: zuerst das Overlay sicher entfernen, danach erst
+                    // zum Home-Bildschirm wechseln. Die Pause selbst bleibt dabei unangetastet.
                     hideOverlay()
+                    try {
+                        performGlobalAction(GLOBAL_ACTION_HOME)
+                    } catch (_: Exception) {
+                        // Kein Absturz, falls die Systemaktion ausnahmsweise nicht verfügbar ist.
+                    }
                 }
             }
 
-        view.findViewById<TextView>(R.id.tvOverlayApp).text =
-            getString(R.string.overlay_app_blocked, appLabel(pkg))
-
-        if (overlay == null) {
-            val params = WindowManager.LayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
-                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
-                PixelFormat.TRANSLUCENT
-            )
+        val params = WindowManager.LayoutParams(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
+            WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            PixelFormat.OPAQUE
+        )
+        try {
             wm.addView(view, params)
             overlay = view
+        } catch (_: Exception) {
+            // Sicherheitsnetz: Fenster konnte nicht hinzugefügt werden (z. B. ungültiger Token) –
+            // kein halb-initialisiertes Overlay zurücklassen.
+            overlay = null
         }
     }
 
@@ -83,13 +93,6 @@ class BlockerService : AccessibilityService() {
             try { wm.removeView(it) } catch (_: Exception) { }
         }
         overlay = null
-    }
-
-    private fun appLabel(pkg: String): String = try {
-        val info = packageManager.getApplicationInfo(pkg, 0)
-        packageManager.getApplicationLabel(info).toString()
-    } catch (_: PackageManager.NameNotFoundException) {
-        pkg
     }
 
     override fun onInterrupt() {}

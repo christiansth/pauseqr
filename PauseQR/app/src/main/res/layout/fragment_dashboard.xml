@@ -12,48 +12,60 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/app_name"
-            android:textColor="@color/text_primary"
-            android:textSize="32sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="20dp"
-            android:text="@string/dashboard_tagline"
-            android:textColor="@color/text_secondary"
-            android:textSize="16sp" />
-
-        <!-- Hinweis, falls Bedienungshilfe aus ist -->
-        <LinearLayout
+        <!-- Bedienungshilfe erforderlich -->
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/serviceBox"
+            style="@style/PauseQR.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:background="@color/warn_bg"
-            android:orientation="vertical"
-            android:padding="14dp">
+            app:cardBackgroundColor="@color/warn_bg"
+            app:strokeWidth="0dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/service_warning"
-                android:textColor="@color/warn_text" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <Button
-                android:id="@+id/btnAccessibility"
-                style="@style/PauseQR.Button.Filled"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/btn_accessibility" />
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_warning"
+                        android:tint="@color/warn_text" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:text="@string/service_required_title"
+                        android:textAppearance="@style/ScanOff.Text.TitleMedium" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/service_warning"
+                    android:textAppearance="@style/ScanOff.Text.BodySmall" />
+
+                <Button
+                    android:id="@+id/btnAccessibility"
+                    style="@style/PauseQR.Button.Filled"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/btn_activate" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Status -->
         <com.google.android.material.card.MaterialCardView
@@ -61,8 +73,7 @@
             style="@style/PauseQR.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:strokeWidth="0dp">
+            android:layout_marginBottom="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,14 +84,14 @@
 
                 <FrameLayout
                     android:id="@+id/statusBadge"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:background="@drawable/bg_circle_green">
 
                     <ImageView
                         android:id="@+id/ivStatusIcon"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
                         android:layout_gravity="center"
                         android:contentDescription="@null"
                         android:tint="@android:color/white" />
@@ -89,7 +100,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
+                    android:layout_marginStart="12dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -97,26 +108,23 @@
                         android:id="@+id/tvStatus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/text_primary"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textAppearance="@style/ScanOff.Text.TitleMedium" />
 
                     <TextView
                         android:id="@+id/tvStatusDesc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="13sp" />
+                        android:textAppearance="@style/ScanOff.Text.BodySmall" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Schnellzugriff-Karten -->
+        <!-- Schnellaktionen -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="16dp"
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
@@ -128,18 +136,20 @@
                 android:layout_weight="1"
                 android:checkable="true"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                android:minHeight="48dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:padding="14dp">
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="16dp">
 
                     <ImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:contentDescription="@null"
                         android:src="@drawable/ic_nav_apps"
                         android:tint="@color/text_primary" />
@@ -147,20 +157,11 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="12dp"
                         android:gravity="center"
                         android:text="@string/action_apps_title"
-                        android:textColor="@color/text_primary"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/action_apps_caption"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="11sp" />
+                        android:textAppearance="@style/ScanOff.Text.BodySmall"
+                        android:textColor="@color/text_primary" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -174,18 +175,20 @@
                 android:layout_weight="1"
                 android:checkable="true"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                android:minHeight="48dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:padding="14dp">
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="16dp">
 
                     <ImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:contentDescription="@null"
                         android:src="@drawable/ic_scan_frame"
                         android:tint="@color/text_primary" />
@@ -193,20 +196,11 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="12dp"
                         android:gravity="center"
                         android:text="@string/action_scan_title"
-                        android:textColor="@color/text_primary"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/action_scan_caption"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="11sp" />
+                        android:textAppearance="@style/ScanOff.Text.BodySmall"
+                        android:textColor="@color/text_primary" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -219,18 +213,20 @@
                 android:layout_weight="1"
                 android:checkable="true"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                android:minHeight="48dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:padding="14dp">
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="16dp">
 
                     <ImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:contentDescription="@null"
                         android:src="@drawable/ic_person"
                         android:tint="@color/text_primary" />
@@ -238,67 +234,32 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="12dp"
                         android:gravity="center"
                         android:text="@string/action_accessibility_title"
-                        android:textColor="@color/text_primary"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvAccessibilityStatus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textColor="@color/green"
-                        android:textSize="11sp" />
+                        android:textAppearance="@style/ScanOff.Text.BodySmall"
+                        android:textColor="@color/text_primary" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-        <!-- Pause starten / beenden -->
+        <!-- Hauptaktion -->
         <Button
             android:id="@+id/btnPrimary"
             style="@style/PauseQR.Button.Filled"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:textSize="16sp" />
+            android:textAppearance="@style/ScanOff.Text.LabelLarge"
+            android:textColor="@color/on_primary" />
 
-        <LinearLayout
-            android:id="@+id/rowAppsCount"
+        <TextView
+            android:id="@+id/tvAppsCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:layout_marginBottom="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingVertical="6dp">
-
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_nav_apps"
-                android:tint="@color/text_secondary" />
-
-            <TextView
-                android:id="@+id/tvAppsCount"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_weight="1"
-                android:textColor="@color/text_secondary"
-                android:textSize="14sp" />
-
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_chevron_right"
-                android:tint="@color/text_secondary" />
-        </LinearLayout>
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:textAppearance="@style/ScanOff.Text.BodySmall" />
 
         <!-- Dein ScanOff-Code -->
         <com.google.android.material.card.MaterialCardView
@@ -318,9 +279,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/qr_title"
-                    android:textColor="@color/text_primary"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textAppearance="@style/ScanOff.Text.TitleMedium" />
 
                 <!-- Zustand: Code existiert bereits -->
                 <LinearLayout
@@ -334,7 +293,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="12dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -351,8 +310,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_weight="1"
-                            android:textColor="@color/text_primary"
-                            android:textSize="14sp" />
+                            android:textAppearance="@style/ScanOff.Text.BodyMedium" />
                     </LinearLayout>
 
                     <ImageView
@@ -363,6 +321,71 @@
                         android:background="@android:color/white"
                         android:contentDescription="@string/qr_title"
                         android:padding="8dp" />
+
+                    <!-- Sicherungsstatus: noch nicht gesichert -->
+                    <LinearLayout
+                        android:id="@+id/qrBackupPendingGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="@string/qr_not_secured_hint"
+                            android:textAppearance="@style/ScanOff.Text.BodySmall" />
+
+                        <Button
+                            android:id="@+id/btnSaveQr"
+                            style="@style/PauseQR.Button.Outlined"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/btn_save_qr" />
+
+                        <Button
+                            android:id="@+id/btnShareQr"
+                            style="@style/PauseQR.Button.Outlined"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/btn_share_qr" />
+
+                        <Button
+                            android:id="@+id/btnConfirmBackup"
+                            style="@style/PauseQR.Button.Text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/btn_confirm_backup" />
+                    </LinearLayout>
+
+                    <!-- Sicherungsstatus: gesichert -->
+                    <LinearLayout
+                        android:id="@+id/qrBackupDoneGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_check"
+                            android:tint="@color/green" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:text="@string/backup_status_saved"
+                            android:textAppearance="@style/ScanOff.Text.BodySmall"
+                            android:textColor="@color/green" />
+                    </LinearLayout>
 
                     <Button
                         android:id="@+id/btnRegenerateQr"
@@ -403,8 +426,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="@string/qr_load_error"
-                        android:textColor="@color/red"
-                        android:textSize="13sp" />
+                        android:textAppearance="@style/ScanOff.Text.BodySmall"
+                        android:textColor="@color/red" />
 
                     <Button
                         android:id="@+id/btnRetryQr"

@@ -32,6 +32,18 @@ class QrCreateFragment : Fragment(R.layout.fragment_qr_create) {
 
     private fun onGenerateClicked() {
         val context = context ?: return
+
+        if (Prefs.isLocked(context)) {
+            // Während einer laufenden Pause darf der Code nicht gewechselt werden – sonst würde
+            // der physisch gesicherte QR-Code nicht mehr zum Entsperren passen.
+            AlertDialog.Builder(context)
+                .setTitle(R.string.qr_locked_title)
+                .setMessage(R.string.qr_locked_message)
+                .setPositiveButton(android.R.string.ok, null)
+                .show()
+            return
+        }
+
         val username = etUsername.text.toString().trim().take(Prefs.USERNAME_MAX_LENGTH)
 
         if (username.isEmpty()) {

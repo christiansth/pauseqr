@@ -435,6 +435,7 @@
         <enum name="gone" value="8"/>
     </attr>
     <attr format="reference" name="popupMenuBackground"/>
+    <attr format="reference" name="postSplashScreenTheme"/>
     <attr format="reference" name="recyclerViewStyle"/>
     <attr format="color" name="rippleColor"/>
     <attr format="color|reference" name="scrimBackground"/>
@@ -457,6 +458,7 @@
     <attr format="boolean" name="singleSelection"/>
     <attr format="float" name="sizePercent"/>
     <attr format="reference" name="sliderStyle"/>
+    <attr format="dimension" name="splashScreenIconSize"/>
     <attr format="boolean" name="state_with_icon"/>
     <attr format="color" name="strokeColor"/>
     <attr format="dimension" name="strokeWidth"/>
@@ -543,6 +545,10 @@
         <enum name="position" value="0"/>
         <enum name="path" value="1"/>
     </attr>
+    <attr format="reference" name="windowSplashScreenAnimatedIcon"/>
+    <attr format="integer" name="windowSplashScreenAnimationDuration"/>
+    <attr format="color" name="windowSplashScreenBackground"/>
+    <attr format="color" name="windowSplashScreenIconBackgroundColor"/>
     <bool name="abc_action_bar_embed_tabs">true</bool>
     <bool name="abc_config_actionMenuItemAllCaps">true</bool>
     <bool name="mtrl_btn_textappearance_all_caps">true</bool>
@@ -555,7 +561,7 @@
     <color name="accent_material_light">@color/material_deep_teal_500</color>
     <color name="androidx_core_ripple_material_light">#1f000000</color>
     <color name="androidx_core_secondary_text_default_material_light">#8a000000</color>
-    <color name="background">#0B0C17</color>
+    <color name="background">#101114</color>
     <color name="background_floating_material_dark">@color/material_grey_800</color>
     <color name="background_floating_material_light">@android:color/white</color>
     <color name="background_material_dark">@color/material_grey_850</color>
@@ -617,8 +623,8 @@
     <color name="error_color_material_light">#ff5722</color>
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
-    <color name="green">#34C759</color>
-    <color name="green_bg">#13301F</color>
+    <color name="green">#81C995</color>
+    <color name="green_bg">#1B2420</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="m3_ref_palette_black">#ff000000</color>
@@ -860,11 +866,11 @@
     <color name="mtrl_textinput_hovered_box_stroke_color">#DE000000</color>
     <color name="notification_action_color_filter">#ffffffff</color>
     <color name="notification_icon_bg_color">#ff9e9e9e</color>
-    <color name="on_primary">#0B0C17</color>
-    <color name="outline">#2E3148</color>
-    <color name="overlay_bg">#F2101418</color>
+    <color name="on_primary">#101114</color>
+    <color name="outline">#35363D</color>
+    <color name="pause_screen_bg">#000000</color>
     <color name="primary">#FFFFFF</color>
-    <color name="primary_container">#22243A</color>
+    <color name="primary_container">#24262B</color>
     <color name="primary_dark_material_dark">@android:color/black</color>
     <color name="primary_dark_material_light">@color/material_grey_600</color>
     <color name="primary_material_dark">@color/material_grey_900</color>
@@ -873,30 +879,30 @@
     <color name="primary_text_default_material_light">#de000000</color>
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
     <color name="primary_text_disabled_material_light">#39000000</color>
-    <color name="red">#FF5B5B</color>
-    <color name="red_bg">#361417</color>
+    <color name="red">#F28B82</color>
+    <color name="red_bg">#271A19</color>
     <color name="ripple_material_dark">#33ffffff</color>
     <color name="ripple_material_light">#1f000000</color>
     <color name="secondary_text_default_material_dark">#b3ffffff</color>
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
     <color name="secondary_text_disabled_material_light">#24000000</color>
-    <color name="sidebar_bg">#0B0C17</color>
-    <color name="sidebar_selected">#2A2D3E</color>
-    <color name="sidebar_text">#9CA0B8</color>
-    <color name="sidebar_text_selected">#FFFFFF</color>
-    <color name="surface">#1A1C2B</color>
-    <color name="surface_variant">#22243A</color>
+    <color name="sidebar_bg">#15161A</color>
+    <color name="sidebar_selected">#24262B</color>
+    <color name="sidebar_text">#A5A5A9</color>
+    <color name="sidebar_text_selected">#F5F5F5</color>
+    <color name="surface">#1C1D21</color>
+    <color name="surface_variant">#24262B</color>
     <color name="switch_thumb_disabled_material_dark">#ff616161</color>
     <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
-    <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#9CA0B8</color>
+    <color name="text_primary">#F5F5F5</color>
+    <color name="text_secondary">#A5A5A9</color>
     <color name="tooltip_background_dark">#e6616161</color>
     <color name="tooltip_background_light">#e6FFFFFF</color>
-    <color name="warn_bg">#3A2E12</color>
-    <color name="warn_text">#F2C464</color>
+    <color name="warn_bg">#261F15</color>
+    <color name="warn_text">#E6C27A</color>
     <color name="zxing_custom_possible_result_points">#903A89CF</color>
     <color name="zxing_custom_result_view">#b0000000</color>
     <color name="zxing_custom_viewfinder_laser">#1976D2</color>
@@ -1702,6 +1708,13 @@
     <dimen name="notification_subtext_size">13sp</dimen>
     <dimen name="notification_top_pad">10dp</dimen>
     <dimen name="notification_top_pad_large_text">5dp</dimen>
+    <dimen name="splashscreen_icon_mask_size_no_background">410dp</dimen>
+    <dimen name="splashscreen_icon_mask_size_with_background">342dp</dimen>
+    <dimen name="splashscreen_icon_mask_stroke_no_background">109dp</dimen>
+    <dimen name="splashscreen_icon_mask_stroke_with_background">92dp</dimen>
+    <dimen name="splashscreen_icon_size">?splashScreenIconSize</dimen>
+    <dimen name="splashscreen_icon_size_no_background">288dp</dimen>
+    <dimen name="splashscreen_icon_size_with_background">240dp</dimen>
     <dimen name="tooltip_corner_radius">2dp</dimen>
     <dimen name="tooltip_horizontal_padding">16dp</dimen>
     <dimen name="tooltip_margin">8dp</dimen>
@@ -1839,6 +1852,7 @@
     <integer name="bottom_sheet_slide_duration">150</integer>
     <integer name="cancel_button_image_alpha">127</integer>
     <integer name="config_tooltipAnimTime">150</integer>
+    <integer name="default_icon_animation_duration">10000</integer>
     <integer name="design_snackbar_text_max_lines">2</integer>
     <integer name="design_tab_indicator_anim_duration_ms">300</integer>
     <integer name="hide_password_duration">320</integer>
@@ -1932,36 +1946,45 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with <ns2:g example="Mail" id="application_name">%s</ns2:g></string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
-    <string name="about_description">ScanOff hilft dir, Ablenkungen bewusst zu unterbrechen: Wähle Apps aus, starte eine Pause und beende sie erst wieder, wenn du deinen persönlichen QR-Code findest.</string>
+    <string name="about_description">ScanOff helps you consciously interrupt distractions: select apps, start a pause, and only end it once you find your personal QR code.</string>
     <string name="about_version">Version 1.0</string>
-    <string name="accessibility_desc">Erkennt, wenn eine blockierte App geöffnet wird, und zeigt dann den Pause-Bildschirm. Es werden keine Inhalte gelesen oder gespeichert.</string>
-    <string name="action_accessibility_title">Bedienungshilfen</string>
-    <string name="action_apps_caption">Zum Blockieren</string>
-    <string name="action_apps_title">Apps auswählen</string>
-    <string name="action_scan_caption">Per Scan starten</string>
-    <string name="action_scan_title">QR-Code testen</string>
+    <string name="accessibility_consent_cancel">Cancel</string>
+    <string name="accessibility_consent_confirm">Understood, continue</string>
+    <string name="accessibility_consent_message">ScanOff needs access to Android\'s accessibility service to detect when you open an app you have selected. While a pause is active, ScanOff can then block that app.\n\nScanOff only reads the package name of the app currently in the foreground. Screen content or text is never read, stored, or transmitted.</string>
+    <string name="accessibility_consent_title">Accessibility service for ScanOff</string>
+    <string name="accessibility_desc">Detects when a blocked app is opened and then shows the pause screen. No content is read or stored.</string>
+    <string name="action_accessibility_title">Accessibility</string>
+    <string name="action_apps_title">Select apps</string>
+    <string name="action_scan_title">Scan QR code</string>
+    <string name="added_at_label">Added on %1$s</string>
     <string name="androidx_startup" translatable="false">androidx.startup</string>
     <string name="app_name">ScanOff</string>
     <string name="app_version" translatable="false">null</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
-    <string name="apps_count">%1$d App(s) ausgewählt</string>
+    <string name="apps_count">%1$d app(s) selected</string>
+    <string name="backup_status_saved">QR code backed up</string>
     <string name="bottom_sheet_behavior" translatable="false">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
     <string description="A description of an accessibility action to collapse the bottom sheet [CHAR LIMIT=NONE]" name="bottomsheet_action_collapse">Collapse the bottom sheet</string>
     <string description="A description of an accessibility action to expand the bottom sheet [CHAR LIMIT=NONE]" name="bottomsheet_action_expand">Expand the bottom sheet</string>
     <string description="A description of an action that a user of an accessibility service can perform to expand a bottomsheet halfway to its full height. [CHAR LIMIT=25]" name="bottomsheet_action_expand_halfway">Expand halfway</string>
     <string description="An accessibility feedback when the bottom sheet drag handle is clicked [CHAR LIMIT=NONE]" name="bottomsheet_drag_handle_clicked">Drag handle double-tapped</string>
     <string description="The content description of bottom sheet drag handles [CHAR LIMIT=NONE]" name="bottomsheet_drag_handle_content_description">Drag handle</string>
-    <string name="btn_accessibility">Bedienungshilfen öffnen</string>
-    <string name="btn_create_qr">QR-Code erstellen</string>
-    <string name="btn_generate_qr">QR-Code generieren</string>
-    <string name="btn_manage_qr">QR-Code verwalten</string>
-    <string name="btn_new_qr">Neuen QR-Code erstellen</string>
-    <string name="btn_pause_start">Pause starten</string>
-    <string name="btn_pause_unlock">QR scannen zum Entsperren</string>
-    <string name="btn_regenerate_qr">Neuen QR-Code generieren</string>
-    <string name="btn_retry">Erneut versuchen</string>
-    <string name="btn_save_qr">QR-Code in Galerie speichern</string>
-    <string name="btn_select_apps">Apps zum Blockieren auswählen</string>
+    <string name="btn_accessibility">Open accessibility settings</string>
+    <string name="btn_activate">Activate</string>
+    <string name="btn_add_friend">Add friend</string>
+    <string name="btn_confirm_backup">I have backed up my QR code.</string>
+    <string name="btn_generate_qr">Generate QR code</string>
+    <string name="btn_import_gallery">Import from gallery</string>
+    <string name="btn_manage_qr">Manage QR code</string>
+    <string name="btn_new_qr">Create new QR code</string>
+    <string name="btn_pause_start">Start pause</string>
+    <string name="btn_pause_unlock">Scan QR to unlock</string>
+    <string name="btn_regenerate_qr">Generate new QR code</string>
+    <string name="btn_retry">Try again</string>
+    <string name="btn_save_as_friend">Save friend</string>
+    <string name="btn_save_qr">Save QR code</string>
+    <string name="btn_select_apps">Select apps to block</string>
+    <string name="btn_share_qr">Share QR code</string>
     <string name="call_notification_answer_action">Answer</string>
     <string name="call_notification_answer_video_action">Video</string>
     <string name="call_notification_decline_action">Decline</string>
@@ -1973,9 +1996,8 @@
     <string name="character_counter_overflowed_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern" translatable="false">%1$d/%2$d</string>
     <string name="clear_text_end_icon_content_description">Clear text</string>
-    <string name="created_at_label">Erstellt am %1$s</string>
-    <string name="created_at_unknown">Erstellungsdatum unbekannt</string>
-    <string name="dashboard_tagline">Scan. Pause. Focus.</string>
+    <string name="created_at_label">Created on %1$s</string>
+    <string name="created_at_unknown">Creation date unknown</string>
     <string name="define_zxingandroidembedded" translatable="false"/>
     <string description="Screen reader announcement for when a checkbox is on error. [CHAR LIMIT=NONE]" name="error_a11y_label">
     Error: invalid
@@ -1984,17 +2006,34 @@
     <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
-    <string name="faq_a1">Wähle Apps aus, die blockiert werden sollen, und starte die Pause. Erst wenn du deinen persönlichen QR-Code scannst, werden die Apps wieder freigegeben.</string>
-    <string name="faq_a2">Die Bedienungshilfe erkennt, wenn eine blockierte App geöffnet wird, und zeigt dann den Pause-Bildschirm. Es werden keine Inhalte gelesen oder gespeichert.</string>
-    <string name="faq_a3">Ohne den passenden QR-Code kann die Pause nicht beendet werden – das ist Absicht. Speichere oder drucke deinen Code deshalb an einem sicheren Ort.</string>
-    <string name="faq_a4">Ja, über „QR-Code verwalten“ → „Neuen QR-Code erstellen“. Der alte Code wird dadurch sofort ungültig.</string>
-    <string name="faq_q1">Wie funktioniert ScanOff?</string>
-    <string name="faq_q2">Warum brauche ich die Bedienungshilfe?</string>
-    <string name="faq_q3">Was passiert, wenn ich meinen QR-Code verliere?</string>
-    <string name="faq_q4">Kann ich einen neuen QR-Code erzeugen?</string>
+    <string name="faq_a1">Select the apps you want to block and start the pause. The apps are only released again once you scan your personal QR code.</string>
+    <string name="faq_a2">The accessibility service detects when a blocked app is opened and then shows the pause screen. No content is read or stored.</string>
+    <string name="faq_a3">Without the matching QR code, the pause can\'t be ended – that\'s intentional. So save or print your code in a safe place.</string>
+    <string name="faq_a4">Yes, via \"Manage QR code\" → \"Create new QR code\". The old code becomes invalid immediately.</string>
+    <string name="faq_q1">How does ScanOff work?</string>
+    <string name="faq_q2">Why do I need the accessibility service?</string>
+    <string name="faq_q3">What happens if I lose my QR code?</string>
+    <string name="faq_q4">Can I generate a new QR code?</string>
+    <string name="friend_add_desc">Scan another ScanOff user\'s personal QR code, or import it from your gallery.</string>
+    <string name="friend_add_title">Add friend</string>
+    <string name="friend_added">Friend saved.</string>
+    <string name="friend_cannot_start_pause">You can\'t start a pause with a friend\'s code.</string>
+    <string name="friend_detail_unlock_off">Unlocking currently not allowed</string>
+    <string name="friend_detail_unlock_on">Unlocking currently allowed</string>
+    <string name="friend_duplicate">This friend has already been saved.</string>
+    <string name="friend_own_code">This is your own ScanOff code.</string>
+    <string name="friends_empty">No ScanOff friends saved yet.</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
+    <string name="import_not_found">No QR code was found in the selected image.</string>
     <string name="item_view_role_description">Tab</string>
+    <string name="language_english">English</string>
+    <string name="language_german">Deutsch</string>
+    <string name="legal_impressum">Legal notice</string>
+    <string name="legal_licenses">Open-source licenses</string>
+    <string name="legal_permissions">Permissions &amp; privacy</string>
+    <string name="legal_privacy_policy">Privacy policy</string>
+    <string name="legal_version">App version</string>
     <string name="library_zxingandroidembedded_author" translatable="false">JourneyApps</string>
     <string name="library_zxingandroidembedded_authorWebsite" translatable="false">https://journeyapps.com/</string>
     <string name="library_zxingandroidembedded_isOpenSource" translatable="false">true</string>
@@ -2004,7 +2043,7 @@
     <string name="library_zxingandroidembedded_libraryWebsite" translatable="false">https://github.com/journeyapps/zxing-android-embedded</string>
     <string name="library_zxingandroidembedded_licenseId" translatable="false">apache_2_0</string>
     <string name="library_zxingandroidembedded_repositoryLink" translatable="false">https://github.com/journeyapps/zxing-android-embedded</string>
-    <string name="locked">Pause gestartet – ausgewählte Apps sind blockiert</string>
+    <string name="locked">Pause started – selected apps are blocked</string>
     <string name="m3_exceed_max_badge_text_suffix" translatable="false"><ns2:g example="Some te" id="part of a long text">%1$s</ns2:g><ns2:g example="…" id="suffix">%2$s</ns2:g></string>
     <string name="m3_ref_typeface_brand_medium" translatable="false">sans-serif-medium</string>
     <string name="m3_ref_typeface_brand_regular" translatable="false">sans-serif</string>
@@ -2043,6 +2082,9 @@
     <string description="Suffix for time in 12-hour standard, after noon. [CHAR_LIMIT=2]" name="material_timepicker_pm">PM</string>
     <string description="Title for the dialog with a time picker. [CHAR_LIMIT=32]" name="material_timepicker_select_time">Select time</string>
     <string name="material_timepicker_text_input_mode_description">Switch to text input mode for the time input.</string>
+    <string name="menu_change_unlock">Change unlock permission</string>
+    <string name="menu_remove_friend">Remove friend</string>
+    <string name="menu_view_qr">View QR code</string>
     <string description="Content description for new notification (no number count) [CHAR_LIMIT=NONE]" name="mtrl_badge_numberless_content_description">New notification</string>
     <string name="mtrl_checkbox_button_icon_path_checked" translatable="false">M14,18.2 11.4,15.6 10,17 14,21 22,13 20.6,11.6z</string>
     <string name="mtrl_checkbox_button_icon_path_group_name" translatable="false">icon</string>
@@ -2111,72 +2153,88 @@
     <string name="mtrl_switch_track_path" translatable="false">M0,16 A16,16 0 0,1 16,0 H36 A16,16 0 0,1 36,32 H16 A16,16 0 0,1 0,16</string>
     <string description="Button text to indicate that the widget will ignore the user&apos;s selection [CHAR_LIMIT=16]" name="mtrl_timepicker_cancel">Cancel</string>
     <string description="Button text to indicate that the widget will save the user&apos;s selection [CHAR_LIMIT=16]" name="mtrl_timepicker_confirm">OK</string>
-    <string name="nav_about">Über ScanOff</string>
-    <string name="nav_apps">Apps verwalten</string>
-    <string name="nav_help">Hilfe &amp; FAQ</string>
-    <string name="nav_overview">Übersicht</string>
-    <string name="nav_qr">QR-Code</string>
-    <string name="nav_settings">Einstellungen</string>
-    <string name="nav_stats">Statistiken</string>
-    <string name="need_apps">Bitte zuerst mindestens eine App auswählen.</string>
-    <string name="need_service">Bitte zuerst den Bedienungshilfe-Dienst aktivieren.</string>
-    <string name="overlay_app_blocked">%1$s ist gerade blockiert.</string>
-    <string name="overlay_hint">Scanne deinen ScanOff-Code, um die Apps wieder freizugeben.</string>
-    <string name="overlay_home">Zum Startbildschirm</string>
-    <string name="overlay_scan">QR scannen</string>
-    <string name="overlay_title">Pause</string>
+    <string name="nav_about">About ScanOff</string>
+    <string name="nav_apps">Manage apps</string>
+    <string name="nav_friends">ScanOff Friends</string>
+    <string name="nav_help">Help &amp; FAQ</string>
+    <string name="nav_overview">Home</string>
+    <string name="nav_qr">My QR code</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_stats">Statistics</string>
+    <string name="need_apps">Please select at least one app first.</string>
+    <string name="need_qr_backup">Please back up your QR code first.</string>
+    <string name="need_qr_code">Please create your personal QR code first.</string>
+    <string name="need_service">Please enable the accessibility service first.</string>
+    <string name="overlay_home">Go to Home Screen</string>
     <string name="password_toggle_content_description">Show password</string>
     <string name="path_password_eye" translatable="false">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
-    <string name="pause_end_desc">Scanne deinen ScanOff-Code, um die Apps wieder freizugeben.</string>
-    <string name="qr_card_desc">Erstelle deinen persönlichen QR-Code.</string>
-    <string name="qr_create_title">Neuen QR-Code erstellen</string>
-    <string name="qr_created">Neuer QR-Code erstellt.</string>
-    <string name="qr_hint">Speichere oder drucke diesen Code und leg ihn weit weg – z. B. in einen anderen Raum. Nur mit diesem Code kannst du die Pause wieder beenden. Während der Pause wird er hier nicht angezeigt.</string>
-    <string name="qr_load_error">Deine gespeicherten QR-Code-Daten konnten nicht geladen werden.</string>
-    <string name="qr_manage_title">QR-Code verwalten</string>
-    <string name="qr_save_failed">Speichern fehlgeschlagen</string>
-    <string name="qr_saved">QR-Code gespeichert unter Bilder/ScanOff</string>
-    <string name="qr_screen_desc">Dein persönlicher ScanOff-Code zum Scannen, Speichern oder Ausdrucken.</string>
-    <string name="qr_title">Dein ScanOff-Code</string>
-    <string name="replace_qr_cancel">Abbrechen</string>
-    <string name="replace_qr_confirm">Ersetzen</string>
-    <string name="replace_qr_message">Dein bisheriger QR-Code wird durch einen neuen ersetzt. Der alte Code funktioniert danach möglicherweise nicht mehr.</string>
-    <string name="replace_qr_title">QR-Code ersetzen?</string>
-    <string name="scan_invalid">Ungültiger oder beschädigter QR-Code.</string>
-    <string name="scan_prompt">ScanOff-Code scannen</string>
+    <string name="pause_disabled_hint">Create and back up your QR code first.</string>
+    <string name="pause_end_desc">Scan your ScanOff code to release the apps again.</string>
+    <string name="pause_screen_hint">This app is paused.</string>
+    <string name="qr_backup_confirmed">Backup confirmed. You can now start your pause.</string>
+    <string name="qr_card_desc">Create and back up your personal QR code first, before you can start a pause.</string>
+    <string name="qr_create_title">Create new QR code</string>
+    <string name="qr_created">New QR code created.</string>
+    <string name="qr_hint">Save or print this code and put it somewhere far away – e.g. in another room. Only this code can end your pause. It won\'t be shown here while a pause is active.</string>
+    <string name="qr_load_error">Your saved QR code data could not be loaded.</string>
+    <string name="qr_locked_message">You can\'t change your QR code while a pause is active. End the pause first to create a new code.</string>
+    <string name="qr_locked_title">Pause active</string>
+    <string name="qr_manage_title">My ScanOff code</string>
+    <string name="qr_not_secured_hint">Back up your QR code so you can end your pause later.</string>
+    <string name="qr_save_failed">Save failed</string>
+    <string name="qr_saved">QR code saved. You can now start your pause.</string>
+    <string name="qr_screen_desc">Your personal ScanOff code to scan, save, or print.</string>
+    <string name="qr_title">Your ScanOff code</string>
+    <string name="remove_friend_confirm">Remove</string>
+    <string name="remove_friend_message">Do you really want to remove this ScanOff friend? Their QR code will no longer be able to unlock your apps afterwards.</string>
+    <string name="remove_friend_title">Remove friend?</string>
+    <string name="replace_qr_cancel">Cancel</string>
+    <string name="replace_qr_confirm">Replace</string>
+    <string name="replace_qr_message">Your previous QR code will be replaced by a new one. The old code may no longer work afterwards.</string>
+    <string name="replace_qr_title">Replace QR code?</string>
+    <string name="scan_friend_disabled">This friend is not currently allowed to unlock your apps.</string>
+    <string name="scan_invalid">No valid ScanOff code recognized.</string>
+    <string name="scan_not_valid">This is not a valid ScanOff QR code.</string>
+    <string name="scan_prompt">Scan ScanOff code</string>
+    <string name="scan_recognized_title">ScanOff code recognized</string>
+    <string name="scan_unrecognized">This ScanOff code is not authorized.</string>
     <string name="search_menu_title">Search</string>
     <string name="searchbar_scrolling_view_behavior" translatable="false">
     com.google.android.material.search.SearchBar$ScrollingViewBehavior
   </string>
     <string description="Content description for the X button to clear text [CHAR_LIMIT=NONE]" name="searchview_clear_text_content_description">Clear text</string>
     <string description="Content description for the navigation button to return to the previous screen [CHAR_LIMIT=NONE]" name="searchview_navigation_content_description">Back</string>
-    <string name="select_apps_title">Apps auswählen</string>
-    <string name="service_warning">Damit Apps blockiert werden können, muss „ScanOff“ unter Einstellungen → Bedienungshilfen aktiviert werden.</string>
-    <string name="settings_apps_section">Blockierte Apps</string>
-    <string name="settings_qr_desc">Deinen persönlichen ScanOff-Code anzeigen, speichern oder ersetzen.</string>
-    <string name="settings_qr_section">QR-Code</string>
-    <string name="settings_service_desc_off">Nicht aktiv – bitte aktivieren, damit Apps blockiert werden können.</string>
-    <string name="settings_service_desc_on">Aktiv – Apps können blockiert werden.</string>
-    <string name="settings_service_section">Bedienungshilfe-Dienst</string>
+    <string name="select_apps_title">Select apps</string>
+    <string name="service_required_title">Accessibility service required</string>
+    <string name="service_warning">To block apps, \"ScanOff\" must be enabled under Settings → Accessibility.</string>
+    <string name="settings_apps_section">Blocked apps</string>
+    <string name="settings_language_section">Language</string>
+    <string name="settings_legal_section">Legal &amp; Privacy</string>
+    <string name="settings_qr_desc">View, save, or replace your personal ScanOff code.</string>
+    <string name="settings_qr_section">QR code</string>
+    <string name="settings_service_desc_off">Not active – please enable it so apps can be blocked.</string>
+    <string name="settings_service_desc_on">Active – apps can be blocked.</string>
+    <string name="settings_service_section">Accessibility service</string>
     <string description="Title of the side sheet&apos;s accessibility pane that is spoken by TalkBack when the side sheet appears on screen. [CHAR_LIMIT=NONE]" name="side_sheet_accessibility_pane_title">Side Sheet</string>
     <string name="side_sheet_behavior" translatable="false">com.google.android.material.sidesheet.SideSheetBehavior</string>
-    <string name="stats_apps_label">Blockierte Apps ausgewählt</string>
-    <string name="stats_pause_count_label">Pausen gestartet</string>
-    <string name="stats_service_label">Bedienungshilfe-Status</string>
-    <string name="status_active">Aktiviert</string>
+    <string name="stats_apps_label">Blocked apps selected</string>
+    <string name="stats_pause_count_label">Pauses started</string>
+    <string name="stats_service_label">Accessibility status</string>
+    <string name="status_active">Active</string>
     <string name="status_bar_notification_info_overflow">999+</string>
-    <string name="status_inactive">Nicht aktiviert</string>
-    <string name="status_locked">Pause aktiv – Apps sind blockiert</string>
-    <string name="status_locked_desc">Die ausgewählten Apps sind gerade blockiert.</string>
-    <string name="status_unlocked">Keine Pause – alle Apps sind frei</string>
-    <string name="status_unlocked_desc">Aktuell ist keine App blockiert.</string>
-    <string name="unlocked">Pause beendet – Apps sind wieder frei 🎉</string>
-    <string name="username_hint">Benutzername (max. 10 Zeichen)</string>
-    <string name="username_required">Bitte einen Benutzernamen eingeben.</string>
-    <string name="wrong_qr">Das ist nicht dein ScanOff-Code.</string>
+    <string name="status_inactive">Not active</string>
+    <string name="status_locked">Pause active</string>
+    <string name="status_locked_desc">Selected apps are blocked.</string>
+    <string name="status_unlocked">No pause active</string>
+    <string name="status_unlocked_desc">All apps are available.</string>
+    <string name="switch_allow_unlock">Allow unlocking</string>
+    <string name="unlocked">Pause ended – apps are free again 🎉</string>
+    <string name="unlocked_by_friend">Pause ended with %1$s\'s ScanOff code.</string>
+    <string name="username_hint">Username (max. 10 characters)</string>
+    <string name="username_required">Please enter a username.</string>
     <string name="zxing_app_name">Barcode Scanner</string>
     <string name="zxing_button_ok">OK</string>
     <string name="zxing_msg_camera_framework_bug">Sorry, the Android camera encountered a problem. You may need to restart the device.</string>
@@ -2607,6 +2665,9 @@
     <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
   </style>
     <style name="Base.Theme.MaterialComponents.Light.DialogWhenLarge" parent="Theme.MaterialComponents.Light"/>
+    <style name="Base.Theme.SplashScreen" parent="Base.v21.Theme.SplashScreen"/>
+    <style name="Base.Theme.SplashScreen.DayNight" parent="Base.Theme.SplashScreen.Light"/>
+    <style name="Base.Theme.SplashScreen.Light" parent="Base.v21.Theme.SplashScreen.Light"/>
     <style name="Base.ThemeOverlay.AppCompat" parent="Platform.ThemeOverlay.AppCompat"/>
     <style name="Base.ThemeOverlay.AppCompat.ActionBar">
         <item name="colorControlNormal">?android:attr/textColorPrimary</item>
@@ -5583,6 +5644,10 @@
     <item name="shapeAppearanceOverlay">@null</item>
   </style>
     <style name="Base.Widget.MaterialComponents.TextView" parent="Widget.AppCompat.TextView"/>
+    <style name="Base.v21.Theme.SplashScreen" parent="android:Theme.DeviceDefault.NoActionBar">
+    </style>
+    <style name="Base.v21.Theme.SplashScreen.Light" parent="android:Theme.DeviceDefault.Light.NoActionBar">
+    </style>
     <style name="CardView" parent="Base.CardView">
     </style>
     <style name="CardView.Dark">
@@ -5686,20 +5751,15 @@
     <item name="android:textAlignment" ns1:ignore="NewApi">center</item>
   </style>
     <style name="PauseQR.Button.Filled" parent="Widget.Material3.Button">
-        <item name="cornerRadius">14dp</item>
-        <item name="android:textStyle">bold</item>
         <item name="backgroundTint">@color/primary</item>
         <item name="android:textColor">@color/on_primary</item>
         <item name="iconTint">@color/on_primary</item>
     </style>
     <style name="PauseQR.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
-        <item name="cornerRadius">14dp</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="strokeColor">@color/outline</item>
     </style>
     <style name="PauseQR.Button.Text" parent="Widget.Material3.Button.TextButton">
-        <item name="cornerRadius">14dp</item>
         <item name="android:textColor">@color/text_secondary</item>
     </style>
     <style name="PauseQR.Card" parent="Widget.Material3.CardView.Elevated">
@@ -5708,6 +5768,11 @@
         <item name="strokeWidth">1dp</item>
         <item name="strokeColor">@color/outline</item>
         <item name="cardBackgroundColor">@color/surface</item>
+    </style>
+    <style name="PauseQR.Divider" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/outline</item>
     </style>
     <style name="Platform.AppCompat" parent="android:Theme.Holo">
         <item name="android:windowNoTitle">true</item>
@@ -5927,6 +5992,21 @@
     <style name="RtlUnderlay.Widget.AppCompat.ActionButton.Overflow" parent="Base.Widget.AppCompat.ActionButton">
         <item name="android:paddingLeft">@dimen/abc_action_bar_overflow_padding_start_material</item>
         <item name="android:paddingRight">@dimen/abc_action_bar_overflow_padding_end_material</item>
+    </style>
+    <style name="ScanOff.Text.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="ScanOff.Text.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    <style name="ScanOff.Text.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="ScanOff.Text.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="ScanOff.Text.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">@color/text_primary</item>
     </style>
     <style name="ShapeAppearance.M3.Comp.Badge.Large.Shape" parent="ShapeAppearance.M3.Sys.Shape.Corner.Full"/>
     <style name="ShapeAppearance.M3.Comp.Badge.Shape" parent="ShapeAppearance.M3.Sys.Shape.Corner.Full"/>
@@ -6626,6 +6706,38 @@
         <item name="android:windowBackground">@color/background</item>
         <item name="android:statusBarColor">@color/background</item>
         <item name="android:navigationBarColor">@color/background</item>
+        
+    </style>
+    <style name="Theme.PauseQR.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_scanoff_glyph</item>
+        <item name="postSplashScreenTheme">@style/Theme.PauseQR</item>
+    </style>
+    <style name="Theme.SplashScreen" parent="Theme.SplashScreen.Common">
+        <item name="postSplashScreenTheme">?android:attr/theme</item>
+        <item name="windowSplashScreenAnimationDuration">
+            @integer/default_icon_animation_duration
+        </item>
+        <item name="windowSplashScreenBackground">?android:colorBackground</item>
+        <item name="windowSplashScreenAnimatedIcon">@android:drawable/sym_def_app_icon</item>
+
+    </style>
+    <style name="Theme.SplashScreen.Common" parent="Base.Theme.SplashScreen.DayNight">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">
+            @drawable/compat_splash_screen_no_icon_background
+        </item>
+        <item name="android:opacity">opaque</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="splashScreenIconSize">@dimen/splashscreen_icon_size_no_background</item>
+    </style>
+    <style name="Theme.SplashScreen.IconBackground" parent="Theme.SplashScreen">
+        <item name="android:windowBackground">@drawable/compat_splash_screen</item>
+        <item name="splashScreenIconSize">@dimen/splashscreen_icon_size_with_background</item>
     </style>
     <style name="ThemeOverlay.AppCompat" parent="Base.ThemeOverlay.AppCompat"/>
     <style name="ThemeOverlay.AppCompat.ActionBar" parent="Base.ThemeOverlay.AppCompat.ActionBar"/>

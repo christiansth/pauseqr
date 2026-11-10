@@ -2,6 +2,7 @@ package de.pauseqr.app
 
 import org.json.JSONException
 import org.json.JSONObject
+import java.util.UUID
 
 /**
  * Codiert/decodiert das strukturierte, versionierte QR-Code-Payload.
@@ -25,21 +26,34 @@ object QrPayload {
         put("id", record.id)
     }.toString()
 
-    /** Liefert null bei unbekanntem/beschädigtem Payload (kein gültiges ScanOff-Format). */
+    /**
+     * Liefert null bei unbekanntem/beschädigtem Payload (kein gültiges ScanOff-Format). Prüft
+     * dabei `type`, unterstützte `version`, eine syntaktisch gültige UUID in `id`, einen nicht
+     * leeren `username` und einen plausiblen `createdAt`-Zeitstempel. Die Kennung dient allein
+     * der Formaterkennung – sie ist kein kryptografischer Echtheitsnachweis.
+     */
     fun decode(payload: String): QrCodeRecord? {
         return try {
             val json = JSONObject(payload)
             if (json.optString("type") != TYPE) return null
             val version = json.optInt("version", -1)
             if (version < 1 || version > CURRENT_VERSION) return null
+
             val id = json.optString("id", "")
             if (id.isBlank()) return null
-            QrCodeRecord(
-                id = id,
-                username = json.optString("username", ""),
-                createdAt = json.optLong("createdAt", 0L),
-                version = version
-            )
+            try {
+                UUID.fromString(id)
+            } catch (e: IllegalArgumentException) {
+                return null
+            }
+
+            val username = json.optString("username", "")
+            if (username.isBlank()) return null
+
+            val createdAt = json.optLong("createdAt", -1L)
+            if (createdAt <= 0) return null
+
+            QrCodeRecord(id = id, username = username, createdAt = createdAt, version = version)
         } catch (e: JSONException) {
             null
         }

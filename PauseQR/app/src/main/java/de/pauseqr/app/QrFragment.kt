@@ -10,7 +10,11 @@ import androidx.fragment.app.Fragment
 import java.text.DateFormat
 import java.util.Date
 
-/** QR-Code verwalten: zeigt den bestehenden ScanOff-Code oder bietet die Ersterstellung an. */
+/**
+ * „Mein ScanOff-Code“: zeigt den bestehenden ScanOff-Code oder bietet die Ersterstellung an.
+ * Speichern und Teilen sind hier immer verfügbar, solange ein gültiger Code existiert – unabhängig
+ * vom Sicherungsstatus und unabhängig davon, ob gerade eine Pause aktiv ist.
+ */
 class QrFragment : Fragment(R.layout.fragment_qr) {
 
     private lateinit var qrExistsGroup: View
@@ -19,6 +23,7 @@ class QrFragment : Fragment(R.layout.fragment_qr) {
     private lateinit var ivQr: ImageView
     private lateinit var tvCreatedAt: TextView
     private lateinit var btnSaveQr: Button
+    private lateinit var btnShareQr: Button
     private lateinit var btnNewQr: Button
     private lateinit var btnCreateQr: Button
 
@@ -31,10 +36,12 @@ class QrFragment : Fragment(R.layout.fragment_qr) {
         ivQr = view.findViewById(R.id.ivQr)
         tvCreatedAt = view.findViewById(R.id.tvCreatedAt)
         btnSaveQr = view.findViewById(R.id.btnSaveQr)
+        btnShareQr = view.findViewById(R.id.btnShareQr)
         btnNewQr = view.findViewById(R.id.btnNewQr)
         btnCreateQr = view.findViewById(R.id.btnCreateQr)
 
         btnSaveQr.setOnClickListener { saveQrToGallery() }
+        btnShareQr.setOnClickListener { shareQrCode() }
         btnNewQr.setOnClickListener { openCreateScreen() }
         btnCreateQr.setOnClickListener { openCreateScreen() }
     }
@@ -77,8 +84,21 @@ class QrFragment : Fragment(R.layout.fragment_qr) {
     private fun saveQrToGallery() {
         val context = context ?: return
         val record = Prefs.getQrCode(context) ?: return
-        val success = QrUtil.saveToGallery(context, QrUtil.makeQr(record, 1024))
-        toast(if (success) R.string.qr_saved else R.string.qr_save_failed)
+        val success = QrUtil.saveToGallery(context, QrUtil.makeQr(record, 1024), record.username)
+        if (success) {
+            Prefs.markQrBackedUp(context, QrBackupStatus.SAVED_TO_DEVICE)
+            toast(R.string.qr_saved)
+        } else {
+            toast(R.string.qr_save_failed)
+        }
+    }
+
+    private fun shareQrCode() {
+        val context = context ?: return
+        val record = Prefs.getQrCode(context) ?: return
+        // Öffnet nur das Sharesheet – dies allein zählt noch nicht als Sicherung (siehe Dashboard
+        // für die ausdrückliche Bestätigung "Ich habe den QR-Code gesichert.").
+        ShareUtil.shareQrCode(context, QrUtil.makeQr(record, 1024))
     }
 
     private fun toast(res: Int) {

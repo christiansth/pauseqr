@@ -11,6 +11,15 @@
         <item name="android:windowBackground">@color/background</item>
         <item name="android:statusBarColor">@color/background</item>
         <item name="android:navigationBarColor">@color/background</item>
+        <!-- Material-You-Wallpaperfarben bewusst nicht aktiviert (kein DynamicColors.applyTo...),
+             damit ScanOff auf jedem Gerät dieselbe neutrale Palette zeigt. -->
+    </style>
+
+    <!-- Splash-Theme: identische Hintergrundfarbe + dasselbe Symbol wie das Launcher-Icon. -->
+    <style name="Theme.PauseQR.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_scanoff_glyph</item>
+        <item name="postSplashScreenTheme">@style/Theme.PauseQR</item>
     </style>
 
     <style name="PauseQR.Card" parent="Widget.Material3.CardView.Elevated">
@@ -21,23 +30,46 @@
         <item name="cardBackgroundColor">@color/surface</item>
     </style>
 
+    <!-- Buttonradius bewusst nicht überschrieben: übernimmt die Material-3-Standardform. -->
     <style name="PauseQR.Button.Filled" parent="Widget.Material3.Button">
-        <item name="cornerRadius">14dp</item>
-        <item name="android:textStyle">bold</item>
         <item name="backgroundTint">@color/primary</item>
         <item name="android:textColor">@color/on_primary</item>
         <item name="iconTint">@color/on_primary</item>
     </style>
 
     <style name="PauseQR.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
-        <item name="cornerRadius">14dp</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="strokeColor">@color/outline</item>
     </style>
 
     <style name="PauseQR.Button.Text" parent="Widget.Material3.Button.TextButton">
-        <item name="cornerRadius">14dp</item>
         <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <style name="PauseQR.Divider" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/outline</item>
+    </style>
+
+    <!-- Typografieskala (Material 3), zentral mit unseren Textfarben kombiniert. -->
+    <style name="ScanOff.Text.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="ScanOff.Text.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="ScanOff.Text.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="ScanOff.Text.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <style name="ScanOff.Text.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textColor">@color/text_primary</item>
     </style>
 </resources>

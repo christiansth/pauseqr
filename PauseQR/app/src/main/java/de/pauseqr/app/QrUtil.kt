@@ -10,7 +10,12 @@ import android.graphics.RectF
 import android.os.Environment
 import android.provider.MediaStore
 import com.google.zxing.BarcodeFormat
+import com.google.zxing.BinaryBitmap
 import com.google.zxing.EncodeHintType
+import com.google.zxing.MultiFormatReader
+import com.google.zxing.NotFoundException
+import com.google.zxing.RGBLuminanceSource
+import com.google.zxing.common.HybridBinarizer
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import com.journeyapps.barcodescanner.BarcodeEncoder
 
@@ -90,10 +95,16 @@ object QrUtil {
         return result
     }
 
-    fun saveToGallery(context: Context, bitmap: Bitmap): Boolean {
+    /**
+     * Speichert [bitmap] als PNG in der Galerie. Der Dateiname richtet sich nach [username]
+     * (z. B. "ScanOff_Christian.png"); MediaStore hängt bei Namenskollisionen automatisch eine
+     * Zählnummer an, mehrfaches Speichern ist daher problemlos möglich.
+     */
+    fun saveToGallery(context: Context, bitmap: Bitmap, username: String): Boolean {
         return try {
+            val safeName = username.replace(Regex("[^\\p{L}\\p{N}_-]"), "_").ifBlank { "Code" }
             val values = ContentValues().apply {
-                put(MediaStore.Images.Media.DISPLAY_NAME, "ScanOff_${System.currentTimeMillis()}.png")
+                put(MediaStore.Images.Media.DISPLAY_NAME, "ScanOff_$safeName.png")
                 put(MediaStore.Images.Media.MIME_TYPE, "image/png")
                 put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/ScanOff")
             }
@@ -105,6 +116,23 @@ object QrUtil {
             true
         } catch (e: Exception) {
             false
+        }
+    }
+
+    /** Liest den Textinhalt eines QR-Codes aus einem importierten Bild, falls vorhanden. */
+    fun decodeFromBitmap(bitmap: Bitmap): String? {
+        val width = bitmap.width
+        val height = bitmap.height
+        val pixels = IntArray(width * height)
+        bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
+        val source = RGBLuminanceSource(width, height, pixels)
+        val binaryBitmap = BinaryBitmap(HybridBinarizer(source))
+        return try {
+            MultiFormatReader().decode(binaryBitmap).text
+        } catch (e: NotFoundException) {
+            null
+        } catch (e: Exception) {
+            null
         }
     }
 }

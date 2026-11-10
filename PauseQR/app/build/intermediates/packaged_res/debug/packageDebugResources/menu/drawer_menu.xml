@@ -15,6 +15,10 @@
             android:icon="@drawable/ic_nav_qr"
             android:title="@string/nav_qr" />
         <item
+            android:id="@+id/nav_friends"
+            android:icon="@drawable/ic_friends"
+            android:title="@string/nav_friends" />
+        <item
             android:id="@+id/nav_stats"
             android:icon="@drawable/ic_nav_stats"
             android:title="@string/nav_stats" />

@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Flächen -->
-    <color name="background">#0B0C17</color>
-    <color name="surface">#1A1C2B</color>
-    <color name="surface_variant">#22243A</color>
-    <color name="outline">#2E3148</color>
+    <color name="background">#101114</color>
+    <color name="surface">#1C1D21</color>
+    <color name="surface_variant">#24262B</color>
+    <color name="outline">#35363D</color>
 
     <!-- Sidebar -->
-    <color name="sidebar_bg">#0B0C17</color>
-    <color name="sidebar_selected">#2A2D3E</color>
-    <color name="sidebar_text">#9CA0B8</color>
-    <color name="sidebar_text_selected">#FFFFFF</color>
+    <color name="sidebar_bg">#15161A</color>
+    <color name="sidebar_selected">#24262B</color>
+    <color name="sidebar_text">#A5A5A9</color>
+    <color name="sidebar_text_selected">#F5F5F5</color>
 
     <!-- Text -->
-    <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#9CA0B8</color>
+    <color name="text_primary">#F5F5F5</color>
+    <color name="text_secondary">#A5A5A9</color>
 
     <!-- Primäre Aktionen (weiß gefüllt / umrandet) -->
     <color name="primary">#FFFFFF</color>
-    <color name="on_primary">#0B0C17</color>
-    <color name="primary_container">#22243A</color>
+    <color name="on_primary">#101114</color>
+    <color name="primary_container">#24262B</color>
 
     <!-- Status -->
-    <color name="green">#34C759</color>
-    <color name="green_bg">#13301F</color>
-    <color name="red">#FF5B5B</color>
-    <color name="red_bg">#361417</color>
+    <color name="green">#81C995</color>
+    <color name="green_bg">#1B2420</color>
+    <color name="red">#F28B82</color>
+    <color name="red_bg">#271A19</color>
 
-    <color name="warn_bg">#3A2E12</color>
-    <color name="warn_text">#F2C464</color>
-    <color name="overlay_bg">#F2101418</color>
+    <color name="warn_bg">#261F15</color>
+    <color name="warn_text">#E6C27A</color>
+
+    <!-- Pausenbildschirm: bewusst reines Schwarz, nicht die normale App-Hintergrundfarbe,
+         damit die gesperrte App unter keinen Umständen durchscheint. -->
+    <color name="pause_screen_bg">#000000</color>
 </resources>

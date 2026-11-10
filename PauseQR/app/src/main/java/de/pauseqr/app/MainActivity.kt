@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -87,6 +89,7 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_overview -> showTopLevelFragment(DashboardFragment())
             R.id.nav_apps -> startActivity(Intent(this, AppSelectActivity::class.java))
             R.id.nav_qr -> showTopLevelFragment(QrFragment())
+            R.id.nav_friends -> showTopLevelFragment(FriendsFragment())
             R.id.nav_stats -> showTopLevelFragment(StatsFragment())
             R.id.nav_settings -> showTopLevelFragment(SettingsFragment())
             R.id.nav_help -> showTopLevelFragment(HelpFragment())

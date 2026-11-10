@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dieselbe Symbolform wie ic_scanoff_glyph, hier mit dem App-Hintergrund als Fläche
+     für die Verwendung im Drawer-Header und auf dem "Über ScanOff"-Bildschirm. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="#101114"
+        android:pathData="M8,0h32a8,8 0,0 1,8 8v32a8,8 0,0 1,-8 8H8a8,8 0,0 1,-8 -8V8a8,8 0,0 1,8 -8z" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M8,16 L8,8 L16,8 M32,8 L40,8 L40,16 M8,32 L8,40 L16,40 M40,32 L40,40 L32,40 M20,14 L20,34 M28,14 L28,34"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="4" />
+</vector>
