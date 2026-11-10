@@ -21,7 +21,7 @@
     <color name="warn_bg">#261F15</color>
     <color name="warn_text">#E6C27A</color>
     <string name="about_description">ScanOff helps you consciously interrupt distractions: select apps, start a pause, and only end it once you find your personal QR code.</string>
-    <string name="about_version">Version 1.0</string>
+    <string name="about_version">Version %1$s</string>
     <string name="accessibility_consent_cancel">Cancel</string>
     <string name="accessibility_consent_confirm">Understood, continue</string>
     <string name="accessibility_consent_message">ScanOff needs access to Android\'s accessibility service to detect when you open an app you have selected. While a pause is active, ScanOff can then block that app.\n\nScanOff only reads the package name of the app currently in the foreground. Screen content or text is never read, stored, or transmitted.</string>
@@ -38,6 +38,7 @@
     <string name="btn_activate">Activate</string>
     <string name="btn_add_friend">Add friend</string>
     <string name="btn_confirm_backup">I have backed up my QR code.</string>
+    <string name="btn_emergency_hold">Hold for 10 seconds to unlock</string>
     <string name="btn_generate_qr">Generate QR code</string>
     <string name="btn_import_gallery">Import from gallery</string>
     <string name="btn_manage_qr">Manage QR code</string>
@@ -52,6 +53,12 @@
     <string name="btn_share_qr">Share QR code</string>
     <string name="created_at_label">Created on %1$s</string>
     <string name="created_at_unknown">Creation date unknown</string>
+    <string name="emergency_countdown">%1$d seconds remaining</string>
+    <string name="emergency_disclaimer">This is a deliberately accessible alternative to your QR code – not an additional or unbreakable security layer.</string>
+    <string name="emergency_no_pause">No pause is currently active.</string>
+    <string name="emergency_screen_desc">If you can\'t use your QR code, you can release your apps here in an emergency.</string>
+    <string name="emergency_success">Emergency unlock successful. All apps are available again.</string>
+    <string name="emergency_unavailable">Emergency unlock is only available during an active pause.</string>
     <string name="faq_a1">Select the apps you want to block and start the pause. The apps are only released again once you scan your personal QR code.</string>
     <string name="faq_a2">The accessibility service detects when a blocked app is opened and then shows the pause screen. No content is read or stored.</string>
     <string name="faq_a3">Without the matching QR code, the pause can\'t be ended – that\'s intentional. So save or print your code in a safe place.</string>
@@ -128,6 +135,8 @@
     <string name="service_required_title">Accessibility service required</string>
     <string name="service_warning">To block apps, \"ScanOff\" must be enabled under Settings → Accessibility.</string>
     <string name="settings_apps_section">Blocked apps</string>
+    <string name="settings_emergency_hint">If you can\'t use your QR code, you can release your apps here in an emergency.</string>
+    <string name="settings_emergency_section">Emergency Unlock</string>
     <string name="settings_language_section">Language</string>
     <string name="settings_legal_section">Legal &amp; Privacy</string>
     <string name="settings_qr_desc">View, save, or replace your personal ScanOff code.</string>

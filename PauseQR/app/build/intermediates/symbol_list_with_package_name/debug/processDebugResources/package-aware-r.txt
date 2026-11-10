@@ -3179,6 +3179,7 @@ id btnAccessibility
 id btnAddFriend
 id btnConfirmBackup
 id btnCreateQr
+id btnEmergencyHold
 id btnFriendMenu
 id btnGenerateQr
 id btnImportFriend
@@ -3196,6 +3197,7 @@ id btnShareQr
 id buttonPanel
 id cancel_button
 id cardAccessibility
+id cardEmergencyUnlock
 id cardLanguage
 id cardScanTest
 id cardSelectApps
@@ -3221,6 +3223,7 @@ id compress
 id confirm_button
 id container
 id content
+id contentEmergencyUnlock
 id contentPanel
 id contiguous
 id coordinator
@@ -3455,6 +3458,7 @@ id postLayout
 id pressed
 id previewGroup
 id progress
+id progressEmergency
 id progress_circular
 id progress_horizontal
 id qrBackupDoneGroup
@@ -3589,9 +3593,11 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tvAboutVersion
 id tvAnswer
 id tvAppVersion
 id tvAppsCount
+id tvCountdown
 id tvCreatedAt
 id tvDetailAddedAt
 id tvDetailCreatedAt
@@ -3603,6 +3609,7 @@ id tvFriendsEmpty
 id tvInvalidMessage
 id tvLabel
 id tvLanguageValue
+id tvNoPauseMessage
 id tvPauseCount
 id tvPreviewCreatedAt
 id tvPreviewNotice
@@ -3777,6 +3784,7 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout fragment_about
 layout fragment_dashboard
+layout fragment_emergency_unlock
 layout fragment_friend_add
 layout fragment_friend_detail
 layout fragment_friends
@@ -3916,6 +3924,7 @@ string btn_accessibility
 string btn_activate
 string btn_add_friend
 string btn_confirm_backup
+string btn_emergency_hold
 string btn_generate_qr
 string btn_import_gallery
 string btn_manage_qr
@@ -3942,6 +3951,12 @@ string clear_text_end_icon_content_description
 string created_at_label
 string created_at_unknown
 string define_zxingandroidembedded
+string emergency_countdown
+string emergency_disclaimer
+string emergency_no_pause
+string emergency_screen_desc
+string emergency_success
+string emergency_unavailable
 string error_a11y_label
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
@@ -4144,6 +4159,8 @@ string select_apps_title
 string service_required_title
 string service_warning
 string settings_apps_section
+string settings_emergency_hint
+string settings_emergency_section
 string settings_language_section
 string settings_legal_section
 string settings_qr_desc

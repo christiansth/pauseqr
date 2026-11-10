@@ -27,10 +27,10 @@
             android:textAppearance="@style/ScanOff.Text.TitleLarge" />
 
         <TextView
+            android:id="@+id/tvAboutVersion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="@string/about_version"
             android:textAppearance="@style/ScanOff.Text.BodySmall" />
 
         <com.google.android.material.card.MaterialCardView

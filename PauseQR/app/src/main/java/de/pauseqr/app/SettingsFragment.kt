@@ -6,12 +6,18 @@ import android.provider.Settings
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 /** Einstellungen: Bedienungshilfe-Status, blockierte Apps, QR-Code-Verwaltung, Sprache. */
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
+
+    private companion object {
+        const val DIMMED_ALPHA = 0.38f
+        const val NORMAL_ALPHA = 1f
+    }
 
     private lateinit var tvServiceStatus: TextView
     private lateinit var btnAccessibility: Button
@@ -20,6 +26,9 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private lateinit var btnManageQr: Button
     private lateinit var cardLanguage: MaterialCardView
     private lateinit var tvLanguageValue: TextView
+    private lateinit var cardEmergencyUnlock: MaterialCardView
+    private lateinit var contentEmergencyUnlock: View
+    private lateinit var tvAppVersion: TextView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,6 +40,11 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         btnManageQr = view.findViewById(R.id.btnManageQr)
         cardLanguage = view.findViewById(R.id.cardLanguage)
         tvLanguageValue = view.findViewById(R.id.tvLanguageValue)
+        cardEmergencyUnlock = view.findViewById(R.id.cardEmergencyUnlock)
+        contentEmergencyUnlock = view.findViewById(R.id.contentEmergencyUnlock)
+        tvAppVersion = view.findViewById(R.id.tvAppVersion)
+        // Immer aus der Gradle-Konfiguration gelesen, niemals fest hinterlegt.
+        tvAppVersion.text = BuildConfig.VERSION_NAME
 
         btnAccessibility.setOnClickListener {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
@@ -42,6 +56,14 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             (activity as? MainActivity)?.pushFragment(QrFragment())
         }
         cardLanguage.setOnClickListener { showLanguagePicker() }
+        cardEmergencyUnlock.setOnClickListener {
+            val context = context ?: return@setOnClickListener
+            if (Prefs.isLocked(context)) {
+                (activity as? MainActivity)?.pushFragment(EmergencyUnlockFragment())
+            } else {
+                Toast.makeText(context, R.string.emergency_unavailable, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onResume() {
@@ -56,7 +78,11 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             if (serviceEnabled) R.string.settings_service_desc_on else R.string.settings_service_desc_off
         )
         tvAppsCount.text = getString(R.string.apps_count, Prefs.getBlockedApps(context).size)
-        btnSelectApps.isEnabled = !Prefs.isLocked(context)
+        val hasPause = Prefs.isLocked(context)
+        btnSelectApps.isEnabled = !hasPause
+        // Die Karte bleibt immer klickbar, damit bei fehlender Pause der erklärende Toast
+        // angezeigt werden kann – nur Icon/Beschriftung werden ausgegraut.
+        contentEmergencyUnlock.alpha = if (hasPause) NORMAL_ALPHA else DIMMED_ALPHA
 
         tvLanguageValue.text = languageLabel(LanguageUtil.currentLanguage(context))
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="about_description">ScanOff hilft dir, Ablenkungen bewusst zu unterbrechen: Wähle Apps aus, starte eine Pause und beende sie erst wieder, wenn du deinen persönlichen QR-Code findest.</string>
-    <string name="about_version">Version 1.0</string>
+    <string name="about_version">Version %1$s</string>
     <string name="accessibility_consent_cancel">Abbrechen</string>
     <string name="accessibility_consent_confirm">Verstanden, weiter</string>
     <string name="accessibility_consent_message">ScanOff benötigt Zugriff auf die Android-Bedienungshilfe, um zu erkennen, wenn du eine von dir ausgewählte App öffnest. Während einer aktiven Pause kann ScanOff diese App dann blockieren.\n\nScanOff liest dabei ausschließlich den Paketnamen der aktuell im Vordergrund geöffneten App aus. Bildschirminhalte oder Texte werden nie gelesen, gespeichert oder übertragen.</string>
@@ -18,6 +18,7 @@
     <string name="btn_activate">Aktivieren</string>
     <string name="btn_add_friend">Freund hinzufügen</string>
     <string name="btn_confirm_backup">Ich habe den QR-Code gesichert.</string>
+    <string name="btn_emergency_hold">10 Sekunden zum Entsperren halten</string>
     <string name="btn_generate_qr">QR-Code generieren</string>
     <string name="btn_import_gallery">Aus Galerie importieren</string>
     <string name="btn_manage_qr">QR-Code verwalten</string>
@@ -32,6 +33,12 @@
     <string name="btn_share_qr">QR-Code teilen</string>
     <string name="created_at_label">Erstellt am %1$s</string>
     <string name="created_at_unknown">Erstellungsdatum unbekannt</string>
+    <string name="emergency_countdown">Noch %1$d Sekunden</string>
+    <string name="emergency_disclaimer">Dies ist eine bewusst zugängliche Alternative zu deinem QR-Code – keine zusätzliche oder unüberwindbare Sicherheitsstufe.</string>
+    <string name="emergency_no_pause">Aktuell ist keine Pause aktiv.</string>
+    <string name="emergency_screen_desc">Falls du deinen QR-Code nicht verwenden kannst, kannst du hier deine Apps im Notfall wieder freigeben.</string>
+    <string name="emergency_success">Notfall-Entsperrung erfolgreich. Alle Apps sind wieder verfügbar.</string>
+    <string name="emergency_unavailable">Die Notfall-Entsperrung ist nur während einer aktiven Pause verfügbar.</string>
     <string name="faq_a1">Wähle Apps aus, die blockiert werden sollen, und starte die Pause. Erst wenn du deinen persönlichen QR-Code scannst, werden die Apps wieder freigegeben.</string>
     <string name="faq_a2">Die Bedienungshilfe erkennt, wenn eine blockierte App geöffnet wird, und zeigt dann den Pause-Bildschirm. Es werden keine Inhalte gelesen oder gespeichert.</string>
     <string name="faq_a3">Ohne den passenden QR-Code kann die Pause nicht beendet werden – das ist Absicht. Speichere oder drucke deinen Code deshalb an einem sicheren Ort.</string>
@@ -108,6 +115,8 @@
     <string name="service_required_title">Bedienungshilfe erforderlich</string>
     <string name="service_warning">Damit Apps blockiert werden können, muss „ScanOff“ unter Einstellungen → Bedienungshilfen aktiviert werden.</string>
     <string name="settings_apps_section">Blockierte Apps</string>
+    <string name="settings_emergency_hint">Falls du deinen QR-Code nicht verwenden kannst, kannst du hier deine Apps im Notfall wieder freigeben.</string>
+    <string name="settings_emergency_section">Notfall-Entsperrung</string>
     <string name="settings_language_section">Sprache</string>
     <string name="settings_legal_section">Rechtliches &amp; Datenschutz</string>
     <string name="settings_qr_desc">Deinen persönlichen ScanOff-Code anzeigen, speichern oder ersetzen.</string>

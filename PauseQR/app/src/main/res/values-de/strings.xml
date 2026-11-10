@@ -148,6 +148,17 @@
     <string name="legal_licenses">Open-Source-Lizenzen</string>
     <string name="legal_version">App-Version</string>
 
+    <!-- Notfall-Entsperrung -->
+    <string name="settings_emergency_section">Notfall-Entsperrung</string>
+    <string name="settings_emergency_hint">Falls du deinen QR-Code nicht verwenden kannst, kannst du hier deine Apps im Notfall wieder freigeben.</string>
+    <string name="emergency_screen_desc">Falls du deinen QR-Code nicht verwenden kannst, kannst du hier deine Apps im Notfall wieder freigeben.</string>
+    <string name="btn_emergency_hold">10 Sekunden zum Entsperren halten</string>
+    <string name="emergency_countdown">Noch %1$d Sekunden</string>
+    <string name="emergency_no_pause">Aktuell ist keine Pause aktiv.</string>
+    <string name="emergency_success">Notfall-Entsperrung erfolgreich. Alle Apps sind wieder verfügbar.</string>
+    <string name="emergency_disclaimer">Dies ist eine bewusst zugängliche Alternative zu deinem QR-Code – keine zusätzliche oder unüberwindbare Sicherheitsstufe.</string>
+    <string name="emergency_unavailable">Die Notfall-Entsperrung ist nur während einer aktiven Pause verfügbar.</string>
+
     <!-- Statistiken -->
     <string name="stats_pause_count_label">Pausen gestartet</string>
     <string name="stats_apps_label">Blockierte Apps ausgewählt</string>
@@ -164,6 +175,6 @@
     <string name="faq_a4">Ja, über „QR-Code verwalten“ → „Neuen QR-Code erstellen“. Der alte Code wird dadurch sofort ungültig.</string>
 
     <!-- Über ScanOff -->
-    <string name="about_version">Version 1.0</string>
+    <string name="about_version">Version %1$s</string>
     <string name="about_description">ScanOff hilft dir, Ablenkungen bewusst zu unterbrechen: Wähle Apps aus, starte eine Pause und beende sie erst wieder, wenn du deinen persönlichen QR-Code findest.</string>
 </resources>

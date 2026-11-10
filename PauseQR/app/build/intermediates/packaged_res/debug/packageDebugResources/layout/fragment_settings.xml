@@ -178,8 +178,7 @@
         <com.google.android.material.card.MaterialCardView
             style="@style/PauseQR.Card"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -338,6 +337,44 @@
                         android:textColor="@color/text_secondary"
                         android:textSize="13sp" />
                 </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Notfall-Entsperrung: separate Ansicht, nicht auf Dashboard oder Sperrbildschirm -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardEmergencyUnlock"
+            style="@style/PauseQR.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:minHeight="48dp">
+
+            <LinearLayout
+                android:id="@+id/contentEmergencyUnlock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_emergency_section"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/settings_emergency_hint"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>

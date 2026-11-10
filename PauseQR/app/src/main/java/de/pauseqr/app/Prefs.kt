@@ -162,6 +162,15 @@ object Prefs {
         sp(c).edit().putBoolean(KEY_LOCKED, locked).apply()
     }
 
+    /**
+     * Zentrale Entsperrfunktion: beendet die aktuell laufende Pause. Wird sowohl nach
+     * erfolgreichem QR-Code-Scan als auch bei der Notfall-Entsperrung verwendet – die Liste der
+     * ausgewählten Apps bleibt dabei unverändert erhalten.
+     */
+    fun unlock(c: Context) {
+        setLocked(c, false)
+    }
+
     fun getBlockedApps(c: Context): Set<String> =
         sp(c).getStringSet(KEY_APPS, emptySet())?.toSet() ?: emptySet()
 

@@ -1,0 +1,6 @@
+de.pauseqr.app.test.app-androidTest-0 C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\build\generated\res\resValues\androidTest\debug
+de.pauseqr.app.test.app-updated_navigation_xml-1 C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\build\generated\updated_navigation_xml\debugAndroidTest
+de.pauseqr.app.test.app-mergeDebugAndroidTestResources-2 C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+de.pauseqr.app.test.app-mergeDebugAndroidTestResources-3 C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+de.pauseqr.app.test.app-debugAndroidTest-4 C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
+gradleHome-0 C:\Users\weich\.gradle

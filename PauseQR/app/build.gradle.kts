@@ -11,8 +11,12 @@ android {
         applicationId = "de.pauseqr.app"
         minSdk = 29
         targetSdk = 34
-        versionCode = 1
+        versionCode = 2
         versionName = "1.0"
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {

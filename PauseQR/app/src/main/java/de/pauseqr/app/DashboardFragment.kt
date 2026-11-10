@@ -133,7 +133,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             ScanVerdict.FriendDisabled -> toast(R.string.scan_friend_disabled)
             ScanVerdict.OwnCodeMatch -> {
                 if (Prefs.isLocked(context)) {
-                    Prefs.setLocked(context, false)
+                    Prefs.unlock(context)
                     toast(R.string.unlocked)
                 } else {
                     lock()
@@ -144,7 +144,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                 // Ein Freund-Code darf eine Pause nur beenden, niemals starten – das bleibt dem
                 // eigenen Code mit der vollständigen PauseGate-Prüfung vorbehalten.
                 if (Prefs.isLocked(context)) {
-                    Prefs.setLocked(context, false)
+                    Prefs.unlock(context)
                     Toast.makeText(
                         context,
                         getString(R.string.unlocked_by_friend, verdict.friendUsername),

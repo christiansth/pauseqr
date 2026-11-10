@@ -17,6 +17,19 @@ import android.view.accessibility.AccessibilityEvent
  */
 class BlockerService : AccessibilityService() {
 
+    companion object {
+        private var instance: BlockerService? = null
+
+        /**
+         * Entfernt ein eventuell sichtbares Pausen-Overlay sofort (z. B. nach der
+         * Notfall-Entsperrung), statt auf das nächste Accessibility-Event zu warten. Ohne
+         * laufenden Dienst oder sichtbares Overlay passiert nichts – kein Absturz.
+         */
+        fun hideOverlayIfVisible() {
+            instance?.hideOverlay()
+        }
+    }
+
     private var overlay: View? = null
     private lateinit var wm: WindowManager
 
@@ -25,6 +38,7 @@ class BlockerService : AccessibilityService() {
 
     override fun onServiceConnected() {
         super.onServiceConnected()
+        instance = this
         wm = getSystemService(WINDOW_SERVICE) as WindowManager
     }
 
@@ -99,6 +113,7 @@ class BlockerService : AccessibilityService() {
 
     override fun onDestroy() {
         hideOverlay()
+        if (instance === this) instance = null
         super.onDestroy()
     }
 }
