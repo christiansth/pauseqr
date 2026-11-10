@@ -6,7 +6,6 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.Rect
 import android.graphics.RectF
 import android.os.Environment
 import android.provider.MediaStore
@@ -15,45 +14,78 @@ import com.google.zxing.EncodeHintType
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import com.journeyapps.barcodescanner.BarcodeEncoder
 
-/** Erzeugt den Pause-QR (mit optionalem Namen in der Mitte) und speichert ihn in der Galerie. */
+/**
+ * Reine QR-Code-Erzeugung und -Darstellung (ScanOff-Branding). Enthält bewusst keinen Zugriff
+ * auf [Prefs] – Generierung/Darstellung und Persistenz sind getrennt.
+ */
 object QrUtil {
 
-    fun makeQr(context: Context, size: Int): Bitmap {
+    private const val SUBTITLE_COLOR = "#5F6368"
+
+    /** Codiert [record] als QR-Bitmap und zeichnet das ScanOff-Branding in die Mitte. */
+    fun makeQr(record: QrCodeRecord, size: Int): Bitmap {
+        val payload = if (record.version == 0) record.id else QrPayload.encode(record)
+
         val hints = mapOf(EncodeHintType.ERROR_CORRECTION to ErrorCorrectionLevel.H)
-        val qr = BarcodeEncoder().encodeBitmap(Prefs.getSecret(context), BarcodeFormat.QR_CODE, size, size, hints)
+        val qr = BarcodeEncoder().encodeBitmap(payload, BarcodeFormat.QR_CODE, size, size, hints)
+        return applyBranding(qr, record.username, size, payload.length)
+    }
 
-        val username = Prefs.getUsername(context)
-        if (username.isBlank()) return qr
-
+    private fun applyBranding(qr: Bitmap, username: String, size: Int, payloadLength: Int): Bitmap {
         val result = qr.copy(Bitmap.Config.ARGB_8888, true)
         val canvas = Canvas(result)
         val cx = size / 2f
         val cy = size / 2f
 
-        val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        // Bei langen Payloads (dichtere Module) die Branding-Fläche automatisch verkleinern,
+        // damit die Scanbarkeit Vorrang vor dem Branding behält.
+        val densityShrink = (120f / payloadLength.toFloat()).coerceIn(0.55f, 1f)
+
+        val titlePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             color = Color.BLACK
             textAlign = Paint.Align.CENTER
             isFakeBoldText = true
-            textSize = size * 0.09f
+            textSize = size * 0.075f * densityShrink
         }
-        val textBounds = Rect()
-        textPaint.getTextBounds(username, 0, username.length, textBounds)
+        val hasUsername = username.isNotBlank()
+        val subPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.parseColor(SUBTITLE_COLOR)
+            textAlign = Paint.Align.CENTER
+            textSize = size * 0.045f * densityShrink
+        }
 
-        val boxPadding = size * 0.04f
-        val boxWidth = (textBounds.width() + boxPadding * 2).coerceAtMost(size * 0.75f)
-        val boxHeight = textBounds.height() + boxPadding * 2
+        val title = "ScanOff"
+        val titleWidth = titlePaint.measureText(title)
+        val subWidth = if (hasUsername) subPaint.measureText(username) else 0f
+
+        val titleAscent = -titlePaint.ascent()
+        val titleDescent = titlePaint.descent()
+        val subAscent = if (hasUsername) -subPaint.ascent() else 0f
+        val subDescent = if (hasUsername) subPaint.descent() else 0f
+        val lineGap = size * 0.012f
+
+        val contentWidth = maxOf(titleWidth, subWidth)
+        val contentHeight = titleAscent + titleDescent +
+            (if (hasUsername) lineGap + subAscent + subDescent else 0f)
+
+        val hPadding = size * 0.045f
+        val vPadding = size * 0.025f
+        // Zentrale Fläche bewusst klein halten – weit innerhalb der 30%-Toleranz von Level H
+        // und deutlich von den drei Positionsmarkierungen in den Ecken entfernt.
+        val boxWidth = (contentWidth + hPadding * 2).coerceAtMost(size * 0.42f)
+        val boxHeight = contentHeight + vPadding * 2
+
         val box = RectF(cx - boxWidth / 2, cy - boxHeight / 2, cx + boxWidth / 2, cy + boxHeight / 2)
-        val cornerRadius = size * 0.02f
+        val radius = size * 0.025f
+        canvas.drawRoundRect(box, radius, radius, Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE })
 
-        canvas.drawRoundRect(box, cornerRadius, cornerRadius, Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE })
-        canvas.drawRoundRect(box, cornerRadius, cornerRadius, Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            color = Color.BLACK
-            style = Paint.Style.STROKE
-            strokeWidth = size * 0.006f
-        })
+        val titleBaseline = cy - contentHeight / 2f + titleAscent
+        canvas.drawText(title, cx, titleBaseline, titlePaint)
 
-        val textY = cy - (textPaint.descent() + textPaint.ascent()) / 2
-        canvas.drawText(username, cx, textY, textPaint)
+        if (hasUsername) {
+            val subBaseline = titleBaseline + titleDescent + lineGap + subAscent
+            canvas.drawText(username, cx, subBaseline, subPaint)
+        }
 
         return result
     }

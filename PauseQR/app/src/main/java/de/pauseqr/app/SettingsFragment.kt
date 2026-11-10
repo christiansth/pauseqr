@@ -6,17 +6,16 @@ import android.provider.Settings
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 
-/** Einstellungen: Bedienungshilfe-Status, blockierte Apps, neuen QR-Code erzeugen. */
+/** Einstellungen: Bedienungshilfe-Status, blockierte Apps, Zugang zur QR-Code-Verwaltung. */
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private lateinit var tvServiceStatus: TextView
     private lateinit var btnAccessibility: Button
     private lateinit var tvAppsCount: TextView
     private lateinit var btnSelectApps: Button
-    private lateinit var btnNewQr: Button
+    private lateinit var btnManageQr: Button
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,7 +24,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         btnAccessibility = view.findViewById(R.id.btnAccessibility)
         tvAppsCount = view.findViewById(R.id.tvAppsCount)
         btnSelectApps = view.findViewById(R.id.btnSelectApps)
-        btnNewQr = view.findViewById(R.id.btnNewQr)
+        btnManageQr = view.findViewById(R.id.btnManageQr)
 
         btnAccessibility.setOnClickListener {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
@@ -33,7 +32,9 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         btnSelectApps.setOnClickListener {
             startActivity(Intent(requireContext(), AppSelectActivity::class.java))
         }
-        btnNewQr.setOnClickListener { confirmNewQr() }
+        btnManageQr.setOnClickListener {
+            (activity as? MainActivity)?.pushFragment(QrFragment())
+        }
     }
 
     override fun onResume() {
@@ -49,15 +50,5 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         )
         tvAppsCount.text = getString(R.string.apps_count, Prefs.getBlockedApps(context).size)
         btnSelectApps.isEnabled = !Prefs.isLocked(context)
-    }
-
-    private fun confirmNewQr() {
-        val context = context ?: return
-        AlertDialog.Builder(context)
-            .setTitle(R.string.new_qr_title)
-            .setMessage(R.string.new_qr_message)
-            .setPositiveButton(R.string.new_qr_confirm) { _, _ -> Prefs.newSecret(context) }
-            .setNegativeButton(android.R.string.cancel, null)
-            .show()
     }
 }

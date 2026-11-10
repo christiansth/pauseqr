@@ -128,13 +128,12 @@
                     android:textSize="13sp" />
 
                 <Button
-                    android:id="@+id/btnNewQr"
+                    android:id="@+id/btnManageQr"
                     style="@style/PauseQR.Button.Outlined"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="@string/btn_new_qr"
-                    android:textColor="@color/red" />
+                    android:text="@string/btn_manage_qr" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>

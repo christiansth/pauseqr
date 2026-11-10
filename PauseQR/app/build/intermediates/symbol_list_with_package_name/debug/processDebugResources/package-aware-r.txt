@@ -3157,7 +3157,9 @@ id blocking
 id bottom
 id bounce
 id btnAccessibility
+id btnCreateQr
 id btnGenerateQr
+id btnManageQr
 id btnNewQr
 id btnOverlayHome
 id btnOverlayScan
@@ -3418,6 +3420,8 @@ id pressed
 id progress
 id progress_circular
 id progress_horizontal
+id qrEmptyGroup
+id qrExistsGroup
 id qrSection
 id radio
 id ratio
@@ -3519,6 +3523,7 @@ id textinput_helper_text
 id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
+id tilUsername
 id time
 id title
 id titleDividerNoCustom
@@ -3542,6 +3547,7 @@ id triangle
 id tvAccessibilityStatus
 id tvAnswer
 id tvAppsCount
+id tvCreatedAt
 id tvLabel
 id tvOverlayApp
 id tvPauseCount
@@ -3549,6 +3555,7 @@ id tvQuestion
 id tvServiceStatus
 id tvStatus
 id tvStatusDesc
+id tvUsernameReadonly
 id unchecked
 id uniform
 id unlabeled
@@ -3715,6 +3722,7 @@ layout fragment_about
 layout fragment_dashboard
 layout fragment_help
 layout fragment_qr
+layout fragment_qr_create
 layout fragment_settings
 layout fragment_stats
 layout ime_base_split_test_activity
@@ -3837,7 +3845,9 @@ string bottomsheet_action_expand_halfway
 string bottomsheet_drag_handle_clicked
 string bottomsheet_drag_handle_content_description
 string btn_accessibility
+string btn_create_qr
 string btn_generate_qr
+string btn_manage_qr
 string btn_new_qr
 string btn_pause_start
 string btn_pause_unlock
@@ -3854,6 +3864,8 @@ string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
 string clear_text_end_icon_content_description
+string created_at_label
+string created_at_unknown
 string dashboard_tagline
 string define_zxingandroidembedded
 string error_a11y_label
@@ -3991,9 +4003,6 @@ string nav_settings
 string nav_stats
 string need_apps
 string need_service
-string new_qr_confirm
-string new_qr_message
-string new_qr_title
 string overlay_app_blocked
 string overlay_hint
 string overlay_home
@@ -4006,11 +4015,19 @@ string path_password_eye_mask_visible
 string path_password_strike_through
 string pause_end_desc
 string qr_card_desc
+string qr_create_title
+string qr_created
 string qr_hint
+string qr_manage_title
 string qr_save_failed
 string qr_saved
 string qr_screen_desc
 string qr_title
+string replace_qr_cancel
+string replace_qr_confirm
+string replace_qr_message
+string replace_qr_title
+string scan_invalid
 string scan_prompt
 string search_menu_title
 string searchbar_scrolling_view_behavior
@@ -4038,6 +4055,8 @@ string status_unlocked
 string status_unlocked_desc
 string unlocked
 string username_hint
+string username_required
+string username_unknown
 string wrong_qr
 string zxing_app_name
 string zxing_button_ok

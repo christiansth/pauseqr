@@ -3156,7 +3156,9 @@ int id blocking 0x7f080056
 int id bottom 0x7f080057
 int id bounce 0x7f080058
 int id btnAccessibility 0x7f080059
+int id btnCreateQr 0x7f080200
 int id btnGenerateQr 0x7f08005a
+int id btnManageQr 0x7f080201
 int id btnNewQr 0x7f08005b
 int id btnOverlayHome 0x7f08005c
 int id btnOverlayScan 0x7f08005d
@@ -3417,6 +3419,8 @@ int id pressed 0x7f08015b
 int id progress 0x7f08015c
 int id progress_circular 0x7f08015d
 int id progress_horizontal 0x7f08015e
+int id qrEmptyGroup 0x7f080202
+int id qrExistsGroup 0x7f080203
 int id qrSection 0x7f08015f
 int id radio 0x7f080160
 int id ratio 0x7f080161
@@ -3518,6 +3522,7 @@ int id textinput_helper_text 0x7f0801c0
 int id textinput_placeholder 0x7f0801c1
 int id textinput_prefix_text 0x7f0801c2
 int id textinput_suffix_text 0x7f0801c3
+int id tilUsername 0x7f080204
 int id time 0x7f0801c4
 int id title 0x7f0801c5
 int id titleDividerNoCustom 0x7f0801c6
@@ -3541,6 +3546,7 @@ int id triangle 0x7f0801d7
 int id tvAccessibilityStatus 0x7f0801d8
 int id tvAnswer 0x7f0801d9
 int id tvAppsCount 0x7f0801da
+int id tvCreatedAt 0x7f080205
 int id tvLabel 0x7f0801db
 int id tvOverlayApp 0x7f0801dc
 int id tvPauseCount 0x7f0801dd
@@ -3548,6 +3554,7 @@ int id tvQuestion 0x7f0801de
 int id tvServiceStatus 0x7f0801df
 int id tvStatus 0x7f0801e0
 int id tvStatusDesc 0x7f0801e1
+int id tvUsernameReadonly 0x7f080206
 int id unchecked 0x7f0801e2
 int id uniform 0x7f0801e3
 int id unlabeled 0x7f0801e4
@@ -3714,6 +3721,7 @@ int layout fragment_about 0x7f0b002e
 int layout fragment_dashboard 0x7f0b002f
 int layout fragment_help 0x7f0b0030
 int layout fragment_qr 0x7f0b0031
+int layout fragment_qr_create 0x7f0b0079
 int layout fragment_settings 0x7f0b0032
 int layout fragment_stats 0x7f0b0033
 int layout ime_base_split_test_activity 0x7f0b0034
@@ -3836,7 +3844,9 @@ int string bottomsheet_action_expand_halfway 0x7f10002b
 int string bottomsheet_drag_handle_clicked 0x7f10002c
 int string bottomsheet_drag_handle_content_description 0x7f10002d
 int string btn_accessibility 0x7f10002e
+int string btn_create_qr 0x7f1000fd
 int string btn_generate_qr 0x7f10002f
+int string btn_manage_qr 0x7f1000fe
 int string btn_new_qr 0x7f100030
 int string btn_pause_start 0x7f100031
 int string btn_pause_unlock 0x7f100032
@@ -3853,6 +3863,8 @@ int string character_counter_content_description 0x7f10003c
 int string character_counter_overflowed_content_description 0x7f10003d
 int string character_counter_pattern 0x7f10003e
 int string clear_text_end_icon_content_description 0x7f10003f
+int string created_at_label 0x7f1000ff
+int string created_at_unknown 0x7f100100
 int string dashboard_tagline 0x7f100040
 int string define_zxingandroidembedded 0x7f100041
 int string error_a11y_label 0x7f100042
@@ -3990,9 +4002,6 @@ int string nav_settings 0x7f1000c5
 int string nav_stats 0x7f1000c6
 int string need_apps 0x7f1000c7
 int string need_service 0x7f1000c8
-int string new_qr_confirm 0x7f1000c9
-int string new_qr_message 0x7f1000ca
-int string new_qr_title 0x7f1000cb
 int string overlay_app_blocked 0x7f1000cc
 int string overlay_hint 0x7f1000cd
 int string overlay_home 0x7f1000ce
@@ -4005,11 +4014,19 @@ int string path_password_eye_mask_visible 0x7f1000d4
 int string path_password_strike_through 0x7f1000d5
 int string pause_end_desc 0x7f1000d6
 int string qr_card_desc 0x7f1000d7
+int string qr_create_title 0x7f100101
+int string qr_created 0x7f100102
 int string qr_hint 0x7f1000d8
+int string qr_manage_title 0x7f100103
 int string qr_save_failed 0x7f1000d9
 int string qr_saved 0x7f1000da
 int string qr_screen_desc 0x7f1000db
 int string qr_title 0x7f1000dc
+int string replace_qr_cancel 0x7f100104
+int string replace_qr_confirm 0x7f100105
+int string replace_qr_message 0x7f100106
+int string replace_qr_title 0x7f100107
+int string scan_invalid 0x7f100108
 int string scan_prompt 0x7f1000dd
 int string search_menu_title 0x7f1000de
 int string searchbar_scrolling_view_behavior 0x7f1000df
@@ -4037,6 +4054,8 @@ int string status_unlocked 0x7f1000f4
 int string status_unlocked_desc 0x7f1000f5
 int string unlocked 0x7f1000f6
 int string username_hint 0x7f1000f7
+int string username_required 0x7f100109
+int string username_unknown 0x7f10010a
 int string wrong_qr 0x7f1000f8
 int string zxing_app_name 0x7f1000f9
 int string zxing_button_ok 0x7f1000fa

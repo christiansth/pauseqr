@@ -11,11 +11,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.card.MaterialCardView
-import com.google.android.material.textfield.TextInputEditText
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanOptions
 
-/** Übersicht: Status, Schnellzugriff, Pause starten/beenden und der eigene QR-Code. */
+/** Übersicht: Status, Schnellzugriff, Pause starten/beenden und der eigene ScanOff-Code. */
 class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
     private val scanLauncher = registerForActivityResult(ScanContract()) { result ->
@@ -38,9 +37,12 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     private lateinit var rowAppsCount: View
     private lateinit var tvAppsCount: TextView
     private lateinit var qrSection: View
-    private lateinit var etUsername: TextInputEditText
-    private lateinit var btnGenerateQr: Button
+    private lateinit var qrExistsGroup: View
+    private lateinit var qrEmptyGroup: View
+    private lateinit var tvUsernameReadonly: TextView
     private lateinit var ivQr: ImageView
+    private lateinit var btnManageQr: Button
+    private lateinit var btnCreateQr: Button
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,11 +62,12 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         rowAppsCount = view.findViewById(R.id.rowAppsCount)
         tvAppsCount = view.findViewById(R.id.tvAppsCount)
         qrSection = view.findViewById(R.id.qrSection)
-        etUsername = view.findViewById(R.id.etUsername)
-        btnGenerateQr = view.findViewById(R.id.btnGenerateQr)
+        qrExistsGroup = view.findViewById(R.id.qrExistsGroup)
+        qrEmptyGroup = view.findViewById(R.id.qrEmptyGroup)
+        tvUsernameReadonly = view.findViewById(R.id.tvUsernameReadonly)
         ivQr = view.findViewById(R.id.ivQr)
-
-        etUsername.setText(Prefs.getUsername(requireContext()))
+        btnManageQr = view.findViewById(R.id.btnManageQr)
+        btnCreateQr = view.findViewById(R.id.btnCreateQr)
 
         btnAccessibility.setOnClickListener {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
@@ -78,10 +81,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         btnPrimary.setOnClickListener {
             if (Prefs.isLocked(requireContext())) startScan() else lock()
         }
-        btnGenerateQr.setOnClickListener {
-            Prefs.setUsername(requireContext(), etUsername.text.toString().trim())
-            refresh()
-        }
+        btnManageQr.setOnClickListener { openQrManagement() }
+        btnCreateQr.setOnClickListener { openQrManagement() }
     }
 
     override fun onResume() {
@@ -97,6 +98,10 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         }
     }
 
+    private fun openQrManagement() {
+        (activity as? MainActivity)?.pushFragment(QrFragment())
+    }
+
     private fun startScan() {
         val options = ScanOptions()
             .setDesiredBarcodeFormats(ScanOptions.QR_CODE)
@@ -108,17 +113,25 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
     private fun handleScan(text: String) {
         val context = context ?: return
-        if (text != Prefs.getSecret(context)) {
-            toast(R.string.wrong_qr)
-            return
+        when (Prefs.verifyScan(context, text)) {
+            ScanVerdict.INVALID -> {
+                toast(R.string.scan_invalid)
+                return
+            }
+            ScanVerdict.WRONG_CODE -> {
+                toast(R.string.wrong_qr)
+                return
+            }
+            ScanVerdict.MATCH -> {
+                if (Prefs.isLocked(context)) {
+                    Prefs.setLocked(context, false)
+                    toast(R.string.unlocked)
+                } else {
+                    lock()
+                }
+                refresh()
+            }
         }
-        if (Prefs.isLocked(context)) {
-            Prefs.setLocked(context, false)
-            toast(R.string.unlocked)
-        } else {
-            lock()
-        }
-        refresh()
     }
 
     private fun lock() {
@@ -175,7 +188,20 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         tvAppsCount.text = getString(R.string.apps_count, apps.size)
 
         qrSection.visibility = if (locked) View.GONE else View.VISIBLE
-        if (!locked) ivQr.setImageBitmap(QrUtil.makeQr(context, 800))
+        if (!locked) refreshQrCard(context)
+    }
+
+    private fun refreshQrCard(context: android.content.Context) {
+        val record = Prefs.getQrCode(context)
+        if (record == null) {
+            qrExistsGroup.visibility = View.GONE
+            qrEmptyGroup.visibility = View.VISIBLE
+        } else {
+            qrExistsGroup.visibility = View.VISIBLE
+            qrEmptyGroup.visibility = View.GONE
+            tvUsernameReadonly.text = record.username.ifBlank { getString(R.string.username_unknown) }
+            ivQr.setImageBitmap(QrUtil.makeQr(record, 800))
+        }
     }
 
     private fun toast(res: Int) {

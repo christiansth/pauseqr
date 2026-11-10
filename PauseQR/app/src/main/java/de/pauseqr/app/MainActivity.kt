@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
 
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         toolbar.setOnMenuItemClickListener { item ->
             if (item.itemId == R.id.action_about) {
                 navView.setCheckedItem(R.id.nav_about)
-                showFragment(AboutFragment())
+                showTopLevelFragment(AboutFragment())
                 true
             } else false
         }
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                 showDashboardAndScan()
             } else {
                 navView.setCheckedItem(R.id.nav_overview)
-                showFragment(DashboardFragment())
+                showTopLevelFragment(DashboardFragment())
             }
         }
     }
@@ -74,34 +75,49 @@ class MainActivity : AppCompatActivity() {
 
     @Suppress("DEPRECATION")
     override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawers()
-        } else {
-            super.onBackPressed()
+        when {
+            drawerLayout.isDrawerOpen(GravityCompat.START) -> drawerLayout.closeDrawers()
+            supportFragmentManager.backStackEntryCount > 0 -> supportFragmentManager.popBackStack()
+            else -> super.onBackPressed()
         }
     }
 
     private fun selectNavItem(id: Int) {
         when (id) {
-            R.id.nav_overview -> showFragment(DashboardFragment())
+            R.id.nav_overview -> showTopLevelFragment(DashboardFragment())
             R.id.nav_apps -> startActivity(Intent(this, AppSelectActivity::class.java))
-            R.id.nav_qr -> showFragment(QrFragment())
-            R.id.nav_stats -> showFragment(StatsFragment())
-            R.id.nav_settings -> showFragment(SettingsFragment())
-            R.id.nav_help -> showFragment(HelpFragment())
-            R.id.nav_about -> showFragment(AboutFragment())
+            R.id.nav_qr -> showTopLevelFragment(QrFragment())
+            R.id.nav_stats -> showTopLevelFragment(StatsFragment())
+            R.id.nav_settings -> showTopLevelFragment(SettingsFragment())
+            R.id.nav_help -> showTopLevelFragment(HelpFragment())
+            R.id.nav_about -> showTopLevelFragment(AboutFragment())
         }
     }
 
-    private fun showFragment(fragment: Fragment) {
+    /** Zeigt einen Drawer-Top-Level-Bildschirm und verwirft dabei einen evtl. offenen Push-Stack. */
+    private fun showTopLevelFragment(fragment: Fragment) {
+        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
             .commit()
     }
 
+    /** Schiebt einen Bildschirm auf den Back-Stack (z. B. Dashboard → QR-Code verwalten → Erstellen). */
+    fun pushFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    fun popFragment() {
+        supportFragmentManager.popBackStack()
+    }
+
     private fun showDashboardAndScan() {
         val fragment = DashboardFragment()
         navView.setCheckedItem(R.id.nav_overview)
+        supportFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
             .commitNow()
