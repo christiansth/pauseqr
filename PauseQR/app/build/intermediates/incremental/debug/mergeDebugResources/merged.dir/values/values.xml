@@ -1958,6 +1958,8 @@
     <string name="btn_new_qr">Neuen QR-Code erstellen</string>
     <string name="btn_pause_start">Pause starten</string>
     <string name="btn_pause_unlock">QR scannen zum Entsperren</string>
+    <string name="btn_regenerate_qr">Neuen QR-Code generieren</string>
+    <string name="btn_retry">Erneut versuchen</string>
     <string name="btn_save_qr">QR-Code in Galerie speichern</string>
     <string name="btn_select_apps">Apps zum Blockieren auswählen</string>
     <string name="call_notification_answer_action">Answer</string>
@@ -2133,6 +2135,7 @@
     <string name="qr_create_title">Neuen QR-Code erstellen</string>
     <string name="qr_created">Neuer QR-Code erstellt.</string>
     <string name="qr_hint">Speichere oder drucke diesen Code und leg ihn weit weg – z. B. in einen anderen Raum. Nur mit diesem Code kannst du die Pause wieder beenden. Während der Pause wird er hier nicht angezeigt.</string>
+    <string name="qr_load_error">Deine gespeicherten QR-Code-Daten konnten nicht geladen werden.</string>
     <string name="qr_manage_title">QR-Code verwalten</string>
     <string name="qr_save_failed">Speichern fehlgeschlagen</string>
     <string name="qr_saved">QR-Code gespeichert unter Bilder/ScanOff</string>
@@ -2173,7 +2176,6 @@
     <string name="unlocked">Pause beendet – Apps sind wieder frei 🎉</string>
     <string name="username_hint">Benutzername (max. 10 Zeichen)</string>
     <string name="username_required">Bitte einen Benutzernamen eingeben.</string>
-    <string name="username_unknown">Unbekannt</string>
     <string name="wrong_qr">Das ist nicht dein ScanOff-Code.</string>
     <string name="zxing_app_name">Barcode Scanner</string>
     <string name="zxing_button_ok">OK</string>

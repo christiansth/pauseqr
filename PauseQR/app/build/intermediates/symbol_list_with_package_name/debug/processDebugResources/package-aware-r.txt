@@ -2968,7 +2968,6 @@ drawable ic_chevron_right
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
-drawable ic_launcher
 drawable ic_lock_closed
 drawable ic_lock_open
 drawable ic_m3_chip_check
@@ -3164,6 +3163,8 @@ id btnNewQr
 id btnOverlayHome
 id btnOverlayScan
 id btnPrimary
+id btnRegenerateQr
+id btnRetryQr
 id btnSaveQr
 id btnSelectApps
 id buttonPanel
@@ -3421,6 +3422,7 @@ id progress
 id progress_circular
 id progress_horizontal
 id qrEmptyGroup
+id qrErrorGroup
 id qrExistsGroup
 id qrSection
 id radio
@@ -3796,6 +3798,8 @@ layout zxing_barcode_scanner
 layout zxing_capture
 menu drawer_menu
 menu toolbar_menu
+mipmap ic_launcher
+mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 raw zxing_beep
 string abc_action_bar_home_description
@@ -3851,6 +3855,8 @@ string btn_manage_qr
 string btn_new_qr
 string btn_pause_start
 string btn_pause_unlock
+string btn_regenerate_qr
+string btn_retry
 string btn_save_qr
 string btn_select_apps
 string call_notification_answer_action
@@ -4018,6 +4024,7 @@ string qr_card_desc
 string qr_create_title
 string qr_created
 string qr_hint
+string qr_load_error
 string qr_manage_title
 string qr_save_failed
 string qr_saved
@@ -4056,7 +4063,6 @@ string status_unlocked_desc
 string unlocked
 string username_hint
 string username_required
-string username_unknown
 string wrong_qr
 string zxing_app_name
 string zxing_button_ok

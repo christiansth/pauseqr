@@ -50,7 +50,10 @@ class QrFragment : Fragment(R.layout.fragment_qr) {
 
     private fun refresh() {
         val context = context ?: return
-        val record = Prefs.getQrCode(context)
+        // Error wird hier bewusst wie Empty behandelt: Prefs.loadQrCodeState löscht in beiden
+        // Fällen keine Daten – bei Error bleiben die nicht lesbaren Rohdaten unangetastet, bis
+        // der Nutzer hier ausdrücklich einen neuen Code erstellt.
+        val record = (Prefs.loadQrCodeState(context) as? QrCodeState.Existing)?.record
         if (record == null) {
             qrExistsGroup.visibility = View.GONE
             qrEmptyGroup.visibility = View.VISIBLE
@@ -59,7 +62,7 @@ class QrFragment : Fragment(R.layout.fragment_qr) {
 
         qrExistsGroup.visibility = View.VISIBLE
         qrEmptyGroup.visibility = View.GONE
-        tvUsernameReadonly.text = record.username.ifBlank { getString(R.string.username_unknown) }
+        tvUsernameReadonly.text = record.username
         ivQr.setImageBitmap(QrUtil.makeQr(record, 900))
         tvCreatedAt.text = if (record.createdAt > 0) {
             getString(R.string.created_at_label, formatDate(record.createdAt))

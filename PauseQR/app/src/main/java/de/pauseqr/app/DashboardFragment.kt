@@ -39,10 +39,12 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     private lateinit var qrSection: View
     private lateinit var qrExistsGroup: View
     private lateinit var qrEmptyGroup: View
+    private lateinit var qrErrorGroup: View
     private lateinit var tvUsernameReadonly: TextView
     private lateinit var ivQr: ImageView
-    private lateinit var btnManageQr: Button
+    private lateinit var btnRegenerateQr: Button
     private lateinit var btnCreateQr: Button
+    private lateinit var btnRetryQr: Button
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -64,10 +66,12 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         qrSection = view.findViewById(R.id.qrSection)
         qrExistsGroup = view.findViewById(R.id.qrExistsGroup)
         qrEmptyGroup = view.findViewById(R.id.qrEmptyGroup)
+        qrErrorGroup = view.findViewById(R.id.qrErrorGroup)
         tvUsernameReadonly = view.findViewById(R.id.tvUsernameReadonly)
         ivQr = view.findViewById(R.id.ivQr)
-        btnManageQr = view.findViewById(R.id.btnManageQr)
+        btnRegenerateQr = view.findViewById(R.id.btnRegenerateQr)
         btnCreateQr = view.findViewById(R.id.btnCreateQr)
+        btnRetryQr = view.findViewById(R.id.btnRetryQr)
 
         btnAccessibility.setOnClickListener {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
@@ -81,8 +85,9 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         btnPrimary.setOnClickListener {
             if (Prefs.isLocked(requireContext())) startScan() else lock()
         }
-        btnManageQr.setOnClickListener { openQrManagement() }
-        btnCreateQr.setOnClickListener { openQrManagement() }
+        btnRegenerateQr.setOnClickListener { openQrCreate() }
+        btnCreateQr.setOnClickListener { openQrCreate() }
+        btnRetryQr.setOnClickListener { refresh() }
     }
 
     override fun onResume() {
@@ -98,8 +103,8 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         }
     }
 
-    private fun openQrManagement() {
-        (activity as? MainActivity)?.pushFragment(QrFragment())
+    private fun openQrCreate() {
+        (activity as? MainActivity)?.pushFragment(QrCreateFragment())
     }
 
     private fun startScan() {
@@ -192,15 +197,24 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     }
 
     private fun refreshQrCard(context: android.content.Context) {
-        val record = Prefs.getQrCode(context)
-        if (record == null) {
-            qrExistsGroup.visibility = View.GONE
-            qrEmptyGroup.visibility = View.VISIBLE
-        } else {
-            qrExistsGroup.visibility = View.VISIBLE
-            qrEmptyGroup.visibility = View.GONE
-            tvUsernameReadonly.text = record.username.ifBlank { getString(R.string.username_unknown) }
-            ivQr.setImageBitmap(QrUtil.makeQr(record, 800))
+        when (val state = Prefs.loadQrCodeState(context)) {
+            is QrCodeState.Existing -> {
+                qrExistsGroup.visibility = View.VISIBLE
+                qrEmptyGroup.visibility = View.GONE
+                qrErrorGroup.visibility = View.GONE
+                tvUsernameReadonly.text = state.record.username
+                ivQr.setImageBitmap(QrUtil.makeQr(state.record, 800))
+            }
+            is QrCodeState.Empty -> {
+                qrExistsGroup.visibility = View.GONE
+                qrEmptyGroup.visibility = View.VISIBLE
+                qrErrorGroup.visibility = View.GONE
+            }
+            is QrCodeState.Error -> {
+                qrExistsGroup.visibility = View.GONE
+                qrEmptyGroup.visibility = View.GONE
+                qrErrorGroup.visibility = View.VISIBLE
+            }
         }
     }
 

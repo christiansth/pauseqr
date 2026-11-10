@@ -27,7 +27,6 @@ drawable ic_back
 drawable ic_book
 drawable ic_check
 drawable ic_chevron_right
-drawable ic_launcher
 drawable ic_lock_closed
 drawable ic_lock_open
 drawable ic_more_vert
@@ -51,6 +50,8 @@ id btnNewQr
 id btnOverlayHome
 id btnOverlayScan
 id btnPrimary
+id btnRegenerateQr
+id btnRetryQr
 id btnSaveQr
 id btnSelectApps
 id cardAccessibility
@@ -75,6 +76,7 @@ id nav_settings
 id nav_stats
 id progress
 id qrEmptyGroup
+id qrErrorGroup
 id qrExistsGroup
 id qrSection
 id rowAppsCount
@@ -110,6 +112,8 @@ layout nav_header
 layout overlay_block
 menu drawer_menu
 menu toolbar_menu
+mipmap ic_launcher
+mipmap ic_launcher_round
 string about_description
 string about_version
 string accessibility_desc
@@ -127,6 +131,8 @@ string btn_manage_qr
 string btn_new_qr
 string btn_pause_start
 string btn_pause_unlock
+string btn_regenerate_qr
+string btn_retry
 string btn_save_qr
 string btn_select_apps
 string created_at_label
@@ -160,6 +166,7 @@ string qr_card_desc
 string qr_create_title
 string qr_created
 string qr_hint
+string qr_load_error
 string qr_manage_title
 string qr_save_failed
 string qr_saved
@@ -191,7 +198,6 @@ string status_unlocked_desc
 string unlocked
 string username_hint
 string username_required
-string username_unknown
 string wrong_qr
 style PauseQR.Button.Filled
 style PauseQR.Button.Outlined

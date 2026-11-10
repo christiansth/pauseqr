@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:2:1-55:12
-INJECTED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:2:1-55:12
-INJECTED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:2:1-55:12
-INJECTED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:2:1-55:12
+ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:2:1-56:12
+INJECTED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:2:1-56:12
+INJECTED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:2:1-56:12
+INJECTED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:2:1-56:12
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\weich\.gradle\caches\9.6.0\transforms\576043b25487fb0a81882dc400a87029\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\weich\.gradle\caches\9.6.0\transforms\2f18179c84bb9ea6bb1e87c32857374b\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\weich\.gradle\caches\9.6.0\transforms\a198c86690705a95c4f07c908ef26d21\transformed\constraintlayout-2.0.1\AndroidManifest.xml:2:1-11:12
@@ -75,8 +75,8 @@ ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManif
 	android:name
 		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:9:23-70
 application
-ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:13:5-54:19
-INJECTED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:13:5-54:19
+ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:13:5-55:19
+INJECTED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:13:5-55:19
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\weich\.gradle\caches\9.6.0\transforms\576043b25487fb0a81882dc400a87029\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\weich\.gradle\caches\9.6.0\transforms\576043b25487fb0a81882dc400a87029\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\weich\.gradle\caches\9.6.0\transforms\a198c86690705a95c4f07c908ef26d21\transformed\constraintlayout-2.0.1\AndroidManifest.xml:9:5-20
@@ -100,41 +100,43 @@ MERGED from [com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\weich\.gradl
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.0] C:\Users\weich\.gradle\caches\9.6.0\transforms\cafa50c5a3ea03c157938c517db59643\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:17:9-35
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:18:9-35
 	android:label
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:16:9-41
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:17:9-41
+	android:roundIcon
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:16:9-54
 	android:icon
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:15:9-45
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:15:9-43
 	android:allowBackup
 		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:14:9-36
 	android:theme
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:18:9-45
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:19:9-45
 activity#de.pauseqr.app.MainActivity
-ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:20:9-28:20
+ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:21:9-29:20
 	android:launchMode
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:23:13-44
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:24:13-44
 	android:exported
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:22:13-36
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:23:13-36
 	android:name
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:21:13-41
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:22:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:24:13-27:29
+ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:25:13-28:29
 activity#de.pauseqr.app.AppSelectActivity
-ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:30:9-33:57
+ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:31:9-34:57
 	android:label
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:33:13-54
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:34:13-54
 	android:exported
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:32:13-37
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:33:13-37
 	android:name
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:31:13-46
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:32:13-46
 activity#com.journeyapps.barcodescanner.CaptureActivity
-ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:36:9-39:49
+ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:37:9-40:49
 MERGED from [com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\weich\.gradle\caches\9.6.0\transforms\22f3399dedac177574cce340ab809fec\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:47:9-53:63
 MERGED from [com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\weich\.gradle\caches\9.6.0\transforms\22f3399dedac177574cce340ab809fec\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:47:9-53:63
 	android:clearTaskOnLaunch
 		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\weich\.gradle\caches\9.6.0\transforms\22f3399dedac177574cce340ab809fec\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:49:13-45
 	android:screenOrientation
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:38:13-51
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:39:13-51
 		REJECTED from [com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\weich\.gradle\caches\9.6.0\transforms\22f3399dedac177574cce340ab809fec\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:50:13-56
 	android:stateNotNeeded
 		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\weich\.gradle\caches\9.6.0\transforms\22f3399dedac177574cce340ab809fec\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:51:13-42
@@ -143,31 +145,31 @@ MERGED from [com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\weich\.gradl
 	android:theme
 		ADDED from [com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\weich\.gradle\caches\9.6.0\transforms\22f3399dedac177574cce340ab809fec\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:52:13-54
 	tools:replace
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:39:13-46
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:40:13-46
 	android:name
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:37:13-74
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:38:13-74
 service#de.pauseqr.app.BlockerService
-ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:42:9-53:19
+ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:43:9-54:19
 	android:label
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:45:13-45
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:46:13-45
 	android:exported
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:44:13-37
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:45:13-37
 	android:permission
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:46:13-79
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:47:13-79
 	android:name
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:43:13-43
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:44:13-43
 intent-filter#action:name:android.accessibilityservice.AccessibilityService
-ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:47:13-49:29
+ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:48:13-50:29
 action#android.accessibilityservice.AccessibilityService
-ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:48:17-92
+ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:49:17-92
 	android:name
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:48:25-89
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:49:25-89
 meta-data#android.accessibilityservice
-ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:50:13-52:72
+ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:51:13-53:72
 	android:resource
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:52:17-69
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:53:17-69
 	android:name
-		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:51:17-60
+		ADDED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml:52:17-60
 uses-sdk
 INJECTED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Studio Hohenfeld - Lokal\pauseqr\PauseQR\app\src\main\AndroidManifest.xml

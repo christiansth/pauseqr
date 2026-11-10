@@ -20,6 +20,10 @@ object Prefs {
     private const val KEY_LEGACY_USERNAME = "username"
     private const val LEGACY_PREFIX = "PAUSEQR:"
 
+    // Eindeutig identifizierte Platzhalter-Werte – ein Code mit einem dieser Benutzernamen gilt
+    // nie als vorhanden, egal woher er stammt (Migration, früherer Default-Fallback usw.).
+    private val PLACEHOLDER_USERNAMES = setOf("Unbekannt", "Unknown")
+
     const val USERNAME_MAX_LENGTH = 10
 
     private fun sp(c: Context): SharedPreferences =
@@ -27,19 +31,49 @@ object Prefs {
 
     // ---------- QR-Code ----------
 
-    fun hasQrCode(c: Context): Boolean = getQrCode(c) != null
+    private fun QrCodeRecord.isValid(): Boolean =
+        id.isNotBlank() && username.isNotBlank() && username !in PLACEHOLDER_USERNAMES
+
+    fun hasQrCode(c: Context): Boolean = loadQrCodeState(c) is QrCodeState.Existing
 
     /**
-     * Liefert den aktuell gültigen ScanOff-Code oder null, wenn noch keiner erstellt wurde.
+     * Liefert den aktuell gültigen ScanOff-Code oder null (kein Code bzw. Daten nicht lesbar).
      * Erzeugt NIE eine neue ID – reines Lesen verändert den gespeicherten Code nicht.
      */
-    fun getQrCode(c: Context): QrCodeRecord? {
-        sp(c).getString(KEY_QR_RECORD, null)?.let { json -> QrPayload.decode(json)?.let { return it } }
+    fun getQrCode(c: Context): QrCodeRecord? = (loadQrCodeState(c) as? QrCodeState.Existing)?.record
+
+    /**
+     * Liest den gespeicherten ScanOff-Code und unterscheidet dabei explizit:
+     * - [QrCodeState.Existing]: gültige, vollständige Code-Daten (Benutzername gesetzt, nicht
+     *   „Unbekannt“/Platzhalter, gültige ID).
+     * - [QrCodeState.Empty]: nie erstellt – oder ein eindeutig identifizierter Platzhalter
+     *   (z. B. leerer oder „Unbekannt“-Benutzername). Ein solcher Platzhalter wird dabei bereinigt,
+     *   damit er nicht dauerhaft als „vorhanden“ missinterpretiert wird.
+     * - [QrCodeState.Error]: gespeicherte Daten sind vorhanden, aber nicht lesbar (z. B. defektes
+     *   JSON). Diese Daten werden NICHT automatisch gelöscht oder ersetzt.
+     */
+    fun loadQrCodeState(c: Context): QrCodeState {
+        val rawJson = sp(c).getString(KEY_QR_RECORD, null)
+        if (rawJson != null) {
+            val decoded = QrPayload.decode(rawJson) ?: return QrCodeState.Error("corrupt_qr_record")
+            if (!decoded.isValid()) {
+                // Eindeutig identifizierter Platzhalter im neuen Format – bereinigen, nicht als Fehler behandeln.
+                sp(c).edit().remove(KEY_QR_RECORD).apply()
+                return QrCodeState.Empty
+            }
+            return QrCodeState.Existing(decoded)
+        }
 
         // Migration: ein vor dem Update erzeugter Code bleibt gültig, bis bewusst ersetzt.
-        val legacySecret = sp(c).getString(KEY_LEGACY_SECRET, null) ?: return null
+        val legacySecret = sp(c).getString(KEY_LEGACY_SECRET, null) ?: return QrCodeState.Empty
         val legacyUsername = sp(c).getString(KEY_LEGACY_USERNAME, "") ?: ""
-        return QrCodeRecord(id = legacySecret, username = legacyUsername, createdAt = 0L, version = 0)
+        val legacyRecord = QrCodeRecord(id = legacySecret, username = legacyUsername, createdAt = 0L, version = 0)
+        if (!legacyRecord.isValid()) {
+            // Eindeutig identifizierter Platzhalter aus einer Altversion – nur diesen bereinigen.
+            sp(c).edit().remove(KEY_LEGACY_SECRET).remove(KEY_LEGACY_USERNAME).apply()
+            return QrCodeState.Empty
+        }
+        return QrCodeState.Existing(legacyRecord)
     }
 
     /** Erstellt und speichert einen neuen, eindeutigen ScanOff-Code. Ersetzt einen evtl. bestehenden. */

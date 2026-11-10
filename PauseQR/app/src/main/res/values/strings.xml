@@ -42,7 +42,9 @@
     <string name="qr_card_desc">Erstelle deinen persönlichen QR-Code.</string>
     <string name="btn_manage_qr">QR-Code verwalten</string>
     <string name="btn_create_qr">QR-Code erstellen</string>
-    <string name="username_unknown">Unbekannt</string>
+    <string name="btn_regenerate_qr">Neuen QR-Code generieren</string>
+    <string name="qr_load_error">Deine gespeicherten QR-Code-Daten konnten nicht geladen werden.</string>
+    <string name="btn_retry">Erneut versuchen</string>
 
     <!-- QR-Code verwalten -->
     <string name="qr_manage_title">QR-Code verwalten</string>
