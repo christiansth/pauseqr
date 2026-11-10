@@ -12,6 +12,7 @@ import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.appbar.MaterialToolbar
 
 /** Liste aller startbaren Apps mit Häkchen zum Blockieren. */
 class AppSelectActivity : AppCompatActivity() {
@@ -28,7 +29,7 @@ class AppSelectActivity : AppCompatActivity() {
         if (Prefs.isLocked(this)) { finish(); return }
 
         setContentView(R.layout.activity_app_select)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        findViewById<MaterialToolbar>(R.id.toolbar).setNavigationOnClickListener { finish() }
 
         val listView = findViewById<ListView>(R.id.listApps)
         val progress = findViewById<ProgressBar>(R.id.progress)
@@ -66,11 +67,6 @@ class AppSelectActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         if (!Prefs.isLocked(this)) Prefs.setBlockedApps(this, selected)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        finish()
-        return true
     }
 
     private inner class AppAdapter : BaseAdapter() {

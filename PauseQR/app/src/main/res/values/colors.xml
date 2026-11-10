@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#3949AB</color>
-    <color name="red">#D32F2F</color>
-    <color name="green">#2E7D32</color>
+    <!-- Primärfarben -->
+    <color name="primary">#3D4FE0</color>
+    <color name="primary_dark">#2E3EC2</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="primary_container">#E1E4FF</color>
+
+    <!-- Verlauf für Header / Hero-Bereich -->
+    <color name="gradient_start">#6A5FD6</color>
+    <color name="gradient_end">#3D4FE0</color>
+
+    <!-- Navigation Drawer -->
+    <color name="sidebar_bg">#11142B</color>
+    <color name="sidebar_selected">#3D4FE0</color>
+    <color name="sidebar_text">#AEB2D6</color>
+    <color name="sidebar_text_selected">#FFFFFF</color>
+
+    <!-- Oberflächen -->
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#F0F2FB</color>
+    <color name="background">#F5F6FD</color>
+    <color name="outline">#DEE1F2</color>
+
+    <!-- Text -->
+    <color name="text_primary">#1A1C33</color>
+    <color name="text_secondary">#6B6E85</color>
+
+    <!-- Status -->
+    <color name="red">#C62828</color>
+    <color name="red_bg">#FBE6E6</color>
+    <color name="green">#1B7A2E</color>
+    <color name="green_bg">#E3F3E6</color>
+
     <color name="warn_bg">#FFF3E0</color>
     <color name="warn_text">#8A4B00</color>
     <color name="overlay_bg">#F2101418</color>

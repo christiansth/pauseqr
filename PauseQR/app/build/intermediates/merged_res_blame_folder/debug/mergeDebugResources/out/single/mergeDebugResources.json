@@ -1,30 +1,142 @@
 [
     {
-        "merged": "de.pauseqr.app-debug-4:/layout_item_app.xml.flat",
-        "source": "de.pauseqr.app-main-6:/layout/item_app.xml"
+        "merged": "de.pauseqr.app-debug-4:/drawable_bg_icon_chip_on_gradient.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/bg_icon_chip_on_gradient.xml"
     },
     {
         "merged": "de.pauseqr.app-debug-4:/layout_activity_app_select.xml.flat",
         "source": "de.pauseqr.app-main-6:/layout/activity_app_select.xml"
     },
     {
-        "merged": "de.pauseqr.app-debug-4:/layout_activity_main.xml.flat",
-        "source": "de.pauseqr.app-main-6:/layout/activity_main.xml"
+        "merged": "de.pauseqr.app-debug-4:/menu_toolbar_menu.xml.flat",
+        "source": "de.pauseqr.app-main-6:/menu/toolbar_menu.xml"
     },
     {
-        "merged": "de.pauseqr.app-debug-4:/layout_overlay_block.xml.flat",
-        "source": "de.pauseqr.app-main-6:/layout/overlay_block.xml"
+        "merged": "de.pauseqr.app-debug-4:/drawable_bg_gradient_header.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/bg_gradient_header.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/drawable_bg_icon_chip.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/bg_icon_chip.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/menu_drawer_menu.xml.flat",
+        "source": "de.pauseqr.app-main-6:/menu/drawer_menu.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/drawable_ic_person.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/ic_person.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/drawable_ic_lock_closed.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/ic_lock_closed.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/drawable_ic_nav_info.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/ic_nav_info.xml"
     },
     {
         "merged": "de.pauseqr.app-debug-4:/xml_file_paths.xml.flat",
         "source": "de.pauseqr.app-main-6:/xml/file_paths.xml"
     },
     {
+        "merged": "de.pauseqr.app-debug-4:/layout_fragment_dashboard.xml.flat",
+        "source": "de.pauseqr.app-main-6:/layout/fragment_dashboard.xml"
+    },
+    {
         "merged": "de.pauseqr.app-debug-4:/xml_accessibility_service_config.xml.flat",
         "source": "de.pauseqr.app-main-6:/xml/accessibility_service_config.xml"
     },
     {
+        "merged": "de.pauseqr.app-debug-4:/drawable_ic_lock_open.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/ic_lock_open.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/drawable_ic_more_vert.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/ic_more_vert.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/layout_item_app.xml.flat",
+        "source": "de.pauseqr.app-main-6:/layout/item_app.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/drawable_ic_nav_help.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/ic_nav_help.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/drawable_nav_item_bg.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/nav_item_bg.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/layout_fragment_qr.xml.flat",
+        "source": "de.pauseqr.app-main-6:/layout/fragment_qr.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/layout_overlay_block.xml.flat",
+        "source": "de.pauseqr.app-main-6:/layout/overlay_block.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/drawable_ic_play.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/ic_play.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/layout_fragment_settings.xml.flat",
+        "source": "de.pauseqr.app-main-6:/layout/fragment_settings.xml"
+    },
+    {
         "merged": "de.pauseqr.app-debug-4:/drawable_ic_launcher.xml.flat",
         "source": "de.pauseqr.app-main-6:/drawable/ic_launcher.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/drawable_ic_nav_apps.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/ic_nav_apps.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/drawable_ic_back.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/ic_back.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/layout_item_faq.xml.flat",
+        "source": "de.pauseqr.app-main-6:/layout/item_faq.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/layout_fragment_about.xml.flat",
+        "source": "de.pauseqr.app-main-6:/layout/fragment_about.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/drawable_ic_book.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/ic_book.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/layout_fragment_help.xml.flat",
+        "source": "de.pauseqr.app-main-6:/layout/fragment_help.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/drawable_ic_nav_home.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/ic_nav_home.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/layout_nav_header.xml.flat",
+        "source": "de.pauseqr.app-main-6:/layout/nav_header.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/color_nav_item_text.xml.flat",
+        "source": "de.pauseqr.app-main-6:/color/nav_item_text.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/drawable_ic_nav_qr.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/ic_nav_qr.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/layout_activity_main.xml.flat",
+        "source": "de.pauseqr.app-main-6:/layout/activity_main.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/drawable_ic_scan_frame.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/ic_scan_frame.xml"
+    },
+    {
+        "merged": "de.pauseqr.app-debug-4:/drawable_ic_nav_settings.xml.flat",
+        "source": "de.pauseqr.app-main-6:/drawable/ic_nav_settings.xml"
     }
 ]

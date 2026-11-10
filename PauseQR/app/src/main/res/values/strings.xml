@@ -2,21 +2,45 @@
 <resources>
     <string name="app_name">Pause QR</string>
 
-    <string name="status_locked">🔒 Pause aktiv – Apps sind blockiert</string>
-    <string name="status_unlocked">🔓 Keine Pause – alle Apps sind frei</string>
+    <!-- Navigation -->
+    <string name="nav_overview">Übersicht</string>
+    <string name="nav_apps">Apps verwalten</string>
+    <string name="nav_qr">QR-Code</string>
+    <string name="nav_settings">Einstellungen</string>
+    <string name="nav_help">Hilfe &amp; FAQ</string>
+    <string name="nav_about">Über die App</string>
+
+    <string name="status_locked">Pause aktiv – Apps sind blockiert</string>
+    <string name="status_locked_desc">Die ausgewählten Apps sind gerade blockiert.</string>
+    <string name="status_unlocked">Keine Pause – alle Apps sind frei</string>
+    <string name="status_unlocked_desc">Aktuell ist keine App blockiert.</string>
+
+    <string name="dashboard_subtitle">Apps bei Bedarf einfach blockieren</string>
 
     <string name="service_warning">Damit Apps blockiert werden können, muss „Pause QR“ unter Einstellungen → Bedienungshilfen aktiviert werden.</string>
     <string name="btn_accessibility">Bedienungshilfen öffnen</string>
+
+    <string name="action_accessibility_title">Bedienungshilfen</string>
+    <string name="action_accessibility_caption">Öffnen</string>
+    <string name="action_apps_title">Apps auswählen</string>
+    <string name="action_apps_caption">Zum Blockieren</string>
+    <string name="action_scan_title">QR-Code testen</string>
+    <string name="action_scan_caption">Per Scan starten</string>
 
     <string name="btn_select_apps">Apps zum Blockieren auswählen</string>
     <string name="apps_count">%1$d App(s) ausgewählt</string>
     <string name="select_apps_title">Apps auswählen</string>
 
-    <string name="btn_lock">Pause starten – Apps blockieren</string>
-    <string name="btn_unlock">QR scannen zum Entsperren</string>
+    <string name="pause_start_title">Pause starten</string>
+    <string name="pause_start_desc">Ausgewählte Apps mit einem QR-Code blockieren.</string>
+    <string name="pause_end_title">Pause beenden</string>
+    <string name="pause_end_desc">Scanne deinen Pause-QR, um die Apps wieder freizugeben.</string>
+    <string name="btn_pause_start">Pause starten – Apps blockieren</string>
+    <string name="btn_pause_unlock">QR scannen zum Entsperren</string>
     <string name="btn_scan_test">QR-Code testen / per Scan starten</string>
 
     <string name="qr_title">Dein Pause-QR</string>
+    <string name="qr_card_desc">Erstelle deinen persönlichen QR-Code, um die Pause zu starten.</string>
     <string name="qr_hint">Speichere oder drucke diesen Code und leg ihn weit weg – z. B. in einen anderen Raum. Nur mit diesem Code kannst du die Pause wieder beenden. Während der Pause wird er hier nicht angezeigt.</string>
     <string name="btn_save_qr">QR-Code in Galerie speichern</string>
     <string name="btn_new_qr">Neuen QR-Code erzeugen</string>
@@ -25,6 +49,8 @@
     <string name="new_qr_confirm">Neu erzeugen</string>
     <string name="qr_saved">QR-Code gespeichert unter Bilder/PauseQR</string>
     <string name="qr_save_failed">Speichern fehlgeschlagen</string>
+
+    <string name="qr_screen_desc">Dein persönlicher Pause-QR zum Scannen, Speichern oder Ausdrucken.</string>
 
     <string name="scan_prompt">Pause-QR scannen</string>
     <string name="wrong_qr">Das ist nicht dein Pause-QR-Code.</string>
@@ -43,4 +69,26 @@
 
     <string name="username_hint">Dein Name (max. 10 Zeichen)</string>
     <string name="btn_generate_qr">QR-Code generieren</string>
+
+    <!-- Einstellungen -->
+    <string name="settings_service_section">Bedienungshilfe-Dienst</string>
+    <string name="settings_service_desc_on">Aktiv – Apps können blockiert werden.</string>
+    <string name="settings_service_desc_off">Nicht aktiv – bitte aktivieren, damit Apps blockiert werden können.</string>
+    <string name="settings_apps_section">Blockierte Apps</string>
+    <string name="settings_qr_section">QR-Code</string>
+    <string name="settings_qr_desc">Erzeuge einen neuen Pause-QR. Der bisherige Code wird dadurch sofort ungültig.</string>
+
+    <!-- Hilfe & FAQ -->
+    <string name="faq_q1">Wie funktioniert Pause QR?</string>
+    <string name="faq_a1">Wähle Apps aus, die blockiert werden sollen, und starte die Pause. Erst wenn du deinen persönlichen QR-Code scannst, werden die Apps wieder freigegeben.</string>
+    <string name="faq_q2">Warum brauche ich die Bedienungshilfe?</string>
+    <string name="faq_a2">Die Bedienungshilfe erkennt, wenn eine blockierte App geöffnet wird, und zeigt dann den Pause-Bildschirm. Es werden keine Inhalte gelesen oder gespeichert.</string>
+    <string name="faq_q3">Was passiert, wenn ich meinen QR-Code verliere?</string>
+    <string name="faq_a3">Ohne den passenden QR-Code kann die Pause nicht beendet werden – das ist Absicht. Speichere oder drucke deinen Code deshalb an einem sicheren Ort.</string>
+    <string name="faq_q4">Kann ich einen neuen QR-Code erzeugen?</string>
+    <string name="faq_a4">Ja, unter Einstellungen → QR-Code. Der alte Code wird dadurch sofort ungültig.</string>
+
+    <!-- Über die App -->
+    <string name="about_version">Version 1.0</string>
+    <string name="about_description">Pause QR hilft dir, Ablenkungen bewusst zu unterbrechen: Wähle Apps aus, starte eine Pause und beende sie erst wieder, wenn du deinen persönlichen QR-Code findest.</string>
 </resources>
