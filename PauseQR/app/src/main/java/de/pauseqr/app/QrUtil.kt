@@ -61,9 +61,9 @@ object QrUtil {
     fun saveToGallery(context: Context, bitmap: Bitmap): Boolean {
         return try {
             val values = ContentValues().apply {
-                put(MediaStore.Images.Media.DISPLAY_NAME, "PauseQR_${System.currentTimeMillis()}.png")
+                put(MediaStore.Images.Media.DISPLAY_NAME, "ScanOff_${System.currentTimeMillis()}.png")
                 put(MediaStore.Images.Media.MIME_TYPE, "image/png")
-                put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/PauseQR")
+                put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/ScanOff")
             }
             val uri = context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
                 ?: return false

@@ -27,5 +27,5 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="20dp"
-        android:background="#262A4A" />
+        android:background="@color/outline" />
 </LinearLayout>

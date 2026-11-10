@@ -1,8 +1,6 @@
 R_DEF: Internal format may change without notice
 local
 color background
-color gradient_end
-color gradient_start
 color green
 color green_bg
 color nav_item_text
@@ -11,7 +9,6 @@ color outline
 color overlay_bg
 color primary
 color primary_container
-color primary_dark
 color red
 color red_bg
 color sidebar_bg
@@ -24,11 +21,12 @@ color text_primary
 color text_secondary
 color warn_bg
 color warn_text
-drawable bg_gradient_header
-drawable bg_icon_chip
-drawable bg_icon_chip_on_gradient
+drawable bg_circle_green
+drawable bg_circle_red
 drawable ic_back
 drawable ic_book
+drawable ic_check
+drawable ic_chevron_right
 drawable ic_launcher
 drawable ic_lock_closed
 drawable ic_lock_open
@@ -39,6 +37,7 @@ drawable ic_nav_home
 drawable ic_nav_info
 drawable ic_nav_qr
 drawable ic_nav_settings
+drawable ic_nav_stats
 drawable ic_person
 drawable ic_play
 drawable ic_scan_frame
@@ -71,17 +70,20 @@ id nav_help
 id nav_overview
 id nav_qr
 id nav_settings
+id nav_stats
 id progress
 id qrSection
+id rowAppsCount
 id serviceBox
+id statusBadge
 id statusCard
 id toolbar
+id tvAccessibilityStatus
 id tvAnswer
 id tvAppsCount
 id tvLabel
 id tvOverlayApp
-id tvPauseDesc
-id tvPauseTitle
+id tvPauseCount
 id tvQuestion
 id tvServiceStatus
 id tvStatus
@@ -93,6 +95,7 @@ layout fragment_dashboard
 layout fragment_help
 layout fragment_qr
 layout fragment_settings
+layout fragment_stats
 layout item_app
 layout item_faq
 layout nav_header
@@ -102,7 +105,6 @@ menu toolbar_menu
 string about_description
 string about_version
 string accessibility_desc
-string action_accessibility_caption
 string action_accessibility_title
 string action_apps_caption
 string action_apps_title
@@ -116,9 +118,8 @@ string btn_new_qr
 string btn_pause_start
 string btn_pause_unlock
 string btn_save_qr
-string btn_scan_test
 string btn_select_apps
-string dashboard_subtitle
+string dashboard_tagline
 string faq_a1
 string faq_a2
 string faq_a3
@@ -134,6 +135,7 @@ string nav_help
 string nav_overview
 string nav_qr
 string nav_settings
+string nav_stats
 string need_apps
 string need_service
 string new_qr_confirm
@@ -145,9 +147,6 @@ string overlay_home
 string overlay_scan
 string overlay_title
 string pause_end_desc
-string pause_end_title
-string pause_start_desc
-string pause_start_title
 string qr_card_desc
 string qr_hint
 string qr_save_failed
@@ -163,6 +162,11 @@ string settings_qr_section
 string settings_service_desc_off
 string settings_service_desc_on
 string settings_service_section
+string stats_apps_label
+string stats_pause_count_label
+string stats_service_label
+string status_active
+string status_inactive
 string status_locked
 string status_locked_desc
 string status_unlocked

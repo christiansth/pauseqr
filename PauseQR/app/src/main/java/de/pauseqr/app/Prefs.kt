@@ -11,6 +11,7 @@ object Prefs {
     private const val KEY_LOCKED = "locked"
     private const val KEY_APPS = "blocked_apps"
     private const val KEY_USERNAME = "username"
+    private const val KEY_PAUSE_COUNT = "pause_count"
     private const val PREFIX = "PAUSEQR:"
     private const val USERNAME_MAX_LENGTH = 10
 
@@ -48,5 +49,12 @@ object Prefs {
 
     fun setUsername(c: Context, name: String) {
         sp(c).edit().putString(KEY_USERNAME, name.take(USERNAME_MAX_LENGTH)).apply()
+    }
+
+    /** Anzahl der bisher gestarteten Pausen, für die Statistik-Ansicht. */
+    fun getPauseCount(c: Context): Int = sp(c).getInt(KEY_PAUSE_COUNT, 0)
+
+    fun incrementPauseCount(c: Context) {
+        sp(c).edit().putInt(KEY_PAUSE_COUNT, getPauseCount(c) + 1).apply()
     }
 }

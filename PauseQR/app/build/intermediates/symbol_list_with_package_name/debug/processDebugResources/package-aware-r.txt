@@ -1345,8 +1345,6 @@ color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
-color gradient_end
-color gradient_start
 color green
 color green_bg
 color highlighted_text_material_dark
@@ -2013,7 +2011,6 @@ color outline
 color overlay_bg
 color primary
 color primary_container
-color primary_dark
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -2942,9 +2939,8 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
-drawable bg_gradient_header
-drawable bg_icon_chip
-drawable bg_icon_chip_on_gradient
+drawable bg_circle_green
+drawable bg_circle_red
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -2967,6 +2963,8 @@ drawable ic_call_answer_video
 drawable ic_call_answer_video_low
 drawable ic_call_decline
 drawable ic_call_decline_low
+drawable ic_check
+drawable ic_chevron_right
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
@@ -2987,6 +2985,7 @@ drawable ic_nav_home
 drawable ic_nav_info
 drawable ic_nav_qr
 drawable ic_nav_settings
+drawable ic_nav_stats
 drawable ic_person
 drawable ic_play
 drawable ic_scan_frame
@@ -3368,6 +3367,7 @@ id nav_help
 id nav_overview
 id nav_qr
 id nav_settings
+id nav_stats
 id navigation_bar_item_active_indicator_view
 id navigation_bar_item_icon_container
 id navigation_bar_item_icon_view
@@ -3429,6 +3429,7 @@ id rightToLeft
 id right_icon
 id right_side
 id rounded
+id rowAppsCount
 id row_index_key
 id save_non_transition_alpha
 id save_overlay_view
@@ -3482,6 +3483,7 @@ id startToEnd
 id startVertical
 id staticLayout
 id staticPostLayout
+id statusBadge
 id statusCard
 id stop
 id stretch
@@ -3537,12 +3539,12 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tvAccessibilityStatus
 id tvAnswer
 id tvAppsCount
 id tvLabel
 id tvOverlayApp
-id tvPauseDesc
-id tvPauseTitle
+id tvPauseCount
 id tvQuestion
 id tvServiceStatus
 id tvStatus
@@ -3714,6 +3716,7 @@ layout fragment_dashboard
 layout fragment_help
 layout fragment_qr
 layout fragment_settings
+layout fragment_stats
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_app
@@ -3817,7 +3820,6 @@ string abc_toolbar_collapse_description
 string about_description
 string about_version
 string accessibility_desc
-string action_accessibility_caption
 string action_accessibility_title
 string action_apps_caption
 string action_apps_title
@@ -3840,7 +3842,6 @@ string btn_new_qr
 string btn_pause_start
 string btn_pause_unlock
 string btn_save_qr
-string btn_scan_test
 string btn_select_apps
 string call_notification_answer_action
 string call_notification_answer_video_action
@@ -3853,7 +3854,7 @@ string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
 string clear_text_end_icon_content_description
-string dashboard_subtitle
+string dashboard_tagline
 string define_zxingandroidembedded
 string error_a11y_label
 string error_icon_content_description
@@ -3987,6 +3988,7 @@ string nav_help
 string nav_overview
 string nav_qr
 string nav_settings
+string nav_stats
 string need_apps
 string need_service
 string new_qr_confirm
@@ -4003,9 +4005,6 @@ string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
 string pause_end_desc
-string pause_end_title
-string pause_start_desc
-string pause_start_title
 string qr_card_desc
 string qr_hint
 string qr_save_failed
@@ -4027,7 +4026,12 @@ string settings_service_desc_on
 string settings_service_section
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
+string stats_apps_label
+string stats_pause_count_label
+string stats_service_label
+string status_active
 string status_bar_notification_info_overflow
+string status_inactive
 string status_locked
 string status_locked_desc
 string status_unlocked

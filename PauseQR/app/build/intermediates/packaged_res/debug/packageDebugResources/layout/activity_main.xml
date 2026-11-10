@@ -14,11 +14,10 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/bg_gradient_header"
-            android:elevation="4dp"
+            android:background="@color/background"
             app:menu="@menu/toolbar_menu"
             app:title="@string/app_name"
-            app:titleTextColor="@android:color/white" />
+            app:titleTextColor="@color/text_primary" />
 
         <FrameLayout
             android:id="@+id/fragmentContainer"

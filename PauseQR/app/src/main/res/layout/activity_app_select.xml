@@ -10,12 +10,11 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/bg_gradient_header"
-        android:elevation="4dp"
+        android:background="@color/background"
         app:navigationIcon="@drawable/ic_back"
-        app:navigationIconTint="@android:color/white"
+        app:navigationIconTint="@color/text_primary"
         app:title="@string/select_apps_title"
-        app:titleTextColor="@android:color/white" />
+        app:titleTextColor="@color/text_primary" />
 
     <FrameLayout
         android:layout_width="match_parent"

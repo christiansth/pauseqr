@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_overview -> showFragment(DashboardFragment())
             R.id.nav_apps -> startActivity(Intent(this, AppSelectActivity::class.java))
             R.id.nav_qr -> showFragment(QrFragment())
+            R.id.nav_stats -> showFragment(StatsFragment())
             R.id.nav_settings -> showFragment(SettingsFragment())
             R.id.nav_help -> showFragment(HelpFragment())
             R.id.nav_about -> showFragment(AboutFragment())

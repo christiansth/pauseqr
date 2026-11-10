@@ -49,7 +49,10 @@
                     app:boxCornerRadiusBottomStart="14dp"
                     app:boxCornerRadiusTopEnd="14dp"
                     app:boxCornerRadiusTopStart="14dp"
-                    app:startIconDrawable="@drawable/ic_person">
+                    app:boxStrokeColor="@color/outline"
+                    app:hintTextColor="@color/text_secondary"
+                    app:startIconDrawable="@drawable/ic_person"
+                    app:startIconTint="@color/text_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etUsername"
@@ -58,7 +61,8 @@
                         android:hint="@string/username_hint"
                         android:inputType="textCapWords"
                         android:maxLength="10"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:textColor="@color/text_primary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
