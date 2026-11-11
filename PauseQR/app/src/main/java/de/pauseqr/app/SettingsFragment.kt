@@ -29,6 +29,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private lateinit var cardEmergencyUnlock: MaterialCardView
     private lateinit var contentEmergencyUnlock: View
     private lateinit var tvAppVersion: TextView
+    private lateinit var cardBackup: MaterialCardView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,6 +46,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         tvAppVersion = view.findViewById(R.id.tvAppVersion)
         // Immer aus der Gradle-Konfiguration gelesen, niemals fest hinterlegt.
         tvAppVersion.text = BuildConfig.VERSION_NAME
+        cardBackup = view.findViewById(R.id.cardBackup)
 
         btnAccessibility.setOnClickListener {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
@@ -56,6 +58,9 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             (activity as? MainActivity)?.pushFragment(QrFragment())
         }
         cardLanguage.setOnClickListener { showLanguagePicker() }
+        cardBackup.setOnClickListener {
+            (activity as? MainActivity)?.pushFragment(BackupFragment())
+        }
         cardEmergencyUnlock.setOnClickListener {
             val context = context ?: return@setOnClickListener
             if (Prefs.isLocked(context)) {

@@ -178,6 +178,33 @@ object Prefs {
         sp(c).edit().putStringSet(KEY_APPS, HashSet(apps)).apply()
     }
 
+    // ---------- Wiederherstellung (Backup) ----------
+
+    /**
+     * Stellt einen zuvor vollständig validierten Backup-Snapshot wieder her. ScanOff-Code,
+     * blockierte Apps und ScanOff-Freunde werden in einem einzigen Editor-Commit geschrieben, damit
+     * bei einem Fehler niemals nur ein Teil der Daten übernommen wird. [identity] wird unverändert
+     * als [QrCodeRecord] gespeichert – diese Funktion erzeugt selbst NIE eine neue UUID oder einen
+     * neuen Zeitstempel. Validierung muss vor dem Aufruf bereits abgeschlossen sein.
+     */
+    fun restoreSnapshot(
+        c: Context,
+        identity: QrCodeRecord,
+        blockedApps: Set<String>,
+        friends: List<ScanOffFriend>,
+        resetBackupStatus: Boolean
+    ) {
+        var editor = sp(c).edit()
+            .putString(KEY_QR_RECORD, QrPayload.encode(identity))
+            .putStringSet(KEY_APPS, HashSet(blockedApps))
+            .remove(KEY_LEGACY_SECRET)
+            .remove(KEY_LEGACY_USERNAME)
+        if (resetBackupStatus) {
+            editor = editor.remove(KEY_BACKUP_STATUS).remove(KEY_BACKUP_QR_ID).remove(KEY_BACKUP_TIMESTAMP)
+        }
+        FriendsStore.putFriends(editor, friends).apply()
+    }
+
     // ---------- Statistik ----------
 
     fun getPauseCount(c: Context): Int = sp(c).getInt(KEY_PAUSE_COUNT, 0)
