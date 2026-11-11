@@ -31,6 +31,10 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
     private lateinit var tvCompletedCount: TextView
     private lateinit var tvLongestPause: TextView
     private lateinit var tvStreak: TextView
+    private lateinit var tvStreakCurrentDetail: TextView
+    private lateinit var tvStreakLongest: TextView
+    private lateinit var tvStreakTotalDays: TextView
+    private lateinit var tvStreakLastSuccess: TextView
     private lateinit var chartCard: View
     private lateinit var tvChartTitle: TextView
     private lateinit var barChartView: BarChartView
@@ -48,6 +52,10 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
         tvCompletedCount = view.findViewById(R.id.tvCompletedCount)
         tvLongestPause = view.findViewById(R.id.tvLongestPause)
         tvStreak = view.findViewById(R.id.tvStreak)
+        tvStreakCurrentDetail = view.findViewById(R.id.tvStreakCurrentDetail)
+        tvStreakLongest = view.findViewById(R.id.tvStreakLongest)
+        tvStreakTotalDays = view.findViewById(R.id.tvStreakTotalDays)
+        tvStreakLastSuccess = view.findViewById(R.id.tvStreakLastSuccess)
         chartCard = view.findViewById(R.id.chartCard)
         tvChartTitle = view.findViewById(R.id.tvChartTitle)
         barChartView = view.findViewById(R.id.barChartView)
@@ -101,7 +109,18 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
         tvTotalTime.text = formatDuration(totals.totalMillis)
         tvCompletedCount.text = totals.completedCount.toString()
         tvLongestPause.text = formatDuration(totals.longestMillis)
-        tvStreak.text = getString(R.string.stats_streak_days, streak.current)
+        tvStreak.text = resources.getQuantityString(R.plurals.streak_days_count, streak.current, streak.current)
+
+        tvStreakCurrentDetail.text = resources.getQuantityString(R.plurals.streak_days_count, streak.current, streak.current)
+        tvStreakLongest.text = resources.getQuantityString(R.plurals.streak_days_count, streak.longest, streak.longest)
+        tvStreakTotalDays.text = resources.getQuantityString(
+            R.plurals.streak_days_count, streak.totalSuccessfulDays, streak.totalSuccessfulDays
+        )
+        tvStreakLastSuccess.text = streak.lastSuccessDay?.let { day ->
+            DateFormat.getDateInstance(DateFormat.MEDIUM, locale(requireContext())).format(
+                Date(day.atStartOfDay(zone).toInstant().toEpochMilli())
+            )
+        } ?: getString(R.string.stats_value_none)
     }
 
     private fun refreshChart(sessions: List<PauseSession>) {
@@ -219,8 +238,12 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
         AchievementId.FIVE_PAUSES -> R.string.achievement_five_pauses_title
         AchievementId.TEN_PAUSES -> R.string.achievement_ten_pauses_title
         AchievementId.OFFLINE_24H -> R.string.achievement_offline_24h_title
+        AchievementId.STREAK_1 -> R.string.achievement_streak_1_title
+        AchievementId.STREAK_3 -> R.string.achievement_streak_3_title
         AchievementId.STREAK_7 -> R.string.achievement_streak_7_title
+        AchievementId.STREAK_14 -> R.string.achievement_streak_14_title
         AchievementId.STREAK_30 -> R.string.achievement_streak_30_title
+        AchievementId.STREAK_100 -> R.string.achievement_streak_100_title
         AchievementId.HUNDRED_PAUSES -> R.string.achievement_hundred_pauses_title
     }
 
@@ -229,8 +252,12 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
         AchievementId.FIVE_PAUSES -> R.string.achievement_five_pauses_desc
         AchievementId.TEN_PAUSES -> R.string.achievement_ten_pauses_desc
         AchievementId.OFFLINE_24H -> R.string.achievement_offline_24h_desc
+        AchievementId.STREAK_1 -> R.string.achievement_streak_1_desc
+        AchievementId.STREAK_3 -> R.string.achievement_streak_3_desc
         AchievementId.STREAK_7 -> R.string.achievement_streak_7_desc
+        AchievementId.STREAK_14 -> R.string.achievement_streak_14_desc
         AchievementId.STREAK_30 -> R.string.achievement_streak_30_desc
+        AchievementId.STREAK_100 -> R.string.achievement_streak_100_desc
         AchievementId.HUNDRED_PAUSES -> R.string.achievement_hundred_pauses_desc
     }
 

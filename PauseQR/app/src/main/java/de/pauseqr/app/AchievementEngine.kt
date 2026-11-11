@@ -3,7 +3,7 @@ package de.pauseqr.app
 import java.time.ZoneId
 
 /**
- * Berechnet alle sieben Erfolge ausschließlich aus der gespeicherten Pausenhistorie – niemals aus
+ * Berechnet alle Erfolge ausschließlich aus der gespeicherten Pausenhistorie – niemals aus
  * einem eigenen, persistierten Freischaltstatus. Das ist bewusst so: nach einer
  * Backup-Wiederherstellung müssen Erfolge aus den wiederhergestellten Pausendaten neu entstehen,
  * nicht aus einem separat gespeicherten (und damit potenziell inkonsistenten) Zustand.
@@ -48,8 +48,12 @@ object AchievementEngine {
             countAchievement(AchievementId.FIVE_PAUSES, 5),
             countAchievement(AchievementId.TEN_PAUSES, 10),
             offline24h,
+            streakAchievement(AchievementId.STREAK_1, 1),
+            streakAchievement(AchievementId.STREAK_3, 3),
             streakAchievement(AchievementId.STREAK_7, 7),
+            streakAchievement(AchievementId.STREAK_14, 14),
             streakAchievement(AchievementId.STREAK_30, 30),
+            streakAchievement(AchievementId.STREAK_100, 100),
             countAchievement(AchievementId.HUNDRED_PAUSES, 100)
         )
     }

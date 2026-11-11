@@ -20,6 +20,14 @@
     <color name="text_secondary">#A5A5A9</color>
     <color name="warn_bg">#261F15</color>
     <color name="warn_text">#E6C27A</color>
+    <plurals name="streak_days_count">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <plurals name="streak_subtitle">
+        <item quantity="one">%d consecutive day of mindful offline time</item>
+        <item quantity="other">%d consecutive days of mindful offline time</item>
+    </plurals>
     <string name="about_description">ScanOff helps you consciously interrupt distractions: select apps, start a pause, and only end it once you find your personal QR code.</string>
     <string name="about_version">Version %1$s</string>
     <string name="accessibility_consent_cancel">Cancel</string>
@@ -35,10 +43,18 @@
     <string name="achievement_hundred_pauses_title">100 Pauses</string>
     <string name="achievement_offline_24h_desc">Accumulated a total of 24 hours of completed pause time.</string>
     <string name="achievement_offline_24h_title">24 Hours Offline</string>
-    <string name="achievement_streak_30_desc">Completed at least one pause on 30 consecutive days.</string>
-    <string name="achievement_streak_30_title">30-Day Streak</string>
-    <string name="achievement_streak_7_desc">Completed at least one pause on seven consecutive days.</string>
-    <string name="achievement_streak_7_title">7-Day Streak</string>
+    <string name="achievement_streak_100_desc">Reached a 100-day offline streak.</string>
+    <string name="achievement_streak_100_title">ScanOff Legend</string>
+    <string name="achievement_streak_14_desc">Reached a 14-day offline streak.</string>
+    <string name="achievement_streak_14_title">Two Mindful Weeks</string>
+    <string name="achievement_streak_1_desc">Reached a 1-day offline streak.</string>
+    <string name="achievement_streak_1_title">The Beginning</string>
+    <string name="achievement_streak_30_desc">Reached a 30-day offline streak.</string>
+    <string name="achievement_streak_30_title">Offline Pro</string>
+    <string name="achievement_streak_3_desc">Reached a 3-day offline streak.</string>
+    <string name="achievement_streak_3_title">Staying the Course</string>
+    <string name="achievement_streak_7_desc">Reached a 7-day offline streak.</string>
+    <string name="achievement_streak_7_title">One Week Offline</string>
     <string name="achievement_ten_pauses_desc">Completed ten pauses.</string>
     <string name="achievement_ten_pauses_title">10 Pauses</string>
     <string name="action_accessibility_title">Accessibility</string>
@@ -98,6 +114,9 @@
     <string name="btn_share_qr">Share QR code</string>
     <string name="created_at_label">Created on %1$s</string>
     <string name="created_at_unknown">Creation date unknown</string>
+    <string name="dashboard_streak_continue_hint">Complete a pause today to continue your streak.</string>
+    <string name="dashboard_streak_first_time">Start your first offline streak!</string>
+    <string name="dashboard_streak_next">Your next offline streak is waiting for you.</string>
     <string name="emergency_countdown">%1$d seconds remaining</string>
     <string name="emergency_disclaimer">This is a deliberately accessible alternative to your QR code – not an additional or unbreakable security layer.</string>
     <string name="emergency_no_pause">No pause is currently active.</string>
@@ -133,6 +152,9 @@
     <string name="menu_change_unlock">Change unlock permission</string>
     <string name="menu_remove_friend">Remove friend</string>
     <string name="menu_view_qr">View QR code</string>
+    <string name="motivation_streak_1">You\'ve taken the first step!</string>
+    <string name="motivation_streak_low">%1$d days in a row – keep it up!</string>
+    <string name="motivation_streak_month">%1$d days of mindful phone breaks!</string>
     <string name="nav_about">About ScanOff</string>
     <string name="nav_apps">Manage apps</string>
     <string name="nav_friends">ScanOff Friends</string>
@@ -221,9 +243,13 @@
     <string name="stats_reset_confirm_message">Do you really want to delete all statistics and achievements? This action cannot be undone.</string>
     <string name="stats_reset_success">Statistics have been deleted.</string>
     <string name="stats_service_label">Accessibility status</string>
-    <string name="stats_streak_days">%1$d day(s)</string>
+    <string name="stats_streak_details_title">Streak Details</string>
     <string name="stats_streak_label">Current streak</string>
+    <string name="stats_streak_last_success_label">Last successful day</string>
+    <string name="stats_streak_longest_label">Longest streak</string>
+    <string name="stats_streak_total_days_label">Total successful days</string>
     <string name="stats_total_time_label">Total pause time</string>
+    <string name="stats_value_none">–</string>
     <string name="status_active">Active</string>
     <string name="status_inactive">Not active</string>
     <string name="status_locked">Pause active</string>

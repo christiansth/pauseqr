@@ -209,7 +209,6 @@
     <string name="stats_streak_label">Current streak</string>
     <string name="stats_duration_hours_minutes">%1$d h %2$d min</string>
     <string name="stats_duration_minutes_only">%1$d min</string>
-    <string name="stats_streak_days">%1$d day(s)</string>
     <string name="stats_empty_message">No statistics yet. Start your first ScanOff pause!</string>
     <string name="stats_chart_title_week">Pause time per day (Mon–Sun)</string>
     <string name="stats_chart_title_month">Pause time per day of month</string>
@@ -221,6 +220,19 @@
     <string name="stats_history_ended_qr">Ended via QR code</string>
     <string name="stats_history_ended_emergency">Ended via emergency unlock</string>
     <string name="stats_history_ended_automatic">Ended automatically</string>
+    <string name="stats_streak_details_title">Streak Details</string>
+    <string name="stats_streak_longest_label">Longest streak</string>
+    <string name="stats_streak_total_days_label">Total successful days</string>
+    <string name="stats_streak_last_success_label">Last successful day</string>
+    <string name="stats_value_none">–</string>
+
+    <string name="dashboard_streak_continue_hint">Complete a pause today to continue your streak.</string>
+    <string name="dashboard_streak_first_time">Start your first offline streak!</string>
+    <string name="dashboard_streak_next">Your next offline streak is waiting for you.</string>
+    <string name="motivation_streak_1">You\'ve taken the first step!</string>
+    <string name="motivation_streak_low">%1$d days in a row – keep it up!</string>
+    <string name="motivation_streak_month">%1$d days of mindful phone breaks!</string>
+
     <string name="stats_achievements_title">My Achievements</string>
     <string name="stats_achievement_unlocked_on">Unlocked on %1$s</string>
     <string name="stats_achievement_locked">Not yet unlocked</string>
@@ -234,10 +246,18 @@
     <string name="achievement_hundred_pauses_desc">Completed 100 pauses.</string>
     <string name="achievement_offline_24h_title">24 Hours Offline</string>
     <string name="achievement_offline_24h_desc">Accumulated a total of 24 hours of completed pause time.</string>
-    <string name="achievement_streak_7_title">7-Day Streak</string>
-    <string name="achievement_streak_7_desc">Completed at least one pause on seven consecutive days.</string>
-    <string name="achievement_streak_30_title">30-Day Streak</string>
-    <string name="achievement_streak_30_desc">Completed at least one pause on 30 consecutive days.</string>
+    <string name="achievement_streak_1_title">The Beginning</string>
+    <string name="achievement_streak_1_desc">Reached a 1-day offline streak.</string>
+    <string name="achievement_streak_3_title">Staying the Course</string>
+    <string name="achievement_streak_3_desc">Reached a 3-day offline streak.</string>
+    <string name="achievement_streak_7_title">One Week Offline</string>
+    <string name="achievement_streak_7_desc">Reached a 7-day offline streak.</string>
+    <string name="achievement_streak_14_title">Two Mindful Weeks</string>
+    <string name="achievement_streak_14_desc">Reached a 14-day offline streak.</string>
+    <string name="achievement_streak_30_title">Offline Pro</string>
+    <string name="achievement_streak_30_desc">Reached a 30-day offline streak.</string>
+    <string name="achievement_streak_100_title">ScanOff Legend</string>
+    <string name="achievement_streak_100_desc">Reached a 100-day offline streak.</string>
 
     <string name="settings_stats_reset_section">Reset Statistics</string>
     <string name="settings_stats_reset_hint">Removes the pause history and all achievements.</string>
@@ -258,4 +278,14 @@
     <!-- About ScanOff -->
     <string name="about_version">Version %1$s</string>
     <string name="about_description">ScanOff helps you consciously interrupt distractions: select apps, start a pause, and only end it once you find your personal QR code.</string>
+
+    <!-- Offline-Streaks: Singular/Plural -->
+    <plurals name="streak_days_count">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <plurals name="streak_subtitle">
+        <item quantity="one">%d consecutive day of mindful offline time</item>
+        <item quantity="other">%d consecutive days of mindful offline time</item>
+    </plurals>
 </resources>

@@ -26,7 +26,8 @@ object StatsEngine {
     data class StreakInfo(
         val current: Int,
         val longest: Int,
-        val lastSuccessDay: LocalDate?
+        val lastSuccessDay: LocalDate?,
+        val totalSuccessfulDays: Int
     )
 
     private fun dayStartMillis(date: LocalDate, zone: ZoneId): Long =
@@ -104,12 +105,19 @@ object StatsEngine {
 
     fun computeStreak(sessions: List<PauseSession>, zone: ZoneId = ZoneId.systemDefault(), today: LocalDate = LocalDate.now(zone)): StreakInfo {
         val days = qualifyingDays(sessions, zone)
-        if (days.isEmpty()) return StreakInfo(0, 0, null)
+        if (days.isEmpty()) return StreakInfo(0, 0, null, 0)
         return StreakInfo(
             current = currentStreakLength(days, today),
             longest = longestStreakLength(days),
-            lastSuccessDay = days.maxOrNull()
+            lastSuccessDay = days.maxOrNull(),
+            totalSuccessfulDays = days.size
         )
+    }
+
+    /** Mo–So der aktuellen Woche: true, wenn der jeweilige Tag ein erfolgreicher Streak-Tag war. */
+    fun weekQualifyingFlags(sessions: List<PauseSession>, zone: ZoneId = ZoneId.systemDefault(), today: LocalDate = LocalDate.now(zone)): List<Boolean> {
+        val days = qualifyingDays(sessions, zone)
+        return weekDays(zone, today).map { it in days }
     }
 
     /**

@@ -4,6 +4,14 @@
     <item quantity="one">%d neue Benachrichtigung</item>
     <item quantity="other">%d neue Benachrichtigungen</item>
   </plurals>
+    <plurals name="streak_days_count">
+        <item quantity="one">%d Tag</item>
+        <item quantity="other">%d Tage</item>
+    </plurals>
+    <plurals name="streak_subtitle">
+        <item quantity="one">%d Tag hintereinander bewusst offline</item>
+        <item quantity="other">%d Tage hintereinander bewusst offline</item>
+    </plurals>
     <string msgid="5976598919945601918" name="abc_action_bar_home_description">"Zur Startseite"</string>
     <string msgid="8388173803310557296" name="abc_action_bar_up_description">"Nach oben"</string>
     <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"Weitere Optionen"</string>
@@ -46,10 +54,18 @@
     <string name="achievement_hundred_pauses_title">100 Pausen</string>
     <string name="achievement_offline_24h_desc">Insgesamt 24 Stunden abgeschlossene Pausenzeit gesammelt.</string>
     <string name="achievement_offline_24h_title">24 Stunden Offline-Zeit</string>
-    <string name="achievement_streak_30_desc">An 30 aufeinanderfolgenden Tagen erfolgreich mindestens eine Pause abgeschlossen.</string>
-    <string name="achievement_streak_30_title">30-Tage-Serie</string>
-    <string name="achievement_streak_7_desc">An sieben aufeinanderfolgenden Tagen erfolgreich mindestens eine Pause abgeschlossen.</string>
-    <string name="achievement_streak_7_title">7-Tage-Serie</string>
+    <string name="achievement_streak_100_desc">Eine Offline-Serie von 100 Tagen erreicht.</string>
+    <string name="achievement_streak_100_title">ScanOff-Legende</string>
+    <string name="achievement_streak_14_desc">Eine Offline-Serie von 14 Tagen erreicht.</string>
+    <string name="achievement_streak_14_title">Zwei Wochen bewusst</string>
+    <string name="achievement_streak_1_desc">Eine Offline-Serie von 1 Tag erreicht.</string>
+    <string name="achievement_streak_1_title">Der Anfang</string>
+    <string name="achievement_streak_30_desc">Eine Offline-Serie von 30 Tagen erreicht.</string>
+    <string name="achievement_streak_30_title">Offline-Profi</string>
+    <string name="achievement_streak_3_desc">Eine Offline-Serie von 3 Tagen erreicht.</string>
+    <string name="achievement_streak_3_title">Drangeblieben</string>
+    <string name="achievement_streak_7_desc">Eine Offline-Serie von 7 Tagen erreicht.</string>
+    <string name="achievement_streak_7_title">Eine Woche offline</string>
     <string name="achievement_ten_pauses_desc">Zehn Pausen erfolgreich abgeschlossen.</string>
     <string name="achievement_ten_pauses_title">10 Pausen</string>
     <string name="action_accessibility_title">Bedienungshilfe</string>
@@ -124,6 +140,9 @@
     <string name="clear_text_end_icon_content_description">Text löschen</string>
     <string name="created_at_label">Erstellt am %1$s</string>
     <string name="created_at_unknown">Erstellungsdatum unbekannt</string>
+    <string name="dashboard_streak_continue_hint">Schließe heute eine Pause ab, um deine Serie fortzusetzen.</string>
+    <string name="dashboard_streak_first_time">Starte deine erste Offline-Serie!</string>
+    <string name="dashboard_streak_next">Deine nächste Offline-Serie wartet auf dich.</string>
     <string name="emergency_countdown">Noch %1$d Sekunden</string>
     <string name="emergency_disclaimer">Dies ist eine bewusst zugängliche Alternative zu deinem QR-Code – keine zusätzliche oder unüberwindbare Sicherheitsstufe.</string>
     <string name="emergency_no_pause">Aktuell ist keine Pause aktiv.</string>
@@ -177,6 +196,9 @@
     <string name="menu_change_unlock">Entsperrfreigabe ändern</string>
     <string name="menu_remove_friend">Freund entfernen</string>
     <string name="menu_view_qr">QR-Code anzeigen</string>
+    <string name="motivation_streak_1">Der erste Schritt ist geschafft!</string>
+    <string name="motivation_streak_low">%1$d Tage hintereinander – weiter so!</string>
+    <string name="motivation_streak_month">%1$d Tage bewusste Smartphone-Pausen!</string>
     <string name="mtrl_badge_numberless_content_description">Neue Benachrichtigung</string>
     <string name="mtrl_checkbox_state_description_checked">Aktiviert</string>
     <string name="mtrl_checkbox_state_description_indeterminate">Teilweise aktiviert</string>
@@ -315,9 +337,13 @@
     <string name="stats_reset_confirm_message">Möchtest du wirklich alle Statistiken und Erfolge löschen? Diese Aktion kann nicht rückgängig gemacht werden.</string>
     <string name="stats_reset_success">Statistiken wurden gelöscht.</string>
     <string name="stats_service_label">Bedienungshilfe-Status</string>
-    <string name="stats_streak_days">%1$d Tag(e)</string>
+    <string name="stats_streak_details_title">Serie: Details</string>
     <string name="stats_streak_label">Aktuelle Serie</string>
+    <string name="stats_streak_last_success_label">Letzter erfolgreicher Tag</string>
+    <string name="stats_streak_longest_label">Längste Serie</string>
+    <string name="stats_streak_total_days_label">Erfolgreiche Tage insgesamt</string>
     <string name="stats_total_time_label">Gesamte Pausenzeit</string>
+    <string name="stats_value_none">–</string>
     <string name="status_active">Aktiviert</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
     <string name="status_inactive">Nicht aktiviert</string>
