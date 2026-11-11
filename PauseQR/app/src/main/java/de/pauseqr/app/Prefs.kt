@@ -163,12 +163,24 @@ object Prefs {
     }
 
     /**
-     * Zentrale Entsperrfunktion: beendet die aktuell laufende Pause. Wird sowohl nach
-     * erfolgreichem QR-Code-Scan als auch bei der Notfall-Entsperrung verwendet – die Liste der
-     * ausgewählten Apps bleibt dabei unverändert erhalten.
+     * Zentrale Startfunktion: beginnt eine neue Pause und legt zugleich den zugehörigen
+     * Historien-Eintrag an (siehe [PauseHistoryStore.startSession]).
      */
-    fun unlock(c: Context) {
+    fun startPause(c: Context) {
+        setLocked(c, true)
+        incrementPauseCount(c)
+        PauseHistoryStore.startSession(c)
+    }
+
+    /**
+     * Zentrale Entsperrfunktion: beendet die aktuell laufende Pause und schließt zugleich den
+     * zugehörigen Historien-Eintrag mit [reason] ab. Wird sowohl nach erfolgreichem QR-Code-Scan
+     * als auch bei der Notfall-Entsperrung verwendet – die Liste der ausgewählten Apps bleibt
+     * dabei unverändert erhalten.
+     */
+    fun unlock(c: Context, reason: PauseEndReason) {
         setLocked(c, false)
+        PauseHistoryStore.completeOpenSession(c, reason)
     }
 
     fun getBlockedApps(c: Context): Set<String> =
@@ -192,6 +204,7 @@ object Prefs {
         identity: QrCodeRecord,
         blockedApps: Set<String>,
         friends: List<ScanOffFriend>,
+        pauseHistory: List<PauseSession>,
         resetBackupStatus: Boolean
     ) {
         var editor = sp(c).edit()
@@ -202,7 +215,8 @@ object Prefs {
         if (resetBackupStatus) {
             editor = editor.remove(KEY_BACKUP_STATUS).remove(KEY_BACKUP_QR_ID).remove(KEY_BACKUP_TIMESTAMP)
         }
-        FriendsStore.putFriends(editor, friends).apply()
+        editor = FriendsStore.putFriends(editor, friends)
+        PauseHistoryStore.putSessions(editor, pauseHistory).apply()
     }
 
     // ---------- Statistik ----------

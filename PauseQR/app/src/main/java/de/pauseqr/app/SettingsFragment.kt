@@ -30,6 +30,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private lateinit var contentEmergencyUnlock: View
     private lateinit var tvAppVersion: TextView
     private lateinit var cardBackup: MaterialCardView
+    private lateinit var btnResetStats: Button
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,6 +48,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         // Immer aus der Gradle-Konfiguration gelesen, niemals fest hinterlegt.
         tvAppVersion.text = BuildConfig.VERSION_NAME
         cardBackup = view.findViewById(R.id.cardBackup)
+        btnResetStats = view.findViewById(R.id.btnResetStats)
 
         btnAccessibility.setOnClickListener {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
@@ -69,6 +71,25 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                 Toast.makeText(context, R.string.emergency_unavailable, Toast.LENGTH_SHORT).show()
             }
         }
+        btnResetStats.setOnClickListener { confirmResetStats() }
+    }
+
+    /**
+     * Entfernt ausschließlich die Pausenhistorie (und damit die daraus berechneten Erfolge) –
+     * persönliche QR-Codes, Freunde, App-Auswahlen und Einstellungen bleiben unberührt. Eine
+     * laufende Pause wird dadurch weder beendet noch entsperrt (clearAll fasst KEY_LOCKED nie an).
+     */
+    private fun confirmResetStats() {
+        val context = context ?: return
+        MaterialAlertDialogBuilder(context)
+            .setTitle(R.string.settings_stats_reset_section)
+            .setMessage(R.string.stats_reset_confirm_message)
+            .setPositiveButton(R.string.stats_reset_confirm_button) { _, _ ->
+                PauseHistoryStore.clearAll(context)
+                Toast.makeText(context, R.string.stats_reset_success, Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
     }
 
     override fun onResume() {

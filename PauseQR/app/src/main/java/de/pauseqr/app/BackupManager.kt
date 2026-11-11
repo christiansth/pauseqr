@@ -25,6 +25,7 @@ object BackupManager {
     private const val MAX_FRIENDS = 1000
     private const val MAX_BLOCKED_APPS = 1000
     private const val MAX_STRING_FIELD_LENGTH = 500
+    private const val MAX_SESSIONS = 20_000
     private const val MAX_ITERATIONS = 2_000_000
 
     data class BackupSnapshot(
@@ -32,7 +33,8 @@ object BackupManager {
         val identity: QrCodeRecord,
         val language: String,
         val blockedApps: Set<String>,
-        val friends: List<ScanOffFriend>
+        val friends: List<ScanOffFriend>,
+        val pauseHistory: List<PauseSession>
     )
 
     sealed class DecryptResult {
@@ -74,6 +76,20 @@ object BackupManager {
                         put("addedAt", f.addedAt)
                         put("qrPayload", f.qrPayload)
                         put("unlockEnabled", f.unlockEnabled)
+                    })
+                }
+            })
+            // Nur abgeschlossene Pausen werden gesichert – eine aktuell laufende Pause soll nie
+            // automatisch wiederhergestellt werden (siehe Prefs.restoreSnapshot: KEY_LOCKED wird
+            // dort ohnehin nie angefasst, diese Auswahl ist eine zusätzliche, bewusste Absicherung).
+            put("pauseHistory", JSONArray().apply {
+                PauseHistoryStore.getSessions(context).filter { it.completed }.forEach { s ->
+                    put(JSONObject().apply {
+                        put("id", s.id)
+                        put("startTime", s.startTime)
+                        put("endTime", s.endTime ?: JSONObject.NULL)
+                        put("endReason", s.endReason?.name ?: JSONObject.NULL)
+                        put("completed", true)
                     })
                 }
             })
@@ -207,13 +223,40 @@ object BackupManager {
             )
         }
 
+        val sessionsArray = root.optJSONArray("pauseHistory") ?: JSONArray()
+        val pauseHistory = if (sessionsArray.length() > MAX_SESSIONS) {
+            emptyList()
+        } else {
+            (0 until sessionsArray.length()).mapNotNull { i -> parseSession(sessionsArray.optJSONObject(i)) }
+        }
+
         return BackupSnapshot(
             exportedAt = root.optLong("exportedAt", 0L),
             identity = identity,
             language = language,
             blockedApps = blockedApps,
-            friends = friends
+            friends = friends,
+            pauseHistory = pauseHistory
         )
+    }
+
+    private fun parseSession(json: JSONObject?): PauseSession? {
+        if (json == null) return null
+        val id = json.optString("id", "")
+        val startTime = json.optLong("startTime", -1L)
+        val endTime = if (json.isNull("endTime")) null else json.optLong("endTime", -1L).takeIf { it >= 0 }
+        val reasonRaw = if (json.isNull("endReason")) null else json.optString("endReason", "")
+        val endReason = reasonRaw?.let {
+            try {
+                PauseEndReason.valueOf(it)
+            } catch (e: IllegalArgumentException) {
+                null
+            }
+        }
+        // Nur vollständige, in sich konsistente abgeschlossene Pausen werden übernommen – niemals
+        // eine laufende Pause (siehe buildSnapshotJson, das solche gar nicht erst exportiert).
+        if (id.isBlank() || !isValidUuid(id) || startTime <= 0 || endTime == null || endTime < startTime) return null
+        return PauseSession(id = id, startTime = startTime, endTime = endTime, endReason = endReason, completed = true)
     }
 
     /** Filtert auf tatsächlich auf diesem Gerät installierte Pakete – verhindert Abstürze durch
@@ -237,6 +280,17 @@ object BackupManager {
      * überschrieben.
      */
     fun mergeFriends(existing: List<ScanOffFriend>, imported: List<ScanOffFriend>): List<ScanOffFriend> {
+        val existingIds = existing.map { it.id }.toSet()
+        return existing + imported.filter { it.id !in existingIds }
+    }
+
+    /**
+     * Pausenhistorie-Merge: eindeutige Session-IDs verhindern doppelte Einträge. Bestehende
+     * Einträge bleiben unverändert; nur neue, bisher unbekannte Pausen aus dem Backup werden
+     * ergänzt. Erfolge werden daraus anschließend immer neu berechnet (siehe [AchievementEngine]),
+     * nie separat gespeichert oder übernommen.
+     */
+    fun mergeSessions(existing: List<PauseSession>, imported: List<PauseSession>): List<PauseSession> {
         val existingIds = existing.map { it.id }.toSet()
         return existing + imported.filter { it.id !in existingIds }
     }

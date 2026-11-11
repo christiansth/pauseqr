@@ -132,7 +132,7 @@ class EmergencyUnlockFragment : Fragment(R.layout.fragment_emergency_unlock) {
         // Button sofort sperren, damit die Entsperraktion nicht mehrfach ausgelöst werden kann.
         btnHold.isEnabled = false
 
-        Prefs.unlock(context)
+        Prefs.unlock(context, PauseEndReason.EMERGENCY)
         BlockerService.hideOverlayIfVisible()
 
         tvCountdown.text = ""
