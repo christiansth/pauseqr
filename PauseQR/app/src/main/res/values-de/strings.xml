@@ -113,6 +113,39 @@
     <string name="qr_locked_title">Pause aktiv</string>
     <string name="qr_locked_message">Du kannst deinen QR-Code nicht ändern, solange eine Pause aktiv ist. Beende zuerst die Pause, um einen neuen Code zu erstellen.</string>
 
+    <!-- ScanOff-Passwortsystem: gemeinsam für QR-Identität (Erstellung/Import) und Backup -->
+    <string name="create_password_section_title">ScanOff-Passwort erstellen</string>
+    <string name="password_create_hint">Passwort (mind. 12 Zeichen)</string>
+    <string name="password_confirm_hint">Passwort bestätigen</string>
+    <string name="password_enter_hint">Passwort eingeben</string>
+    <string name="password_enter_title">ScanOff-Passwort eingeben</string>
+    <string name="btn_password_continue">Weiter</string>
+    <string name="password_too_short">Das Passwort muss mindestens 12 Zeichen lang sein.</string>
+    <string name="password_mismatch">Die Passwörter stimmen nicht überein.</string>
+    <string name="wrong_password">Falsches Passwort.</string>
+    <string name="password_no_recovery_warning">Bewahre dein Passwort sicher auf. Ohne das Passwort kannst du deine persönliche QR-Identität nicht auf einem neuen Gerät importieren und deine verschlüsselten Backups nicht wiederherstellen.</string>
+
+    <!-- Eigene QR-Identität importieren (Kamera/Galerie) -->
+    <string name="qr_import_own_section_title">Oder vorhandene Identität importieren:</string>
+    <string name="btn_qr_import_scan">QR-Code mit Kamera scannen</string>
+    <string name="btn_qr_import_gallery">QR-Code aus Galerie importieren</string>
+    <string name="qr_import_unsupported_version">Dieser QR-Code enthält keinen Passwortschutz und kann hier nicht importiert werden. Erstelle stattdessen einen neuen ScanOff-Code.</string>
+    <string name="qr_import_wrong_password">Falsches Passwort. Der QR-Code konnte nicht importiert werden.</string>
+    <string name="qr_import_preview_title">QR-Code-Identität übernehmen?</string>
+    <string name="qr_import_preview_message">Benutzername: %1$s\nErstellt am: %2$s\n\nMöchtest du diese Identität übernehmen?</string>
+    <string name="qr_import_confirm">Übernehmen</string>
+    <string name="qr_import_success">QR-Code erfolgreich importiert</string>
+    <string name="qr_import_identity_conflict_message">Auf diesem Gerät existiert bereits eine ScanOff-Identität. Möchtest du diese durch die Identität aus dem QR-Code ersetzen?\n\nAktuell: %1$s (%2$s)\nAus dem QR-Code: %3$s (%4$s)\n\nDie bisherige Identität kann danach nicht mehr verwendet werden, um deine Apps zu entsperren.</string>
+
+    <!-- Passwort-Migration (Version 1 → 2) und -änderung -->
+    <string name="setup_password_title">ScanOff-Passwort einrichten</string>
+    <string name="change_password_title">ScanOff-Passwort ändern</string>
+    <string name="migration_banner_title">Kein Passwortschutz eingerichtet</string>
+    <string name="migration_banner_hint">Dieser QR-Code ist noch nicht passwortgeschützt. Richte ein Passwort ein, um ihn auf einem neuen Gerät importieren und für Backups verwenden zu können.</string>
+    <string name="migration_warning">Durch die Einrichtung ändert sich der Inhalt deines QR-Codes. Du musst ihn danach erneut speichern. Deine ScanOff-Freunde bleiben davon unberührt.</string>
+    <string name="current_password_hint">Aktuelles Passwort</string>
+    <string name="password_updated_resave_qr">Passwort aktualisiert. Speichere deinen QR-Code erneut.</string>
+
     <string name="scan_prompt">ScanOff-Code scannen</string>
     <string name="scan_invalid">Kein gültiger ScanOff-Code erkannt.</string>
     <string name="scan_unrecognized">Dieser ScanOff-Code ist nicht freigegeben.</string>
@@ -136,6 +169,9 @@
     <string name="settings_apps_section">Blockierte Apps</string>
     <string name="settings_qr_section">QR-Code</string>
     <string name="settings_qr_desc">Deinen persönlichen ScanOff-Code anzeigen, speichern oder ersetzen.</string>
+    <string name="settings_change_password_section">ScanOff-Passwort</string>
+    <string name="settings_change_password_hint_has_password">Ändere dein bestehendes ScanOff-Passwort.</string>
+    <string name="settings_change_password_hint_no_password">Richte ein Passwort für deine QR-Identität ein.</string>
     <string name="settings_language_section">Sprache</string>
     <string name="language_german">Deutsch</string>
     <string name="language_english">English</string>
@@ -167,18 +203,11 @@
     <string name="btn_backup_restore">Backup wiederherstellen</string>
     <string name="backup_restore_disabled_hint">Ein Backup kann nur wiederhergestellt werden, wenn die Pause beendet ist.</string>
     <string name="backup_no_identity">Erstelle zuerst deinen persönlichen ScanOff-Code, bevor du ein Backup erstellst.</string>
-    <string name="backup_password_title">Backup-Passwort festlegen</string>
-    <string name="backup_password_hint">Backup-Passwort (mind. 12 Zeichen)</string>
-    <string name="backup_password_confirm_hint">Passwort bestätigen</string>
-    <string name="backup_password_warning">Bewahre dein Backup-Passwort sicher auf. Ohne dieses Passwort kann die Sicherung nicht wiederhergestellt werden.</string>
-    <string name="backup_password_too_short">Das Passwort muss mindestens 12 Zeichen lang sein.</string>
-    <string name="backup_password_mismatch">Die Passwörter stimmen nicht überein.</string>
-    <string name="btn_backup_password_continue">Weiter</string>
+    <string name="backup_create_needs_password">Richte zuerst ein ScanOff-Passwort für deinen QR-Code ein, um ein Backup erstellen zu können.</string>
     <string name="backup_creating">Backup wird erstellt …</string>
     <string name="backup_success">Dein ScanOff-Backup wurde erfolgreich erstellt.</string>
     <string name="backup_save_failed">Das Backup konnte nicht gespeichert werden.</string>
     <string name="backup_restore_password_title">Backup-Passwort eingeben</string>
-    <string name="backup_restore_password_hint">Backup-Passwort</string>
     <string name="btn_backup_decrypt">Entschlüsseln</string>
     <string name="backup_invalid_file">Diese Datei ist kein gültiges ScanOff-Backup.</string>
     <string name="backup_wrong_password">Falsches Passwort oder beschädigte Datei.</string>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
@@ -80,6 +81,49 @@
                         android:textColor="@color/text_secondary"
                         android:textSize="12sp" />
 
+                    <!-- Migrationshinweis: nur sichtbar für Version-1-Identitäten ohne Passwortschutz -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardPasswordMigration"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:cardBackgroundColor="@color/warn_bg"
+                        app:cardCornerRadius="16dp"
+                        app:strokeWidth="0dp"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/migration_banner_title"
+                                android:textColor="@color/warn_text"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="@string/migration_banner_hint"
+                                android:textColor="@color/warn_text"
+                                android:textSize="13sp" />
+
+                            <Button
+                                android:id="@+id/btnSetupPassword"
+                                style="@style/PauseQR.Button.Outlined"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:text="@string/setup_password_title" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -128,6 +172,31 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/btn_generate_qr" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:text="@string/qr_import_own_section_title"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:id="@+id/btnImportScanOwn"
+                        style="@style/PauseQR.Button.Outlined"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/btn_qr_import_scan" />
+
+                    <Button
+                        android:id="@+id/btnImportGalleryOwn"
+                        style="@style/PauseQR.Button.Outlined"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/btn_qr_import_gallery" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

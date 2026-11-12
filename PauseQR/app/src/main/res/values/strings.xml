@@ -113,6 +113,39 @@
     <string name="qr_locked_title">Pause active</string>
     <string name="qr_locked_message">You can\'t change your QR code while a pause is active. End the pause first to create a new code.</string>
 
+    <!-- ScanOff password system: shared across QR identity creation/import and backup -->
+    <string name="create_password_section_title">Create ScanOff password</string>
+    <string name="password_create_hint">Password (min. 12 characters)</string>
+    <string name="password_confirm_hint">Confirm password</string>
+    <string name="password_enter_hint">Enter password</string>
+    <string name="password_enter_title">Enter ScanOff password</string>
+    <string name="btn_password_continue">Continue</string>
+    <string name="password_too_short">The password must be at least 12 characters long.</string>
+    <string name="password_mismatch">The passwords do not match.</string>
+    <string name="wrong_password">Incorrect password.</string>
+    <string name="password_no_recovery_warning">Keep your password safe. Without it, you can\'t import your personal QR identity on a new device or restore your encrypted backups.</string>
+
+    <!-- Import own QR identity (camera/gallery) -->
+    <string name="qr_import_own_section_title">Or import an existing identity:</string>
+    <string name="btn_qr_import_scan">Scan QR code with camera</string>
+    <string name="btn_qr_import_gallery">Import QR code from gallery</string>
+    <string name="qr_import_unsupported_version">This QR code has no password protection and can\'t be imported here. Please create a new ScanOff code instead.</string>
+    <string name="qr_import_wrong_password">Incorrect password. The QR code could not be imported.</string>
+    <string name="qr_import_preview_title">Import QR code identity?</string>
+    <string name="qr_import_preview_message">Username: %1$s\nCreated on: %2$s\n\nDo you want to import this identity?</string>
+    <string name="qr_import_confirm">Import</string>
+    <string name="qr_import_success">QR code imported successfully</string>
+    <string name="qr_import_identity_conflict_message">A ScanOff identity already exists on this device. Do you want to replace it with the identity from the QR code?\n\nCurrent: %1$s (%2$s)\nFrom QR code: %3$s (%4$s)\n\nThe previous identity can no longer be used to unlock your apps afterwards.</string>
+
+    <!-- Password migration (version 1 → 2) and change -->
+    <string name="setup_password_title">Set up ScanOff password</string>
+    <string name="change_password_title">Change ScanOff password</string>
+    <string name="migration_banner_title">No password protection set up</string>
+    <string name="migration_banner_hint">This QR code isn\'t password-protected yet. Set up a password so you can import it on a new device and use it for backups.</string>
+    <string name="migration_warning">Setting up a password changes the content of your QR code. You\'ll need to save it again afterwards. Your ScanOff friends are not affected.</string>
+    <string name="current_password_hint">Current password</string>
+    <string name="password_updated_resave_qr">Password updated. Please save your QR code again.</string>
+
     <string name="scan_prompt">Scan ScanOff code</string>
     <string name="scan_invalid">No valid ScanOff code recognized.</string>
     <string name="scan_unrecognized">This ScanOff code is not authorized.</string>
@@ -136,6 +169,9 @@
     <string name="settings_apps_section">Blocked apps</string>
     <string name="settings_qr_section">QR code</string>
     <string name="settings_qr_desc">View, save, or replace your personal ScanOff code.</string>
+    <string name="settings_change_password_section">ScanOff Password</string>
+    <string name="settings_change_password_hint_has_password">Change your existing ScanOff password.</string>
+    <string name="settings_change_password_hint_no_password">Set up a password for your QR identity.</string>
     <string name="settings_language_section">Language</string>
     <string name="language_german">Deutsch</string>
     <string name="language_english">English</string>
@@ -167,18 +203,11 @@
     <string name="btn_backup_restore">Restore backup</string>
     <string name="backup_restore_disabled_hint">A backup can only be restored once the pause has ended.</string>
     <string name="backup_no_identity">Create your personal ScanOff code first before creating a backup.</string>
-    <string name="backup_password_title">Set backup password</string>
-    <string name="backup_password_hint">Backup password (min. 12 characters)</string>
-    <string name="backup_password_confirm_hint">Confirm password</string>
-    <string name="backup_password_warning">Keep your backup password safe. Without it, the backup cannot be restored.</string>
-    <string name="backup_password_too_short">The password must be at least 12 characters long.</string>
-    <string name="backup_password_mismatch">The passwords do not match.</string>
-    <string name="btn_backup_password_continue">Continue</string>
+    <string name="backup_create_needs_password">Set up a ScanOff password for your QR code first to be able to create a backup.</string>
     <string name="backup_creating">Creating backup…</string>
     <string name="backup_success">Your ScanOff backup was created successfully.</string>
     <string name="backup_save_failed">The backup could not be saved.</string>
     <string name="backup_restore_password_title">Enter backup password</string>
-    <string name="backup_restore_password_hint">Backup password</string>
     <string name="btn_backup_decrypt">Decrypt</string>
     <string name="backup_invalid_file">This file is not a valid ScanOff backup.</string>
     <string name="backup_wrong_password">Incorrect password or corrupted file.</string>

@@ -89,6 +89,7 @@
     <string name="attempt_reset_confirm_message">Möchtest du wirklich die gesamte Statistik der gesperrten App-Aufrufe löschen? Diese Aktion kann nicht rückgängig gemacht werden.</string>
     <string name="attempt_reset_success">Aufrufstatistik wurde gelöscht.</string>
     <string name="backup_accessibility_followup">Aktiviere die Bedienungshilfe auf diesem Gerät erneut, damit ScanOff Apps blockieren kann.</string>
+    <string name="backup_create_needs_password">Richte zuerst ein ScanOff-Passwort für deinen QR-Code ein, um ein Backup erstellen zu können.</string>
     <string name="backup_creating">Backup wird erstellt …</string>
     <string name="backup_file_too_large">Diese Datei ist zu groß, um als ScanOff-Backup gelesen zu werden.</string>
     <string name="backup_identity_conflict_message">Auf diesem Gerät existiert bereits eine ScanOff-Identität. Möchtest du diese durch die Identität aus dem Backup ersetzen?\n\nAktuell: %1$s (%2$s)\nAus dem Backup: %3$s (%4$s)\n\nDie bisherige Identität kann danach nicht mehr verwendet werden, um deine Apps zu entsperren.</string>
@@ -96,18 +97,11 @@
     <string name="backup_identity_replace">Identität ersetzen</string>
     <string name="backup_invalid_file">Diese Datei ist kein gültiges ScanOff-Backup.</string>
     <string name="backup_no_identity">Erstelle zuerst deinen persönlichen ScanOff-Code, bevor du ein Backup erstellst.</string>
-    <string name="backup_password_confirm_hint">Passwort bestätigen</string>
-    <string name="backup_password_hint">Backup-Passwort (mind. 12 Zeichen)</string>
-    <string name="backup_password_mismatch">Die Passwörter stimmen nicht überein.</string>
-    <string name="backup_password_title">Backup-Passwort festlegen</string>
-    <string name="backup_password_too_short">Das Passwort muss mindestens 12 Zeichen lang sein.</string>
-    <string name="backup_password_warning">Bewahre dein Backup-Passwort sicher auf. Ohne dieses Passwort kann die Sicherung nicht wiederhergestellt werden.</string>
     <string name="backup_preview_message">Benutzername: %1$s\nErstellt am: %2$s\nScanOff-Freunde: %3$d\nBlockierte Apps: %4$d von %5$d auf diesem Gerät installiert\nPausenhistorie: %6$d Einträge\nBlockierte App-Aufrufe: %7$d\n\nMöchtest du diese Daten wiederherstellen?</string>
     <string name="backup_preview_title">Backup wiederherstellen?</string>
     <string name="backup_read_failed">Die Datei konnte nicht gelesen werden.</string>
     <string name="backup_restore_confirm">Wiederherstellen</string>
     <string name="backup_restore_disabled_hint">Ein Backup kann nur wiederhergestellt werden, wenn die Pause beendet ist.</string>
-    <string name="backup_restore_password_hint">Backup-Passwort</string>
     <string name="backup_restore_password_title">Backup-Passwort eingeben</string>
     <string name="backup_restore_success">Wiederherstellung erfolgreich. ScanOff wurde mit den Daten aus dem Backup aktualisiert.</string>
     <string name="backup_save_failed">Das Backup konnte nicht gespeichert werden.</string>
@@ -126,7 +120,6 @@
     <string name="btn_add_friend">Freund hinzufügen</string>
     <string name="btn_backup_create">Backup erstellen</string>
     <string name="btn_backup_decrypt">Entschlüsseln</string>
-    <string name="btn_backup_password_continue">Weiter</string>
     <string name="btn_backup_restore">Backup wiederherstellen</string>
     <string name="btn_confirm_backup">Ich habe den QR-Code gesichert.</string>
     <string name="btn_emergency_hold">10 Sekunden zum Entsperren halten</string>
@@ -134,8 +127,11 @@
     <string name="btn_import_gallery">Aus Galerie importieren</string>
     <string name="btn_manage_qr">QR-Code verwalten</string>
     <string name="btn_new_qr">Neuen QR-Code erstellen</string>
+    <string name="btn_password_continue">Weiter</string>
     <string name="btn_pause_start">Pause starten</string>
     <string name="btn_pause_unlock">QR scannen zum Entsperren</string>
+    <string name="btn_qr_import_gallery">QR-Code aus Galerie importieren</string>
+    <string name="btn_qr_import_scan">QR-Code mit Kamera scannen</string>
     <string name="btn_regenerate_qr">Neuen QR-Code generieren</string>
     <string name="btn_retry">Erneut versuchen</string>
     <string name="btn_save_as_friend">Freund speichern</string>
@@ -149,11 +145,14 @@
     <string msgid="6107532579223922871" name="call_notification_incoming_text">"Eingehender Anruf"</string>
     <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Aktueller Anruf"</string>
     <string msgid="59049573811482460" name="call_notification_screening_text">"Filter für eingehenden Anruf"</string>
+    <string name="change_password_title">ScanOff-Passwort ändern</string>
     <string name="character_counter_content_description">Eingegebene Zeichen: %1$d von %2$d</string>
     <string name="character_counter_overflowed_content_description">Zeichenbeschränkung überschritten: %1$d/%2$d</string>
     <string name="clear_text_end_icon_content_description">Text löschen</string>
+    <string name="create_password_section_title">ScanOff-Passwort erstellen</string>
     <string name="created_at_label">Erstellt am %1$s</string>
     <string name="created_at_unknown">Erstellungsdatum unbekannt</string>
+    <string name="current_password_hint">Aktuelles Passwort</string>
     <string name="dashboard_streak_continue_hint">Schließe heute eine Pause ab, um deine Serie fortzusetzen.</string>
     <string name="dashboard_streak_first_time">Starte deine erste Offline-Serie!</string>
     <string name="dashboard_streak_next">Deine nächste Offline-Serie wartet auf dich.</string>
@@ -210,6 +209,9 @@
     <string name="menu_change_unlock">Entsperrfreigabe ändern</string>
     <string name="menu_remove_friend">Freund entfernen</string>
     <string name="menu_view_qr">QR-Code anzeigen</string>
+    <string name="migration_banner_hint">Dieser QR-Code ist noch nicht passwortgeschützt. Richte ein Passwort ein, um ihn auf einem neuen Gerät importieren und für Backups verwenden zu können.</string>
+    <string name="migration_banner_title">Kein Passwortschutz eingerichtet</string>
+    <string name="migration_warning">Durch die Einrichtung ändert sich der Inhalt deines QR-Codes. Du musst ihn danach erneut speichern. Deine ScanOff-Freunde bleiben davon unberührt.</string>
     <string name="motivation_streak_1">Der erste Schritt ist geschafft!</string>
     <string name="motivation_streak_low">%1$d Tage hintereinander – weiter so!</string>
     <string name="motivation_streak_month">%1$d Tage bewusste Smartphone-Pausen!</string>
@@ -267,11 +269,19 @@
     <string name="nav_settings">Einstellungen</string>
     <string name="nav_stats">Statistiken</string>
     <string name="need_apps">Bitte zuerst mindestens eine App auswählen.</string>
-    <string name="need_qr_backup">Bitte sichere zuerst deinen QR-Code.</string>
+    <string name="need_qr_backup">Bitte erst QR-Code speichern.</string>
     <string name="need_qr_code">Bitte erstelle zuerst deinen persönlichen QR-Code.</string>
     <string name="need_service">Bitte zuerst den Bedienungshilfe-Dienst aktivieren.</string>
     <string name="overlay_home">Zum Startbildschirm</string>
+    <string name="password_confirm_hint">Passwort bestätigen</string>
+    <string name="password_create_hint">Passwort (mind. 12 Zeichen)</string>
+    <string name="password_enter_hint">Passwort eingeben</string>
+    <string name="password_enter_title">ScanOff-Passwort eingeben</string>
+    <string name="password_mismatch">Die Passwörter stimmen nicht überein.</string>
+    <string name="password_no_recovery_warning">Bewahre dein Passwort sicher auf. Ohne das Passwort kannst du deine persönliche QR-Identität nicht auf einem neuen Gerät importieren und deine verschlüsselten Backups nicht wiederherstellen.</string>
     <string name="password_toggle_content_description">Passwort anzeigen</string>
+    <string name="password_too_short">Das Passwort muss mindestens 12 Zeichen lang sein.</string>
+    <string name="password_updated_resave_qr">Passwort aktualisiert. Speichere deinen QR-Code erneut.</string>
     <string name="pause_disabled_hint">Erstelle und sichere zuerst deinen QR-Code.</string>
     <string name="pause_end_desc">Scanne deinen ScanOff-Code, um die Apps wieder freizugeben.</string>
     <string name="pause_screen_hint">Diese App ist pausiert.</string>
@@ -280,6 +290,14 @@
     <string name="qr_create_title">Neuen QR-Code erstellen</string>
     <string name="qr_created">Neuer QR-Code erstellt.</string>
     <string name="qr_hint">Speichere oder drucke diesen Code und leg ihn weit weg – z. B. in einen anderen Raum. Nur mit diesem Code kannst du die Pause wieder beenden. Während der Pause wird er hier nicht angezeigt.</string>
+    <string name="qr_import_confirm">Übernehmen</string>
+    <string name="qr_import_identity_conflict_message">Auf diesem Gerät existiert bereits eine ScanOff-Identität. Möchtest du diese durch die Identität aus dem QR-Code ersetzen?\n\nAktuell: %1$s (%2$s)\nAus dem QR-Code: %3$s (%4$s)\n\nDie bisherige Identität kann danach nicht mehr verwendet werden, um deine Apps zu entsperren.</string>
+    <string name="qr_import_own_section_title">Oder vorhandene Identität importieren:</string>
+    <string name="qr_import_preview_message">Benutzername: %1$s\nErstellt am: %2$s\n\nMöchtest du diese Identität übernehmen?</string>
+    <string name="qr_import_preview_title">QR-Code-Identität übernehmen?</string>
+    <string name="qr_import_success">QR-Code erfolgreich importiert</string>
+    <string name="qr_import_unsupported_version">Dieser QR-Code enthält keinen Passwortschutz und kann hier nicht importiert werden. Erstelle stattdessen einen neuen ScanOff-Code.</string>
+    <string name="qr_import_wrong_password">Falsches Passwort. Der QR-Code konnte nicht importiert werden.</string>
     <string name="qr_load_error">Deine gespeicherten QR-Code-Daten konnten nicht geladen werden.</string>
     <string name="qr_locked_message">Du kannst deinen QR-Code nicht ändern, solange eine Pause aktiv ist. Beende zuerst die Pause, um einen neuen Code zu erstellen.</string>
     <string name="qr_locked_title">Pause aktiv</string>
@@ -314,6 +332,9 @@
     <string name="settings_attempt_tracking_section">Gesperrte App-Aufrufe erfassen</string>
     <string name="settings_backup_hint">Sichere deinen persönlichen QR-Code und deine Einstellungen, um ScanOff auf einem neuen Gerät wiederherzustellen.</string>
     <string name="settings_backup_section">Backup &amp; Wiederherstellung</string>
+    <string name="settings_change_password_hint_has_password">Ändere dein bestehendes ScanOff-Passwort.</string>
+    <string name="settings_change_password_hint_no_password">Richte ein Passwort für deine QR-Identität ein.</string>
+    <string name="settings_change_password_section">ScanOff-Passwort</string>
     <string name="settings_emergency_hint">Falls du deinen QR-Code nicht verwenden kannst, kannst du hier deine Apps im Notfall wieder freigeben.</string>
     <string name="settings_emergency_section">Notfall-Entsperrung</string>
     <string name="settings_language_section">Sprache</string>
@@ -325,6 +346,7 @@
     <string name="settings_service_section">Bedienungshilfe-Dienst</string>
     <string name="settings_stats_reset_hint">Entfernt die Pausenhistorie und alle Erfolge.</string>
     <string name="settings_stats_reset_section">Statistiken zurücksetzen</string>
+    <string name="setup_password_title">ScanOff-Passwort einrichten</string>
     <string name="side_sheet_accessibility_pane_title">Seitenblatt</string>
     <string name="stats_achievement_locked">Noch nicht freigeschaltet</string>
     <string name="stats_achievement_unlocked_on">Freigeschaltet am %1$s</string>
@@ -385,6 +407,7 @@
     <string name="unlocked_by_friend">Pause mit %1$ss ScanOff-Code beendet.</string>
     <string name="username_hint">Benutzername (max. 10 Zeichen)</string>
     <string name="username_required">Bitte einen Benutzernamen eingeben.</string>
+    <string name="wrong_password">Falsches Passwort.</string>
     <string name="zxing_app_name">Barcode Scanner</string>
     <string name="zxing_button_ok">OK</string>
     <string name="zxing_msg_camera_framework_bug">Mit der Android-Kamera ist leider ein Fehler aufgetreten. Es könnte sein, dass Sie das Gerät neu starten müssen.</string>

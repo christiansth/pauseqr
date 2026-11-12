@@ -19,8 +19,6 @@ object BackupManager {
     private const val CONTAINER_VERSION = 1
     const val BACKUP_FORMAT_VERSION = 1
 
-    const val MIN_PASSWORD_LENGTH = 12
-    const val MAX_PASSWORD_LENGTH = 256
     const val MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024
     private const val MAX_FRIENDS = 1000
     private const val MAX_BLOCKED_APPS = 1000
@@ -64,6 +62,16 @@ object BackupManager {
                 put("id", identity.id)
                 put("username", identity.username)
                 put("createdAt", identity.createdAt)
+                // Passwortprüfdaten werden mitgesichert (nie das Passwort selbst) – ohne sie wäre
+                // die wiederhergestellte Identität nicht mehr passwortgeschützt importierbar.
+                identity.passwordCheck?.let { pwd ->
+                    put("pwd", JSONObject().apply {
+                        put("kdf", pwd.kdf)
+                        put("iterations", pwd.iterations)
+                        put("salt", pwd.salt)
+                        put("hash", pwd.hash)
+                    })
+                }
             })
             put("settings", JSONObject().apply {
                 put("language", language)
@@ -200,14 +208,10 @@ object BackupManager {
         if (backupVersion < 1 || backupVersion > BACKUP_FORMAT_VERSION) return null
 
         val identityJson = root.optJSONObject("identity") ?: return null
-        if (identityJson.optString("type") != QrPayload.TYPE) return null
-        val identityVersion = identityJson.optInt("version", -1)
-        if (identityVersion < 1) return null
-        val id = identityJson.optString("id", "")
-        val username = identityJson.optString("username", "").take(MAX_STRING_FIELD_LENGTH)
-        val createdAt = identityJson.optLong("createdAt", -1L)
-        if (id.isBlank() || username.isBlank() || createdAt <= 0 || !isValidUuid(id)) return null
-        val identity = QrCodeRecord(id = id, username = username, createdAt = createdAt, version = identityVersion)
+        // Dieselbe Prüflogik wie für einen gescannten QR-Code (Format/Version/UUID/Passwortprüf-
+        // daten ab Version 2 verpflichtend) – die Identität im Backup hat exakt dieselbe Struktur.
+        val decodedIdentity = QrPayload.decode(identityJson.toString()) ?: return null
+        val identity = decodedIdentity.copy(username = decodedIdentity.username.take(MAX_STRING_FIELD_LENGTH))
 
         val settingsJson = root.optJSONObject("settings") ?: JSONObject()
         val language = settingsJson.optString("language", LanguageUtil.ENGLISH)

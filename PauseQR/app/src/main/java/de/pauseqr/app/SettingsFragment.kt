@@ -34,6 +34,9 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private lateinit var btnResetStats: Button
     private lateinit var switchAttemptTracking: MaterialSwitch
     private lateinit var btnResetAttempts: Button
+    private lateinit var cardChangePassword: MaterialCardView
+    private lateinit var tvChangePasswordSectionTitle: TextView
+    private lateinit var tvChangePasswordSectionHint: TextView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,6 +57,9 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         btnResetStats = view.findViewById(R.id.btnResetStats)
         switchAttemptTracking = view.findViewById(R.id.switchAttemptTracking)
         btnResetAttempts = view.findViewById(R.id.btnResetAttempts)
+        cardChangePassword = view.findViewById(R.id.cardChangePassword)
+        tvChangePasswordSectionTitle = view.findViewById(R.id.tvChangePasswordSectionTitle)
+        tvChangePasswordSectionHint = view.findViewById(R.id.tvChangePasswordSectionHint)
 
         btnAccessibility.setOnClickListener {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
@@ -83,6 +89,15 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             BlockedAttemptStore.setTrackingEnabled(requireContext(), isChecked)
         }
         btnResetAttempts.setOnClickListener { confirmResetAttempts() }
+
+        cardChangePassword.setOnClickListener {
+            val context = context ?: return@setOnClickListener
+            if (Prefs.hasQrCode(context)) {
+                (activity as? MainActivity)?.pushFragment(ChangePasswordFragment())
+            } else {
+                Toast.makeText(context, R.string.need_qr_code, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     /**
@@ -139,6 +154,18 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         contentEmergencyUnlock.alpha = if (hasPause) NORMAL_ALPHA else DIMMED_ALPHA
 
         tvLanguageValue.text = languageLabel(LanguageUtil.currentLanguage(context))
+
+        val qrRecord = Prefs.getQrCode(context)
+        val alpha = if (qrRecord != null) NORMAL_ALPHA else DIMMED_ALPHA
+        tvChangePasswordSectionTitle.alpha = alpha
+        tvChangePasswordSectionHint.alpha = alpha
+        if (qrRecord != null && qrRecord.passwordCheck != null) {
+            tvChangePasswordSectionTitle.text = getString(R.string.change_password_title)
+            tvChangePasswordSectionHint.text = getString(R.string.settings_change_password_hint_has_password)
+        } else {
+            tvChangePasswordSectionTitle.text = getString(R.string.setup_password_title)
+            tvChangePasswordSectionHint.text = getString(R.string.settings_change_password_hint_no_password)
+        }
     }
 
     private fun languageLabel(languageTag: String): String =

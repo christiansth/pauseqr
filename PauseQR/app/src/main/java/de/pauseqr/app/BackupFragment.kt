@@ -71,56 +71,45 @@ class BackupFragment : Fragment(R.layout.fragment_backup) {
 
     private fun onCreateBackupClicked() {
         val context = context ?: return
-        if (!Prefs.hasQrCode(context)) {
+        val identity = Prefs.getQrCode(context)
+        if (identity == null) {
             toast(R.string.backup_no_identity)
             return
         }
-        showCreatePasswordDialog()
+        if (identity.passwordCheck == null) {
+            // Version-1-Identitäten ohne Passwort: es gibt kein ScanOff-Passwort, das wir
+            // wiederverwenden könnten – kein stillschweigender Bypass der Passwortprüfung.
+            toast(R.string.backup_create_needs_password)
+            return
+        }
+        showVerifyPasswordDialog(identity.passwordCheck)
     }
 
-    private fun showCreatePasswordDialog() {
+    /** Fragt das bestehende ScanOff-Passwort ab und verschlüsselt erst nach erfolgreicher Prüfung. */
+    private fun showVerifyPasswordDialog(passwordCheck: PasswordCheck) {
         val context = context ?: return
-        val dialogView = layoutInflater.inflate(R.layout.dialog_backup_password_create, null)
-        val tilPassword = dialogView.findViewById<TextInputLayout>(R.id.tilBackupPassword)
-        val tilConfirm = dialogView.findViewById<TextInputLayout>(R.id.tilBackupPasswordConfirm)
-        val etPassword = dialogView.findViewById<EditText>(R.id.etBackupPassword)
-        val etConfirm = dialogView.findViewById<EditText>(R.id.etBackupPasswordConfirm)
+        val dialogView = layoutInflater.inflate(R.layout.dialog_password_enter, null)
+        val tilPassword = dialogView.findViewById<TextInputLayout>(R.id.tilPasswordEnter)
+        val etPassword = dialogView.findViewById<EditText>(R.id.etPasswordEnter)
 
         val dialog = MaterialAlertDialogBuilder(context)
-            .setTitle(R.string.backup_password_title)
+            .setTitle(R.string.password_enter_title)
             .setView(dialogView)
-            .setPositiveButton(R.string.btn_backup_password_continue, null)
+            .setPositiveButton(R.string.btn_password_continue, null)
             .setNegativeButton(android.R.string.cancel, null)
             .create()
 
         dialog.setOnShowListener {
             dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
                 tilPassword.error = null
-                tilConfirm.error = null
                 val password = editableToCharArray(etPassword)
-                val confirm = editableToCharArray(etConfirm)
-                when {
-                    password.size < BackupManager.MIN_PASSWORD_LENGTH -> {
-                        tilPassword.error = getString(R.string.backup_password_too_short)
-                        password.fill('\u0000')
-                        confirm.fill('\u0000')
-                    }
-                    password.size > BackupManager.MAX_PASSWORD_LENGTH -> {
-                        tilPassword.error = getString(R.string.backup_password_too_short)
-                        password.fill('\u0000')
-                        confirm.fill('\u0000')
-                    }
-                    !password.contentEquals(confirm) -> {
-                        tilConfirm.error = getString(R.string.backup_password_mismatch)
-                        password.fill('\u0000')
-                        confirm.fill('\u0000')
-                    }
-                    else -> {
-                        confirm.fill('\u0000')
-                        dialog.dismiss()
-                        startBackupCreation(password)
-                    }
+                if (!PasswordCheckUtil.verify(password, passwordCheck)) {
+                    tilPassword.error = getString(R.string.wrong_password)
+                    password.fill('\u0000')
+                    return@setOnClickListener
                 }
+                dialog.dismiss()
+                startBackupCreation(password)
             }
         }
         dialog.show()
@@ -221,8 +210,8 @@ class BackupFragment : Fragment(R.layout.fragment_backup) {
 
     private fun showRestorePasswordDialog() {
         val context = context ?: return
-        val dialogView = layoutInflater.inflate(R.layout.dialog_backup_password_enter, null)
-        val etPassword = dialogView.findViewById<EditText>(R.id.etBackupPasswordEnter)
+        val dialogView = layoutInflater.inflate(R.layout.dialog_password_enter, null)
+        val etPassword = dialogView.findViewById<EditText>(R.id.etPasswordEnter)
 
         val dialog = MaterialAlertDialogBuilder(context)
             .setTitle(R.string.backup_restore_password_title)
