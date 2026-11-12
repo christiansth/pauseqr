@@ -286,7 +286,7 @@
     <string name="stats_history_title">Pause History</string>
     <string name="stats_longest_label">Longest pause</string>
     <string name="stats_pause_count_label">Pauses started</string>
-    <string name="stats_range_all">All</string>
+    <string name="stats_range_all">All Time</string>
     <string name="stats_range_month">This Month</string>
     <string name="stats_range_today">Today</string>
     <string name="stats_range_week">This Week</string>

@@ -20,6 +20,11 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
+        <!-- Vier gleich breite Segmente über die volle Inhaltsbreite (dieselben 16dp Seitenabstände
+             wie die übrigen Karten, da dieser Block in demselben äußeren LinearLayout liegt).
+             Statt Text abzuschneiden, darf jedes Segment auf zwei Zeilen umbrechen
+             (singleLine=false, maxLines=2); android:minHeight hält alle vier Segmente dabei
+             gleich hoch, auch wenn „Heute“/„Gesamt“ nur eine Zeile benötigen. -->
         <com.google.android.material.button.MaterialButtonToggleGroup
             android:id="@+id/toggleGroupRange"
             android:layout_width="match_parent"
@@ -35,6 +40,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:minHeight="52dp"
+                android:maxLines="2"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="8dp"
+                android:singleLine="false"
                 android:text="@string/stats_range_today"
                 android:textSize="12sp" />
 
@@ -44,6 +56,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:minHeight="52dp"
+                android:maxLines="2"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="8dp"
+                android:singleLine="false"
                 android:text="@string/stats_range_week"
                 android:textSize="12sp" />
 
@@ -53,6 +72,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:minHeight="52dp"
+                android:maxLines="2"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="8dp"
+                android:singleLine="false"
                 android:text="@string/stats_range_month"
                 android:textSize="12sp" />
 
@@ -62,6 +88,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:minHeight="52dp"
+                android:maxLines="2"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="8dp"
+                android:singleLine="false"
                 android:text="@string/stats_range_all"
                 android:textSize="12sp" />
         </com.google.android.material.button.MaterialButtonToggleGroup>

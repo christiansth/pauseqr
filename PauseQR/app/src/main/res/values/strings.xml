@@ -231,7 +231,7 @@
     <string name="stats_range_today">Today</string>
     <string name="stats_range_week">This Week</string>
     <string name="stats_range_month">This Month</string>
-    <string name="stats_range_all">All</string>
+    <string name="stats_range_all">All Time</string>
     <string name="stats_total_time_label">Total pause time</string>
     <string name="stats_completed_count_label">Completed pauses</string>
     <string name="stats_longest_label">Longest pause</string>
