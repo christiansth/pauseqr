@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\layout_dialog_password_enter.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\layout\\dialog_password_enter.xml"
+    },
+    {
         "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\layout_item_friend.xml.flat",
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\layout\\item_friend.xml"
     },
@@ -32,6 +36,14 @@
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\layout\\fragment_qr_create.xml"
     },
     {
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_bg_circle_day_neutral_today.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\bg_circle_day_neutral_today.xml"
+    },
+    {
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\layout_item_blocked_app.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\layout\\item_blocked_app.xml"
+    },
+    {
         "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_ic_chevron_right.xml.flat",
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\ic_chevron_right.xml"
     },
@@ -44,12 +56,28 @@
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_ic_check.xml.flat",
-        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\ic_check.xml"
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\layout_fragment_change_password.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\layout\\fragment_change_password.xml"
     },
     {
         "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\layout_nav_header.xml.flat",
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\layout\\nav_header.xml"
+    },
+    {
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_ic_check.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\ic_check.xml"
+    },
+    {
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_bg_circle_day_success_today.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\bg_circle_day_success_today.xml"
+    },
+    {
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\layout_dialog_backup_password_enter.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\layout\\dialog_backup_password_enter.xml"
+    },
+    {
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\layout_dialog_backup_password_create.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\layout\\dialog_backup_password_create.xml"
     },
     {
         "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\layout_fragment_friend_add.xml.flat",
@@ -64,6 +92,10 @@
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\ic_person.xml"
     },
     {
+        "merged": "de.pauseqr.app-debug-4:/layout_fragment_stats.xml.flat",
+        "source": "de.pauseqr.app-main-6:/layout/fragment_stats.xml"
+    },
+    {
         "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\xml_file_paths.xml.flat",
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\xml\\file_paths.xml"
     },
@@ -72,20 +104,16 @@
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\ic_nav_home.xml"
     },
     {
-        "merged": "de.pauseqr.app-debug-4:/layout_fragment_about.xml.flat",
-        "source": "de.pauseqr.app-main-6:/layout/fragment_about.xml"
-    },
-    {
         "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\layout_fragment_stats.xml.flat",
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\layout\\fragment_stats.xml"
     },
     {
-        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_ic_warning.xml.flat",
-        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\ic_warning.xml"
-    },
-    {
         "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_ic_scan_frame.xml.flat",
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\ic_scan_frame.xml"
+    },
+    {
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_ic_warning.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\ic_warning.xml"
     },
     {
         "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_ic_friends.xml.flat",
@@ -140,12 +168,24 @@
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\ic_nav_help.xml"
     },
     {
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\layout_item_achievement.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\layout\\item_achievement.xml"
+    },
+    {
         "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_ic_nav_settings.xml.flat",
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\ic_nav_settings.xml"
     },
     {
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\layout_item_pause_history.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\layout\\item_pause_history.xml"
+    },
+    {
         "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_ic_nav_qr.xml.flat",
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\ic_nav_qr.xml"
+    },
+    {
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\layout_fragment_backup.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\layout\\fragment_backup.xml"
     },
     {
         "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_ic_scanoff_glyph.xml.flat",
@@ -164,8 +204,16 @@
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\layout\\fragment_settings.xml"
     },
     {
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_bg_circle_day_success.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\bg_circle_day_success.xml"
+    },
+    {
         "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\layout_fragment_friends.xml.flat",
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\layout\\fragment_friends.xml"
+    },
+    {
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_bg_circle_day_neutral.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\bg_circle_day_neutral.xml"
     },
     {
         "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_ic_nav_stats.xml.flat",
@@ -178,6 +226,10 @@
     {
         "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\layout_fragment_qr.xml.flat",
         "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\layout\\fragment_qr.xml"
+    },
+    {
+        "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\drawable_ic_fire.xml.flat",
+        "source": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-main-6:\\drawable\\ic_fire.xml"
     },
     {
         "merged": "C:\\Users\\weich\\.gradle\\daemon\\9.6.0\\de.pauseqr.app-debug-4:\\layout_item_app.xml.flat",

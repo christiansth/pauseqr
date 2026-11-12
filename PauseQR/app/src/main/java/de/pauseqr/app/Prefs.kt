@@ -77,16 +77,18 @@ object Prefs {
     }
 
     /**
-     * Erstellt und speichert einen neuen, eindeutigen ScanOff-Code. Ersetzt einen evtl.
-     * bestehenden und setzt dessen Sicherungsstatus zurück – eine Sicherung des alten Codes gilt
-     * nie automatisch für den neuen.
+     * Erstellt und speichert einen neuen, eindeutigen, passwortgeschützten ScanOff-Code (Version
+     * [QrPayload.CURRENT_VERSION]). Ersetzt einen evtl. bestehenden und setzt dessen
+     * Sicherungsstatus zurück – eine Sicherung des alten Codes gilt nie automatisch für den neuen.
+     * [password] wird ausschließlich zur Ableitung des Prüfwerts verwendet, nie selbst gespeichert.
      */
-    fun createNewQrCode(c: Context, username: String): QrCodeRecord {
+    fun createNewQrCode(c: Context, username: String, password: CharArray): QrCodeRecord {
         val record = QrCodeRecord(
             id = UUID.randomUUID().toString(),
             username = username.trim().take(USERNAME_MAX_LENGTH),
             createdAt = System.currentTimeMillis(),
-            version = QrPayload.CURRENT_VERSION
+            version = QrPayload.CURRENT_VERSION,
+            passwordCheck = PasswordCheckUtil.create(password)
         )
         sp(c).edit()
             .putString(KEY_QR_RECORD, QrPayload.encode(record))
@@ -97,6 +99,46 @@ object Prefs {
             .remove(KEY_BACKUP_TIMESTAMP)
             .apply()
         return record
+    }
+
+    /**
+     * Übernimmt eine über Kamera-Scan oder Galerie-Import bereits passwortgeprüfte EIGENE
+     * Identität unverändert (UUID, Benutzername, createdAt und Passwortprüfdaten bleiben exakt
+     * erhalten) – erzeugt dabei NIE eine neue UUID oder einen neuen Zeitstempel. Der
+     * Sicherungsstatus wird zurückgesetzt, da eine Sicherung des vorherigen Geräts sich auf einen
+     * anderen lokalen Zustand bezieht.
+     */
+    fun importOwnIdentity(c: Context, record: QrCodeRecord) {
+        sp(c).edit()
+            .putString(KEY_QR_RECORD, QrPayload.encode(record))
+            .remove(KEY_LEGACY_SECRET)
+            .remove(KEY_LEGACY_USERNAME)
+            .remove(KEY_BACKUP_STATUS)
+            .remove(KEY_BACKUP_QR_ID)
+            .remove(KEY_BACKUP_TIMESTAMP)
+            .apply()
+    }
+
+    /**
+     * Richtet das ScanOff-Passwort erstmals ein (Migration einer Version-1-Identität) oder
+     * ändert ein bestehendes. UUID, Benutzername und createdAt bleiben exakt erhalten – nur
+     * Version und Passwortprüfdaten werden neu geschrieben. Der Sicherungsstatus wird
+     * zurückgesetzt, da sich der QR-Code-Payload dadurch ändert und der Nutzer sein QR-Code-Bild
+     * danach erneut speichern muss. Bestehende ScanOff-Freunde bleiben unberührt, da deren
+     * Zuordnung ausschließlich über die unveränderte UUID erfolgt.
+     */
+    fun setOrChangePassword(c: Context, existing: QrCodeRecord, newPassword: CharArray): QrCodeRecord {
+        val updated = existing.copy(
+            version = QrPayload.CURRENT_VERSION,
+            passwordCheck = PasswordCheckUtil.create(newPassword)
+        )
+        sp(c).edit()
+            .putString(KEY_QR_RECORD, QrPayload.encode(updated))
+            .remove(KEY_BACKUP_STATUS)
+            .remove(KEY_BACKUP_QR_ID)
+            .remove(KEY_BACKUP_TIMESTAMP)
+            .apply()
+        return updated
     }
 
     // ---------- Sicherungsstatus ----------
@@ -163,12 +205,24 @@ object Prefs {
     }
 
     /**
-     * Zentrale Entsperrfunktion: beendet die aktuell laufende Pause. Wird sowohl nach
-     * erfolgreichem QR-Code-Scan als auch bei der Notfall-Entsperrung verwendet – die Liste der
-     * ausgewählten Apps bleibt dabei unverändert erhalten.
+     * Zentrale Startfunktion: beginnt eine neue Pause und legt zugleich den zugehörigen
+     * Historien-Eintrag an (siehe [PauseHistoryStore.startSession]).
      */
-    fun unlock(c: Context) {
+    fun startPause(c: Context) {
+        setLocked(c, true)
+        incrementPauseCount(c)
+        PauseHistoryStore.startSession(c)
+    }
+
+    /**
+     * Zentrale Entsperrfunktion: beendet die aktuell laufende Pause und schließt zugleich den
+     * zugehörigen Historien-Eintrag mit [reason] ab. Wird sowohl nach erfolgreichem QR-Code-Scan
+     * als auch bei der Notfall-Entsperrung verwendet – die Liste der ausgewählten Apps bleibt
+     * dabei unverändert erhalten.
+     */
+    fun unlock(c: Context, reason: PauseEndReason) {
         setLocked(c, false)
+        PauseHistoryStore.completeOpenSession(c, reason)
     }
 
     fun getBlockedApps(c: Context): Set<String> =
@@ -176,6 +230,37 @@ object Prefs {
 
     fun setBlockedApps(c: Context, apps: Set<String>) {
         sp(c).edit().putStringSet(KEY_APPS, HashSet(apps)).apply()
+    }
+
+    // ---------- Wiederherstellung (Backup) ----------
+
+    /**
+     * Stellt einen zuvor vollständig validierten Backup-Snapshot wieder her. ScanOff-Code,
+     * blockierte Apps und ScanOff-Freunde werden in einem einzigen Editor-Commit geschrieben, damit
+     * bei einem Fehler niemals nur ein Teil der Daten übernommen wird. [identity] wird unverändert
+     * als [QrCodeRecord] gespeichert – diese Funktion erzeugt selbst NIE eine neue UUID oder einen
+     * neuen Zeitstempel. Validierung muss vor dem Aufruf bereits abgeschlossen sein.
+     */
+    fun restoreSnapshot(
+        c: Context,
+        identity: QrCodeRecord,
+        blockedApps: Set<String>,
+        friends: List<ScanOffFriend>,
+        pauseHistory: List<PauseSession>,
+        blockedAttempts: List<BlockedAppAttempt>,
+        resetBackupStatus: Boolean
+    ) {
+        var editor = sp(c).edit()
+            .putString(KEY_QR_RECORD, QrPayload.encode(identity))
+            .putStringSet(KEY_APPS, HashSet(blockedApps))
+            .remove(KEY_LEGACY_SECRET)
+            .remove(KEY_LEGACY_USERNAME)
+        if (resetBackupStatus) {
+            editor = editor.remove(KEY_BACKUP_STATUS).remove(KEY_BACKUP_QR_ID).remove(KEY_BACKUP_TIMESTAMP)
+        }
+        editor = FriendsStore.putFriends(editor, friends)
+        editor = PauseHistoryStore.putSessions(editor, pauseHistory)
+        BlockedAttemptStore.putAttempts(editor, blockedAttempts).apply()
     }
 
     // ---------- Statistik ----------

@@ -85,7 +85,7 @@
     <string name="backup_status_saved">QR code backed up</string>
     <string name="pause_disabled_hint">Create and back up your QR code first.</string>
     <string name="need_qr_code">Please create your personal QR code first.</string>
-    <string name="need_qr_backup">Please back up your QR code first.</string>
+    <string name="need_qr_backup">Please save your QR code first.</string>
 
     <!-- Manage QR code -->
     <string name="qr_manage_title">My ScanOff code</string>
@@ -113,6 +113,39 @@
     <string name="qr_locked_title">Pause active</string>
     <string name="qr_locked_message">You can\'t change your QR code while a pause is active. End the pause first to create a new code.</string>
 
+    <!-- ScanOff password system: shared across QR identity creation/import and backup -->
+    <string name="create_password_section_title">Create ScanOff password</string>
+    <string name="password_create_hint">Password (min. 12 characters)</string>
+    <string name="password_confirm_hint">Confirm password</string>
+    <string name="password_enter_hint">Enter password</string>
+    <string name="password_enter_title">Enter ScanOff password</string>
+    <string name="btn_password_continue">Continue</string>
+    <string name="password_too_short">The password must be at least 12 characters long.</string>
+    <string name="password_mismatch">The passwords do not match.</string>
+    <string name="wrong_password">Incorrect password.</string>
+    <string name="password_no_recovery_warning">Keep your password safe. Without it, you can\'t import your personal QR identity on a new device or restore your encrypted backups.</string>
+
+    <!-- Import own QR identity (camera/gallery) -->
+    <string name="qr_import_own_section_title">Or import an existing identity:</string>
+    <string name="btn_qr_import_scan">Scan QR code with camera</string>
+    <string name="btn_qr_import_gallery">Import QR code from gallery</string>
+    <string name="qr_import_unsupported_version">This QR code has no password protection and can\'t be imported here. Please create a new ScanOff code instead.</string>
+    <string name="qr_import_wrong_password">Incorrect password. The QR code could not be imported.</string>
+    <string name="qr_import_preview_title">Import QR code identity?</string>
+    <string name="qr_import_preview_message">Username: %1$s\nCreated on: %2$s\n\nDo you want to import this identity?</string>
+    <string name="qr_import_confirm">Import</string>
+    <string name="qr_import_success">QR code imported successfully</string>
+    <string name="qr_import_identity_conflict_message">A ScanOff identity already exists on this device. Do you want to replace it with the identity from the QR code?\n\nCurrent: %1$s (%2$s)\nFrom QR code: %3$s (%4$s)\n\nThe previous identity can no longer be used to unlock your apps afterwards.</string>
+
+    <!-- Password migration (version 1 → 2) and change -->
+    <string name="setup_password_title">Set up ScanOff password</string>
+    <string name="change_password_title">Change ScanOff password</string>
+    <string name="migration_banner_title">No password protection set up</string>
+    <string name="migration_banner_hint">This QR code isn\'t password-protected yet. Set up a password so you can import it on a new device and use it for backups.</string>
+    <string name="migration_warning">Setting up a password changes the content of your QR code. You\'ll need to save it again afterwards. Your ScanOff friends are not affected.</string>
+    <string name="current_password_hint">Current password</string>
+    <string name="password_updated_resave_qr">Password updated. Please save your QR code again.</string>
+
     <string name="scan_prompt">Scan ScanOff code</string>
     <string name="scan_invalid">No valid ScanOff code recognized.</string>
     <string name="scan_unrecognized">This ScanOff code is not authorized.</string>
@@ -136,6 +169,9 @@
     <string name="settings_apps_section">Blocked apps</string>
     <string name="settings_qr_section">QR code</string>
     <string name="settings_qr_desc">View, save, or replace your personal ScanOff code.</string>
+    <string name="settings_change_password_section">ScanOff Password</string>
+    <string name="settings_change_password_hint_has_password">Change your existing ScanOff password.</string>
+    <string name="settings_change_password_hint_no_password">Set up a password for your QR identity.</string>
     <string name="settings_language_section">Language</string>
     <string name="language_german">Deutsch</string>
     <string name="language_english">English</string>
@@ -159,10 +195,123 @@
     <string name="emergency_disclaimer">This is a deliberately accessible alternative to your QR code – not an additional or unbreakable security layer.</string>
     <string name="emergency_unavailable">Emergency unlock is only available during an active pause.</string>
 
+    <!-- Backup & Restore -->
+    <string name="settings_backup_section">Backup &amp; Restore</string>
+    <string name="settings_backup_hint">Back up your personal QR code and your settings so you can restore ScanOff on a new device.</string>
+    <string name="backup_screen_desc">Back up your personal QR code and your settings so you can restore ScanOff on a new device.</string>
+    <string name="btn_backup_create">Create backup</string>
+    <string name="btn_backup_restore">Restore backup</string>
+    <string name="backup_restore_disabled_hint">A backup can only be restored once the pause has ended.</string>
+    <string name="backup_no_identity">Create your personal ScanOff code first before creating a backup.</string>
+    <string name="backup_create_needs_password">Set up a ScanOff password for your QR code first to be able to create a backup.</string>
+    <string name="backup_creating">Creating backup…</string>
+    <string name="backup_success">Your ScanOff backup was created successfully.</string>
+    <string name="backup_save_failed">The backup could not be saved.</string>
+    <string name="backup_restore_password_title">Enter backup password</string>
+    <string name="btn_backup_decrypt">Decrypt</string>
+    <string name="backup_invalid_file">This file is not a valid ScanOff backup.</string>
+    <string name="backup_wrong_password">Incorrect password or corrupted file.</string>
+    <string name="backup_file_too_large">This file is too large to be read as a ScanOff backup.</string>
+    <string name="backup_read_failed">The file could not be read.</string>
+    <string name="backup_preview_title">Restore backup?</string>
+    <string name="backup_preview_message">Username: %1$s\nCreated on: %2$s\nScanOff friends: %3$d\nBlocked apps: %4$d of %5$d installed on this device\nPause history: %6$d entries\nBlocked app attempts: %7$d\n\nDo you want to restore this data?</string>
+    <string name="backup_restore_confirm">Restore</string>
+    <string name="backup_identity_conflict_title">Existing ScanOff identity</string>
+    <string name="backup_identity_conflict_message">A ScanOff identity already exists on this device. Do you want to replace it with the identity from the backup?\n\nCurrent: %1$s (%2$s)\nFrom backup: %3$s (%4$s)\n\nThe previous identity can no longer be used to unlock your apps afterwards.</string>
+    <string name="backup_identity_replace">Replace identity</string>
+    <string name="backup_restore_success">Restore successful. ScanOff has been updated with the data from the backup.</string>
+    <string name="backup_accessibility_followup">Enable the accessibility service again so ScanOff can block apps on this device.</string>
+    <string name="backup_security_note">A ScanOff code is an identifier, not cryptographic proof. Anyone who has a copy of a QR code can also use it to unlock.</string>
+
     <!-- Statistics -->
     <string name="stats_pause_count_label">Pauses started</string>
     <string name="stats_apps_label">Blocked apps selected</string>
     <string name="stats_service_label">Accessibility status</string>
+
+    <string name="stats_range_today">Today</string>
+    <string name="stats_range_week">This Week</string>
+    <string name="stats_range_month">This Month</string>
+    <string name="stats_range_all">All Time</string>
+    <string name="stats_total_time_label">Total pause time</string>
+    <string name="stats_completed_count_label">Completed pauses</string>
+    <string name="stats_longest_label">Longest pause</string>
+    <string name="stats_streak_label">Current streak</string>
+    <string name="stats_duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="stats_duration_minutes_only">%1$d min</string>
+    <string name="stats_empty_message">No statistics yet. Start your first ScanOff pause!</string>
+    <string name="stats_chart_title_week">Pause time per day (Mon–Sun)</string>
+    <string name="stats_chart_title_month">Pause time per day of month</string>
+    <string name="stats_history_title">Pause History</string>
+    <string name="stats_history_empty">No completed pauses in this period yet.</string>
+    <string name="stats_history_active_label">Ongoing pause</string>
+    <string name="stats_history_time_range">%1$s – %2$s</string>
+    <string name="stats_history_duration_label">Duration: %1$s</string>
+    <string name="stats_history_ended_qr">Ended via QR code</string>
+    <string name="stats_history_ended_emergency">Ended via emergency unlock</string>
+    <string name="stats_history_ended_automatic">Ended automatically</string>
+    <string name="stats_history_blocked_attempts_label">Blocked app attempts: %1$d</string>
+    <string name="stats_streak_details_title">Streak Details</string>
+    <string name="stats_streak_longest_label">Longest streak</string>
+    <string name="stats_streak_total_days_label">Total successful days</string>
+    <string name="stats_streak_last_success_label">Last successful day</string>
+    <string name="stats_value_none">–</string>
+
+    <string name="dashboard_streak_continue_hint">Complete a pause today to continue your streak.</string>
+    <string name="dashboard_streak_first_time">Start your first offline streak!</string>
+    <string name="dashboard_streak_next">Your next offline streak is waiting for you.</string>
+    <string name="motivation_streak_1">You\'ve taken the first step!</string>
+    <string name="motivation_streak_low">%1$d days in a row – keep it up!</string>
+    <string name="motivation_streak_month">%1$d days of mindful phone breaks!</string>
+
+    <!-- Blocked app attempts -->
+    <string name="stats_attempts_section_title">Blocked App Attempts</string>
+    <string name="stats_attempts_total_label">Total</string>
+    <string name="stats_attempts_today_label">Today</string>
+    <string name="stats_attempts_week_label">This Week</string>
+    <string name="stats_attempts_most_frequent_label">Most Frequent App</string>
+    <string name="stats_attempts_chart_title_week">Blocked attempts per day (Mon–Sun)</string>
+    <string name="stats_attempts_chart_title_month">Blocked attempts per day of month</string>
+    <string name="stats_attempts_per_app_title">By App</string>
+    <string name="stats_attempts_empty">No blocked app has been opened during a pause yet.</string>
+    <string name="stats_attempts_share_format">%1$d%%</string>
+    <string name="stats_attempts_uninstalled_label">App no longer installed</string>
+    <string name="settings_attempt_tracking_section">Track Blocked App Attempts</string>
+    <string name="settings_attempt_tracking_hint">Counts how often you try to open a blocked app during a pause. Screen content or text input is never captured.</string>
+    <string name="settings_attempt_reset_button">Delete attempt statistics</string>
+    <string name="attempt_reset_confirm_message">Do you really want to delete the entire blocked app attempt statistics? This action cannot be undone.</string>
+    <string name="attempt_reset_success">Attempt statistics have been deleted.</string>
+
+    <string name="stats_achievements_title">My Achievements</string>
+    <string name="stats_achievement_unlocked_on">Unlocked on %1$s</string>
+    <string name="stats_achievement_locked">Not yet unlocked</string>
+    <string name="achievement_first_pause_title">First Pause</string>
+    <string name="achievement_first_pause_desc">Completed one pause.</string>
+    <string name="achievement_five_pauses_title">5 Pauses</string>
+    <string name="achievement_five_pauses_desc">Completed five pauses.</string>
+    <string name="achievement_ten_pauses_title">10 Pauses</string>
+    <string name="achievement_ten_pauses_desc">Completed ten pauses.</string>
+    <string name="achievement_hundred_pauses_title">100 Pauses</string>
+    <string name="achievement_hundred_pauses_desc">Completed 100 pauses.</string>
+    <string name="achievement_offline_24h_title">24 Hours Offline</string>
+    <string name="achievement_offline_24h_desc">Accumulated a total of 24 hours of completed pause time.</string>
+    <string name="achievement_streak_1_title">The Beginning</string>
+    <string name="achievement_streak_1_desc">Reached a 1-day offline streak.</string>
+    <string name="achievement_streak_3_title">Staying the Course</string>
+    <string name="achievement_streak_3_desc">Reached a 3-day offline streak.</string>
+    <string name="achievement_streak_7_title">One Week Offline</string>
+    <string name="achievement_streak_7_desc">Reached a 7-day offline streak.</string>
+    <string name="achievement_streak_14_title">Two Mindful Weeks</string>
+    <string name="achievement_streak_14_desc">Reached a 14-day offline streak.</string>
+    <string name="achievement_streak_30_title">Offline Pro</string>
+    <string name="achievement_streak_30_desc">Reached a 30-day offline streak.</string>
+    <string name="achievement_streak_100_title">ScanOff Legend</string>
+    <string name="achievement_streak_100_desc">Reached a 100-day offline streak.</string>
+
+    <string name="settings_stats_reset_section">Reset Statistics</string>
+    <string name="settings_stats_reset_hint">Removes the pause history and all achievements.</string>
+    <string name="stats_reset_confirm_message">Do you really want to delete all statistics and achievements? This action cannot be undone.</string>
+    <string name="stats_reset_confirm_button">Delete statistics</string>
+    <string name="stats_reset_success">Statistics have been deleted.</string>
 
     <!-- Help & FAQ -->
     <string name="faq_q1">How does ScanOff work?</string>
@@ -177,4 +326,28 @@
     <!-- About ScanOff -->
     <string name="about_version">Version %1$s</string>
     <string name="about_description">ScanOff helps you consciously interrupt distractions: select apps, start a pause, and only end it once you find your personal QR code.</string>
+
+    <!-- Offline-Streaks: Singular/Plural -->
+    <plurals name="streak_days_count">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <plurals name="streak_subtitle">
+        <item quantity="one">%d consecutive day of mindful offline time</item>
+        <item quantity="other">%d consecutive days of mindful offline time</item>
+    </plurals>
+
+    <!-- Blocked app attempts: Singular/Plural -->
+    <plurals name="attempts_count">
+        <item quantity="one">%d attempt</item>
+        <item quantity="other">%d attempts</item>
+    </plurals>
+    <plurals name="pause_summary_attempts">
+        <item quantity="one">%1$d app launch attempt was blocked during this pause.</item>
+        <item quantity="other">%1$d app launch attempts were blocked during this pause.</item>
+    </plurals>
+    <plurals name="pause_summary_top_app">
+        <item quantity="one">Most frequent: %1$s (%2$d attempt)</item>
+        <item quantity="other">Most frequent: %1$s (%2$d attempts)</item>
+    </plurals>
 </resources>

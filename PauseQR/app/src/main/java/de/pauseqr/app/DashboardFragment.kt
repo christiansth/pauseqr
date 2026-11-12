@@ -13,6 +13,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.card.MaterialCardView
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanOptions
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.TextStyle
+import java.util.Locale
 
 /** Übersicht: Status, Schnellzugriff, Pause starten/beenden und der eigene ScanOff-Code. */
 class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
@@ -48,6 +52,17 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     private lateinit var btnCreateQr: Button
     private lateinit var btnRetryQr: Button
 
+    private lateinit var streakCountRow: View
+    private lateinit var tvStreakCount: TextView
+    private lateinit var tvStreakMessage: TextView
+    private lateinit var tvStreakContinueHint: TextView
+    private lateinit var weekDayLabels: List<TextView>
+    private lateinit var weekDayCircles: List<FrameLayout>
+    private lateinit var weekDayChecks: List<ImageView>
+
+    private val zone: ZoneId = ZoneId.systemDefault()
+    private var activeToast: Toast? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -76,6 +91,23 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         btnRegenerateQr = view.findViewById(R.id.btnRegenerateQr)
         btnCreateQr = view.findViewById(R.id.btnCreateQr)
         btnRetryQr = view.findViewById(R.id.btnRetryQr)
+
+        streakCountRow = view.findViewById(R.id.streakCountRow)
+        tvStreakCount = view.findViewById(R.id.tvStreakCount)
+        tvStreakMessage = view.findViewById(R.id.tvStreakMessage)
+        tvStreakContinueHint = view.findViewById(R.id.tvStreakContinueHint)
+        weekDayLabels = listOf(
+            R.id.tvWeekDayLabel0, R.id.tvWeekDayLabel1, R.id.tvWeekDayLabel2, R.id.tvWeekDayLabel3,
+            R.id.tvWeekDayLabel4, R.id.tvWeekDayLabel5, R.id.tvWeekDayLabel6
+        ).map { view.findViewById<TextView>(it) }
+        weekDayCircles = listOf(
+            R.id.weekDayCircle0, R.id.weekDayCircle1, R.id.weekDayCircle2, R.id.weekDayCircle3,
+            R.id.weekDayCircle4, R.id.weekDayCircle5, R.id.weekDayCircle6
+        ).map { view.findViewById<FrameLayout>(it) }
+        weekDayChecks = listOf(
+            R.id.ivWeekDayCheck0, R.id.ivWeekDayCheck1, R.id.ivWeekDayCheck2, R.id.ivWeekDayCheck3,
+            R.id.ivWeekDayCheck4, R.id.ivWeekDayCheck5, R.id.ivWeekDayCheck6
+        ).map { view.findViewById<ImageView>(it) }
 
         btnAccessibility.setOnClickListener { openAccessibilitySettingsWithConsent() }
         cardAccessibility.setOnClickListener { openAccessibilitySettingsWithConsent() }
@@ -133,8 +165,10 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             ScanVerdict.FriendDisabled -> toast(R.string.scan_friend_disabled)
             ScanVerdict.OwnCodeMatch -> {
                 if (Prefs.isLocked(context)) {
-                    Prefs.unlock(context)
+                    val sessionId = PauseHistoryStore.getOpenSessionId(context)
+                    Prefs.unlock(context, PauseEndReason.QR_CODE)
                     toast(R.string.unlocked)
+                    PauseSummaryHelper.showSummaryIfAny(context, sessionId)
                 } else {
                     lock()
                 }
@@ -144,12 +178,14 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                 // Ein Freund-Code darf eine Pause nur beenden, niemals starten – das bleibt dem
                 // eigenen Code mit der vollständigen PauseGate-Prüfung vorbehalten.
                 if (Prefs.isLocked(context)) {
-                    Prefs.unlock(context)
+                    val sessionId = PauseHistoryStore.getOpenSessionId(context)
+                    Prefs.unlock(context, PauseEndReason.QR_CODE)
                     Toast.makeText(
                         context,
                         getString(R.string.unlocked_by_friend, verdict.friendUsername),
                         Toast.LENGTH_LONG
                     ).show()
+                    PauseSummaryHelper.showSummaryIfAny(context, sessionId)
                     refresh()
                 } else {
                     toast(R.string.friend_cannot_start_pause)
@@ -176,8 +212,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             return
         }
 
-        Prefs.setLocked(context, true)
-        Prefs.incrementPauseCount(context)
+        Prefs.startPause(context)
         toast(R.string.locked)
         refresh()
     }
@@ -207,7 +242,12 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
         btnPrimary.text = getString(if (locked) R.string.btn_pause_unlock else R.string.btn_pause_start)
         val canStart = PauseGate.canStartPause(context)
-        btnPrimary.isEnabled = locked || canStart
+        // Existiert bereits ein QR-Code, bleibt der Button auch dann klickbar, wenn er aus anderen
+        // Gründen (z. B. noch nicht gesichert) noch keine Pause starten darf – sonst könnte lock()
+        // den passenden Hinweis-Toast nie anzeigen. Die eigentliche Start-Prüfung in lock() bleibt
+        // davon unberührt und entscheidet weiterhin allein, ob tatsächlich gesperrt wird.
+        val hasQrCode = Prefs.getQrCode(context) != null
+        btnPrimary.isEnabled = locked || canStart || hasQrCode
         tvAppsCount.text = if (!locked && !canStart) {
             getString(R.string.pause_disabled_hint)
         } else {
@@ -216,6 +256,66 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
         qrSection.visibility = if (locked) View.GONE else View.VISIBLE
         if (!locked) refreshQrCard(context)
+
+        refreshStreak(context)
+    }
+
+    /**
+     * Offline-Streak-Anzeige: verwendet ausschließlich [PauseHistoryStore]/[StatsEngine] als
+     * zentrale Datenquelle (keine zweite, unabhängige Streak-Datenhaltung) und wird unabhängig
+     * vom aktuellen Pausenstatus immer angezeigt.
+     */
+    private fun refreshStreak(context: android.content.Context) {
+        val sessions = PauseHistoryStore.getSessions(context)
+        val streak = StatsEngine.computeStreak(sessions, zone)
+        val qualifyingDays = StatsEngine.qualifyingDays(sessions, zone)
+        val today = LocalDate.now(zone)
+
+        if (streak.current <= 0) {
+            streakCountRow.visibility = View.GONE
+            tvStreakMessage.text = if (qualifyingDays.isEmpty()) {
+                getString(R.string.dashboard_streak_first_time)
+            } else {
+                getString(R.string.dashboard_streak_next)
+            }
+            tvStreakContinueHint.visibility = View.GONE
+        } else {
+            streakCountRow.visibility = View.VISIBLE
+            tvStreakCount.text = resources.getQuantityString(R.plurals.streak_days_count, streak.current, streak.current)
+            tvStreakMessage.text = motivationText(streak.current)
+            tvStreakContinueHint.visibility = if (today in qualifyingDays) View.GONE else View.VISIBLE
+        }
+
+        val locale = Locale(LanguageUtil.currentLanguage(context))
+        val weekDays = StatsEngine.weekDays(zone, today)
+        val flags = StatsEngine.weekQualifyingFlags(sessions, zone, today)
+        for (i in 0 until 7) {
+            val day = weekDays[i]
+            val isToday = day == today
+            val success = flags[i]
+            weekDayLabels[i].text = day.dayOfWeek.getDisplayName(TextStyle.SHORT, locale)
+            weekDayCircles[i].setBackgroundResource(
+                when {
+                    success && isToday -> R.drawable.bg_circle_day_success_today
+                    success -> R.drawable.bg_circle_day_success
+                    isToday -> R.drawable.bg_circle_day_neutral_today
+                    else -> R.drawable.bg_circle_day_neutral
+                }
+            )
+            weekDayChecks[i].visibility = if (success) View.VISIBLE else View.GONE
+        }
+    }
+
+    /**
+     * Motivationstext nach Serienlänge gestaffelt (Abschnitt 7 der Offline-Streak-Erweiterung).
+     * Bewusst ohne Schuldgefühle formuliert – der 0-Tage-Fall wird separat in [refreshStreak]
+     * behandelt (unterscheidet „erste“ vs. „nächste“ Serie).
+     */
+    private fun motivationText(streak: Int): String = when {
+        streak == 1 -> getString(R.string.motivation_streak_1)
+        streak in 2..6 -> getString(R.string.motivation_streak_low, streak)
+        streak in 7..29 -> resources.getQuantityString(R.plurals.streak_subtitle, streak, streak)
+        else -> getString(R.string.motivation_streak_month, streak)
     }
 
     private fun refreshQrCard(context: android.content.Context) {
@@ -272,7 +372,14 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         refresh()
     }
 
+    /**
+     * Ersetzt statt stapelt: bricht einen noch sichtbaren Toast ab, bevor ein neuer gezeigt wird.
+     * Verhindert eine Warteschlange aus Mehrfach-Toasts bei schnell wiederholt ausgelösten
+     * Events (z. B. mehrfaches Antippen von „Pause starten“).
+     */
     private fun toast(res: Int) {
-        context?.let { Toast.makeText(it, res, Toast.LENGTH_LONG).show() }
+        val context = context ?: return
+        activeToast?.cancel()
+        activeToast = Toast.makeText(context, res, Toast.LENGTH_LONG).also { it.show() }
     }
 }

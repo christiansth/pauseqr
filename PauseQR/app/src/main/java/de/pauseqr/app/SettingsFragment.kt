@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.materialswitch.MaterialSwitch
 
 /** Einstellungen: Bedienungshilfe-Status, blockierte Apps, QR-Code-Verwaltung, Sprache. */
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
@@ -29,6 +30,13 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private lateinit var cardEmergencyUnlock: MaterialCardView
     private lateinit var contentEmergencyUnlock: View
     private lateinit var tvAppVersion: TextView
+    private lateinit var cardBackup: MaterialCardView
+    private lateinit var btnResetStats: Button
+    private lateinit var switchAttemptTracking: MaterialSwitch
+    private lateinit var btnResetAttempts: Button
+    private lateinit var cardChangePassword: MaterialCardView
+    private lateinit var tvChangePasswordSectionTitle: TextView
+    private lateinit var tvChangePasswordSectionHint: TextView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,6 +53,13 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         tvAppVersion = view.findViewById(R.id.tvAppVersion)
         // Immer aus der Gradle-Konfiguration gelesen, niemals fest hinterlegt.
         tvAppVersion.text = BuildConfig.VERSION_NAME
+        cardBackup = view.findViewById(R.id.cardBackup)
+        btnResetStats = view.findViewById(R.id.btnResetStats)
+        switchAttemptTracking = view.findViewById(R.id.switchAttemptTracking)
+        btnResetAttempts = view.findViewById(R.id.btnResetAttempts)
+        cardChangePassword = view.findViewById(R.id.cardChangePassword)
+        tvChangePasswordSectionTitle = view.findViewById(R.id.tvChangePasswordSectionTitle)
+        tvChangePasswordSectionHint = view.findViewById(R.id.tvChangePasswordSectionHint)
 
         btnAccessibility.setOnClickListener {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
@@ -56,6 +71,9 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             (activity as? MainActivity)?.pushFragment(QrFragment())
         }
         cardLanguage.setOnClickListener { showLanguagePicker() }
+        cardBackup.setOnClickListener {
+            (activity as? MainActivity)?.pushFragment(BackupFragment())
+        }
         cardEmergencyUnlock.setOnClickListener {
             val context = context ?: return@setOnClickListener
             if (Prefs.isLocked(context)) {
@@ -64,6 +82,57 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                 Toast.makeText(context, R.string.emergency_unavailable, Toast.LENGTH_SHORT).show()
             }
         }
+        btnResetStats.setOnClickListener { confirmResetStats() }
+
+        switchAttemptTracking.isChecked = BlockedAttemptStore.isTrackingEnabled(requireContext())
+        switchAttemptTracking.setOnCheckedChangeListener { _, isChecked ->
+            BlockedAttemptStore.setTrackingEnabled(requireContext(), isChecked)
+        }
+        btnResetAttempts.setOnClickListener { confirmResetAttempts() }
+
+        cardChangePassword.setOnClickListener {
+            val context = context ?: return@setOnClickListener
+            if (Prefs.hasQrCode(context)) {
+                (activity as? MainActivity)?.pushFragment(ChangePasswordFragment())
+            } else {
+                Toast.makeText(context, R.string.need_qr_code, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    /**
+     * Entfernt ausschließlich die Statistik gesperrter App-Aufrufe – Pausen, QR-Codes und
+     * App-Auswahl bleiben unberührt (BlockedAttemptStore.clearAll fasst nur diese Daten an).
+     */
+    private fun confirmResetAttempts() {
+        val context = context ?: return
+        MaterialAlertDialogBuilder(context)
+            .setTitle(R.string.settings_attempt_tracking_section)
+            .setMessage(R.string.attempt_reset_confirm_message)
+            .setPositiveButton(R.string.settings_attempt_reset_button) { _, _ ->
+                BlockedAttemptStore.clearAll(context)
+                Toast.makeText(context, R.string.attempt_reset_success, Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
+    }
+
+    /**
+     * Entfernt ausschließlich die Pausenhistorie (und damit die daraus berechneten Erfolge) –
+     * persönliche QR-Codes, Freunde, App-Auswahlen und Einstellungen bleiben unberührt. Eine
+     * laufende Pause wird dadurch weder beendet noch entsperrt (clearAll fasst KEY_LOCKED nie an).
+     */
+    private fun confirmResetStats() {
+        val context = context ?: return
+        MaterialAlertDialogBuilder(context)
+            .setTitle(R.string.settings_stats_reset_section)
+            .setMessage(R.string.stats_reset_confirm_message)
+            .setPositiveButton(R.string.stats_reset_confirm_button) { _, _ ->
+                PauseHistoryStore.clearAll(context)
+                Toast.makeText(context, R.string.stats_reset_success, Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
     }
 
     override fun onResume() {
@@ -85,6 +154,18 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         contentEmergencyUnlock.alpha = if (hasPause) NORMAL_ALPHA else DIMMED_ALPHA
 
         tvLanguageValue.text = languageLabel(LanguageUtil.currentLanguage(context))
+
+        val qrRecord = Prefs.getQrCode(context)
+        val alpha = if (qrRecord != null) NORMAL_ALPHA else DIMMED_ALPHA
+        tvChangePasswordSectionTitle.alpha = alpha
+        tvChangePasswordSectionHint.alpha = alpha
+        if (qrRecord != null && qrRecord.passwordCheck != null) {
+            tvChangePasswordSectionTitle.text = getString(R.string.change_password_title)
+            tvChangePasswordSectionHint.text = getString(R.string.settings_change_password_hint_has_password)
+        } else {
+            tvChangePasswordSectionTitle.text = getString(R.string.setup_password_title)
+            tvChangePasswordSectionHint.text = getString(R.string.settings_change_password_hint_no_password)
+        }
     }
 
     private fun languageLabel(languageTag: String): String =

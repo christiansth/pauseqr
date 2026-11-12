@@ -72,10 +72,21 @@ object FriendsStore {
     }
 
     private fun saveFriends(c: Context, friends: List<ScanOffFriend>) {
+        sp(c).edit().putString(KEY_FRIENDS, encodeFriendsJson(friends)).apply()
+    }
+
+    private fun encodeFriendsJson(friends: List<ScanOffFriend>): String {
         val array = JSONArray()
         friends.forEach { array.put(encodeFriend(it)) }
-        sp(c).edit().putString(KEY_FRIENDS, array.toString()).apply()
+        return array.toString()
     }
+
+    /**
+     * Schreibt [friends] in den übergebenen, noch nicht committeten [editor] – für den atomaren
+     * Restore-Commit in [Prefs.restoreSnapshot]. Ruft selbst niemals `apply()` auf.
+     */
+    fun putFriends(editor: SharedPreferences.Editor, friends: List<ScanOffFriend>): SharedPreferences.Editor =
+        editor.putString(KEY_FRIENDS, encodeFriendsJson(friends))
 
     private fun encodeFriend(f: ScanOffFriend): JSONObject = JSONObject().apply {
         put("id", f.id)

@@ -44,13 +44,13 @@ class FriendDetailFragment : Fragment(R.layout.fragment_friend_detail) {
         val friend = FriendsStore.findById(context, friendId) ?: return
 
         tvUsername.text = friend.username
-        val record = QrCodeRecord(
-            id = friend.id,
-            username = friend.username,
-            createdAt = friend.createdAt,
-            version = QrPayload.CURRENT_VERSION
-        )
-        ivQr.setImageBitmap(QrUtil.makeQr(record, 900))
+        // Den ursprünglich gescannten Payload exakt decodieren statt neu zusammenzusetzen – ein
+        // neu erzeugter Record wäre nicht dieselbe Identität (z. B. fehlende Passwortprüfdaten
+        // bei einer passwortgeschützten Version-2-Identität des Freundes).
+        val record = QrPayload.decode(friend.qrPayload)
+        if (record != null) {
+            ivQr.setImageBitmap(QrUtil.makeQr(record, 900))
+        }
         tvCreatedAt.text = getString(R.string.created_at_label, formatDate(friend.createdAt))
         tvAddedAt.text = getString(R.string.added_at_label, formatDate(friend.addedAt))
 
