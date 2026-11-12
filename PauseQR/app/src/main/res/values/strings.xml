@@ -85,7 +85,7 @@
     <string name="backup_status_saved">QR code backed up</string>
     <string name="pause_disabled_hint">Create and back up your QR code first.</string>
     <string name="need_qr_code">Please create your personal QR code first.</string>
-    <string name="need_qr_backup">Please back up your QR code first.</string>
+    <string name="need_qr_backup">Please save your QR code first.</string>
 
     <!-- Manage QR code -->
     <string name="qr_manage_title">My ScanOff code</string>
@@ -185,7 +185,7 @@
     <string name="backup_file_too_large">This file is too large to be read as a ScanOff backup.</string>
     <string name="backup_read_failed">The file could not be read.</string>
     <string name="backup_preview_title">Restore backup?</string>
-    <string name="backup_preview_message">Username: %1$s\nCreated on: %2$s\nScanOff friends: %3$d\nBlocked apps: %4$d of %5$d installed on this device\nPause history: %6$d entries\n\nDo you want to restore this data?</string>
+    <string name="backup_preview_message">Username: %1$s\nCreated on: %2$s\nScanOff friends: %3$d\nBlocked apps: %4$d of %5$d installed on this device\nPause history: %6$d entries\nBlocked app attempts: %7$d\n\nDo you want to restore this data?</string>
     <string name="backup_restore_confirm">Restore</string>
     <string name="backup_identity_conflict_title">Existing ScanOff identity</string>
     <string name="backup_identity_conflict_message">A ScanOff identity already exists on this device. Do you want to replace it with the identity from the backup?\n\nCurrent: %1$s (%2$s)\nFrom backup: %3$s (%4$s)\n\nThe previous identity can no longer be used to unlock your apps afterwards.</string>
@@ -220,6 +220,7 @@
     <string name="stats_history_ended_qr">Ended via QR code</string>
     <string name="stats_history_ended_emergency">Ended via emergency unlock</string>
     <string name="stats_history_ended_automatic">Ended automatically</string>
+    <string name="stats_history_blocked_attempts_label">Blocked app attempts: %1$d</string>
     <string name="stats_streak_details_title">Streak Details</string>
     <string name="stats_streak_longest_label">Longest streak</string>
     <string name="stats_streak_total_days_label">Total successful days</string>
@@ -232,6 +233,24 @@
     <string name="motivation_streak_1">You\'ve taken the first step!</string>
     <string name="motivation_streak_low">%1$d days in a row – keep it up!</string>
     <string name="motivation_streak_month">%1$d days of mindful phone breaks!</string>
+
+    <!-- Blocked app attempts -->
+    <string name="stats_attempts_section_title">Blocked App Attempts</string>
+    <string name="stats_attempts_total_label">Total</string>
+    <string name="stats_attempts_today_label">Today</string>
+    <string name="stats_attempts_week_label">This Week</string>
+    <string name="stats_attempts_most_frequent_label">Most Frequent App</string>
+    <string name="stats_attempts_chart_title_week">Blocked attempts per day (Mon–Sun)</string>
+    <string name="stats_attempts_chart_title_month">Blocked attempts per day of month</string>
+    <string name="stats_attempts_per_app_title">By App</string>
+    <string name="stats_attempts_empty">No blocked app has been opened during a pause yet.</string>
+    <string name="stats_attempts_share_format">%1$d%%</string>
+    <string name="stats_attempts_uninstalled_label">App no longer installed</string>
+    <string name="settings_attempt_tracking_section">Track Blocked App Attempts</string>
+    <string name="settings_attempt_tracking_hint">Counts how often you try to open a blocked app during a pause. Screen content or text input is never captured.</string>
+    <string name="settings_attempt_reset_button">Delete attempt statistics</string>
+    <string name="attempt_reset_confirm_message">Do you really want to delete the entire blocked app attempt statistics? This action cannot be undone.</string>
+    <string name="attempt_reset_success">Attempt statistics have been deleted.</string>
 
     <string name="stats_achievements_title">My Achievements</string>
     <string name="stats_achievement_unlocked_on">Unlocked on %1$s</string>
@@ -287,5 +306,19 @@
     <plurals name="streak_subtitle">
         <item quantity="one">%d consecutive day of mindful offline time</item>
         <item quantity="other">%d consecutive days of mindful offline time</item>
+    </plurals>
+
+    <!-- Blocked app attempts: Singular/Plural -->
+    <plurals name="attempts_count">
+        <item quantity="one">%d attempt</item>
+        <item quantity="other">%d attempts</item>
+    </plurals>
+    <plurals name="pause_summary_attempts">
+        <item quantity="one">%1$d app launch attempt was blocked during this pause.</item>
+        <item quantity="other">%1$d app launch attempts were blocked during this pause.</item>
+    </plurals>
+    <plurals name="pause_summary_top_app">
+        <item quantity="one">Most frequent: %1$s (%2$d attempt)</item>
+        <item quantity="other">Most frequent: %1$s (%2$d attempts)</item>
     </plurals>
 </resources>

@@ -301,7 +301,8 @@ class BackupFragment : Fragment(R.layout.fragment_backup) {
                     snapshot.friends.size,
                     installedApps.size,
                     snapshot.blockedApps.size,
-                    snapshot.pauseHistory.size
+                    snapshot.pauseHistory.size,
+                    snapshot.blockedAttempts.size
                 )
             )
             .setPositiveButton(R.string.backup_restore_confirm) { _, _ -> performRestore(snapshot, installedApps) }
@@ -322,8 +323,11 @@ class BackupFragment : Fragment(R.layout.fragment_backup) {
         val resetBackupStatus = existing == null || existing.id != snapshot.identity.id
         val mergedFriends = BackupManager.mergeFriends(FriendsStore.getFriends(context), snapshot.friends)
         val mergedSessions = BackupManager.mergeSessions(PauseHistoryStore.getSessions(context), snapshot.pauseHistory)
+        val mergedAttempts = BackupManager.mergeBlockedAttempts(BlockedAttemptStore.getAttempts(context), snapshot.blockedAttempts)
 
-        Prefs.restoreSnapshot(context, snapshot.identity, installedApps, mergedFriends, mergedSessions, resetBackupStatus)
+        Prefs.restoreSnapshot(
+            context, snapshot.identity, installedApps, mergedFriends, mergedSessions, mergedAttempts, resetBackupStatus
+        )
 
         if (LanguageUtil.currentLanguage(context) != snapshot.language) {
             LanguageUtil.setLanguage(snapshot.language)

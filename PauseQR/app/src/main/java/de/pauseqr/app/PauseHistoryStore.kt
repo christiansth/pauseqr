@@ -53,6 +53,9 @@ object PauseHistoryStore {
         saveSessions(c, current + session)
     }
 
+    /** Die ID der aktuell laufenden Pause, falls vorhanden – für die Verknüpfung blockierter App-Aufrufe. */
+    fun getOpenSessionId(c: Context): String? = getSessions(c).lastOrNull { !it.completed }?.id
+
     /** Schließt den aktuell offenen Eintrag ab. Ohne offenen Eintrag passiert nichts. */
     fun completeOpenSession(c: Context, reason: PauseEndReason) {
         val current = getSessions(c)

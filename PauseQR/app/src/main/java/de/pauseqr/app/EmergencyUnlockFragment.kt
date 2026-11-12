@@ -132,12 +132,14 @@ class EmergencyUnlockFragment : Fragment(R.layout.fragment_emergency_unlock) {
         // Button sofort sperren, damit die Entsperraktion nicht mehrfach ausgelöst werden kann.
         btnHold.isEnabled = false
 
+        val sessionId = PauseHistoryStore.getOpenSessionId(context)
         Prefs.unlock(context, PauseEndReason.EMERGENCY)
         BlockerService.hideOverlayIfVisible()
 
         tvCountdown.text = ""
         progress.setProgressCompat(0, false)
         Toast.makeText(context, R.string.emergency_success, Toast.LENGTH_LONG).show()
+        PauseSummaryHelper.showSummaryIfAny(context, sessionId)
 
         refresh()
     }

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.materialswitch.MaterialSwitch
 
 /** Einstellungen: Bedienungshilfe-Status, blockierte Apps, QR-Code-Verwaltung, Sprache. */
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
@@ -31,6 +32,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private lateinit var tvAppVersion: TextView
     private lateinit var cardBackup: MaterialCardView
     private lateinit var btnResetStats: Button
+    private lateinit var switchAttemptTracking: MaterialSwitch
+    private lateinit var btnResetAttempts: Button
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,6 +52,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         tvAppVersion.text = BuildConfig.VERSION_NAME
         cardBackup = view.findViewById(R.id.cardBackup)
         btnResetStats = view.findViewById(R.id.btnResetStats)
+        switchAttemptTracking = view.findViewById(R.id.switchAttemptTracking)
+        btnResetAttempts = view.findViewById(R.id.btnResetAttempts)
 
         btnAccessibility.setOnClickListener {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
@@ -72,6 +77,29 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             }
         }
         btnResetStats.setOnClickListener { confirmResetStats() }
+
+        switchAttemptTracking.isChecked = BlockedAttemptStore.isTrackingEnabled(requireContext())
+        switchAttemptTracking.setOnCheckedChangeListener { _, isChecked ->
+            BlockedAttemptStore.setTrackingEnabled(requireContext(), isChecked)
+        }
+        btnResetAttempts.setOnClickListener { confirmResetAttempts() }
+    }
+
+    /**
+     * Entfernt ausschließlich die Statistik gesperrter App-Aufrufe – Pausen, QR-Codes und
+     * App-Auswahl bleiben unberührt (BlockedAttemptStore.clearAll fasst nur diese Daten an).
+     */
+    private fun confirmResetAttempts() {
+        val context = context ?: return
+        MaterialAlertDialogBuilder(context)
+            .setTitle(R.string.settings_attempt_tracking_section)
+            .setMessage(R.string.attempt_reset_confirm_message)
+            .setPositiveButton(R.string.settings_attempt_reset_button) { _, _ ->
+                BlockedAttemptStore.clearAll(context)
+                Toast.makeText(context, R.string.attempt_reset_success, Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
     }
 
     /**

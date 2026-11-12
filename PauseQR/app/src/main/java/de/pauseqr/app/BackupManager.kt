@@ -26,6 +26,7 @@ object BackupManager {
     private const val MAX_BLOCKED_APPS = 1000
     private const val MAX_STRING_FIELD_LENGTH = 500
     private const val MAX_SESSIONS = 20_000
+    private const val MAX_ATTEMPTS = 50_000
     private const val MAX_ITERATIONS = 2_000_000
 
     data class BackupSnapshot(
@@ -34,7 +35,8 @@ object BackupManager {
         val language: String,
         val blockedApps: Set<String>,
         val friends: List<ScanOffFriend>,
-        val pauseHistory: List<PauseSession>
+        val pauseHistory: List<PauseSession>,
+        val blockedAttempts: List<BlockedAppAttempt>
     )
 
     sealed class DecryptResult {
@@ -82,8 +84,9 @@ object BackupManager {
             // Nur abgeschlossene Pausen werden gesichert – eine aktuell laufende Pause soll nie
             // automatisch wiederhergestellt werden (siehe Prefs.restoreSnapshot: KEY_LOCKED wird
             // dort ohnehin nie angefasst, diese Auswahl ist eine zusätzliche, bewusste Absicherung).
+            val completedSessions = PauseHistoryStore.getSessions(context).filter { it.completed }
             put("pauseHistory", JSONArray().apply {
-                PauseHistoryStore.getSessions(context).filter { it.completed }.forEach { s ->
+                completedSessions.forEach { s ->
                     put(JSONObject().apply {
                         put("id", s.id)
                         put("startTime", s.startTime)
@@ -92,6 +95,21 @@ object BackupManager {
                         put("completed", true)
                     })
                 }
+            })
+            // Nur Versuche, die zu einer mitgesicherten (abgeschlossenen) Pause gehören – die
+            // Versuche einer gerade laufenden Pause werden nie mitgesichert.
+            val completedSessionIds = completedSessions.map { it.id }.toSet()
+            put("blockedAttempts", JSONArray().apply {
+                BlockedAttemptStore.getAttempts(context)
+                    .filter { it.pauseSessionId in completedSessionIds }
+                    .forEach { a ->
+                        put(JSONObject().apply {
+                            put("id", a.id)
+                            put("pauseSessionId", a.pauseSessionId)
+                            put("packageName", a.packageName)
+                            put("timestamp", a.timestamp)
+                        })
+                    }
             })
         }
         return json.toString()
@@ -230,14 +248,39 @@ object BackupManager {
             (0 until sessionsArray.length()).mapNotNull { i -> parseSession(sessionsArray.optJSONObject(i)) }
         }
 
+        val attemptsArray = root.optJSONArray("blockedAttempts") ?: JSONArray()
+        val pauseHistoryIds = pauseHistory.map { it.id }.toSet()
+        val blockedAttempts = if (attemptsArray.length() > MAX_ATTEMPTS) {
+            emptyList()
+        } else {
+            (0 until attemptsArray.length()).mapNotNull { i -> parseAttempt(attemptsArray.optJSONObject(i)) }
+                // Eine Verknüpfung zu einer Pause, die selbst nicht im Backup enthalten ist, kann
+                // nach dem Import nicht aufgelöst werden – ein solcher Versuch wird verworfen,
+                // statt ihn ohne gültige Pausen-Verknüpfung zu übernehmen.
+                .filter { it.pauseSessionId in pauseHistoryIds }
+        }
+
         return BackupSnapshot(
             exportedAt = root.optLong("exportedAt", 0L),
             identity = identity,
             language = language,
             blockedApps = blockedApps,
             friends = friends,
-            pauseHistory = pauseHistory
+            pauseHistory = pauseHistory,
+            blockedAttempts = blockedAttempts
         )
+    }
+
+    private fun parseAttempt(json: JSONObject?): BlockedAppAttempt? {
+        if (json == null) return null
+        val id = json.optString("id", "")
+        val pauseSessionId = json.optString("pauseSessionId", "")
+        val packageName = json.optString("packageName", "").take(MAX_STRING_FIELD_LENGTH)
+        val timestamp = json.optLong("timestamp", -1L)
+        if (id.isBlank() || !isValidUuid(id) || pauseSessionId.isBlank() || packageName.isBlank() || timestamp <= 0) {
+            return null
+        }
+        return BlockedAppAttempt(id = id, pauseSessionId = pauseSessionId, packageName = packageName, timestamp = timestamp)
     }
 
     private fun parseSession(json: JSONObject?): PauseSession? {
@@ -291,6 +334,15 @@ object BackupManager {
      * nie separat gespeichert oder übernommen.
      */
     fun mergeSessions(existing: List<PauseSession>, imported: List<PauseSession>): List<PauseSession> {
+        val existingIds = existing.map { it.id }.toSet()
+        return existing + imported.filter { it.id !in existingIds }
+    }
+
+    /**
+     * Merge der blockierten Aufrufversuche: eindeutige IDs verhindern doppelte Einträge, bestehende
+     * Verknüpfungen zu Pausensitzungen bleiben erhalten. Bestehende Einträge werden nie verändert.
+     */
+    fun mergeBlockedAttempts(existing: List<BlockedAppAttempt>, imported: List<BlockedAppAttempt>): List<BlockedAppAttempt> {
         val existingIds = existing.map { it.id }.toSet()
         return existing + imported.filter { it.id !in existingIds }
     }

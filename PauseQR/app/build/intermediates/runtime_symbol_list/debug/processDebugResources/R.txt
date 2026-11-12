@@ -3169,10 +3169,14 @@ int id animateToStart 0x7f08004b
 int id arc 0x7f08004c
 int id asConfigured 0x7f08004d
 int id async 0x7f08004e
+int id attemptsChartCard 0x7f080275
+int id attemptsContentGroup 0x7f080276
+int id attemptsPerAppContainer 0x7f080277
 int id auto 0x7f08004f
 int id autoComplete 0x7f080050
 int id autoCompleteToEnd 0x7f080051
 int id autoCompleteToStart 0x7f080052
+int id barChartAttemptsView 0x7f080278
 int id barChartView 0x7f080053
 int id barrier 0x7f080054
 int id baseline 0x7f080055
@@ -3200,6 +3204,7 @@ int id btnRangeMonth 0x7f08006a
 int id btnRangeToday 0x7f08006b
 int id btnRangeWeek 0x7f08006c
 int id btnRegenerateQr 0x7f08006d
+int id btnResetAttempts 0x7f080279
 int id btnResetStats 0x7f08006e
 int id btnRetryQr 0x7f08006f
 int id btnSaveAsFriend 0x7f080070
@@ -3212,6 +3217,7 @@ int id cancel_button 0x7f080076
 int id cardAccessibility 0x7f080077
 int id cardBackup 0x7f080078
 int id cardEmergencyUnlock 0x7f080079
+int id cardHistoryItem 0x7f08027a
 int id cardLanguage 0x7f08007a
 int id cardScanTest 0x7f08007b
 int id cardSelectApps 0x7f08007c
@@ -3343,6 +3349,7 @@ int id italic 0x7f0800f8
 int id item_touch_helper_previous_elevation 0x7f0800f9
 int id ivAchievementCheck 0x7f0800fa
 int id ivAchievementIcon 0x7f0800fb
+int id ivBlockedAppIcon 0x7f08027b
 int id ivDetailQr 0x7f0800fc
 int id ivDetailUnlockIcon 0x7f0800fd
 int id ivIcon 0x7f0800fe
@@ -3573,6 +3580,7 @@ int id streakCountRow 0x7f08025f
 int id stretch 0x7f0801d7
 int id submenuarrow 0x7f0801d8
 int id submit_area 0x7f0801d9
+int id switchAttemptTracking 0x7f08027c
 int id switchUnlock 0x7f0801da
 int id tabMode 0x7f0801db
 int id tag_accessibility_actions 0x7f0801dc
@@ -3636,6 +3644,16 @@ int id tvAchievementTitle 0x7f080215
 int id tvAnswer 0x7f080216
 int id tvAppVersion 0x7f080217
 int id tvAppsCount 0x7f080218
+int id tvAttemptsChartTitle 0x7f08027d
+int id tvAttemptsEmpty 0x7f08027e
+int id tvAttemptsMostFrequent 0x7f08027f
+int id tvAttemptsToday 0x7f080280
+int id tvAttemptsTotal 0x7f080281
+int id tvAttemptsWeek 0x7f080282
+int id tvBlockedAppCount 0x7f080283
+int id tvBlockedAppName 0x7f080284
+int id tvBlockedAppShare 0x7f080285
+int id tvBlockedAppUninstalled 0x7f080286
 int id tvChartTitle 0x7f080219
 int id tvCompletedCount 0x7f08021a
 int id tvCountdown 0x7f08021b
@@ -3647,6 +3665,7 @@ int id tvDetailUsername 0x7f080220
 int id tvFriendCreatedAt 0x7f080221
 int id tvFriendUsername 0x7f080222
 int id tvFriendsEmpty 0x7f080223
+int id tvHistoryBlockedAttempts 0x7f080287
 int id tvHistoryDate 0x7f080224
 int id tvHistoryDuration 0x7f080225
 int id tvHistoryEmpty 0x7f080226
@@ -3870,6 +3889,7 @@ int layout ime_base_split_test_activity 0x7f0b003c
 int layout ime_secondary_split_test_activity 0x7f0b003d
 int layout item_achievement 0x7f0b003e
 int layout item_app 0x7f0b003f
+int layout item_blocked_app 0x7f0b0085
 int layout item_faq 0x7f0b0040
 int layout item_friend 0x7f0b0041
 int layout item_pause_history 0x7f0b0042
@@ -3943,7 +3963,10 @@ int menu drawer_menu 0x7f0d0000
 int menu toolbar_menu 0x7f0d0001
 int mipmap ic_launcher 0x7f0e0000
 int mipmap ic_launcher_round 0x7f0e0001
+int plurals attempts_count 0x7f0f0003
 int plurals mtrl_badge_content_description 0x7f0f0000
+int plurals pause_summary_attempts 0x7f0f0004
+int plurals pause_summary_top_app 0x7f0f0005
 int plurals streak_days_count 0x7f0f0001
 int plurals streak_subtitle 0x7f0f0002
 int raw zxing_beep 0x7f100000
@@ -4012,6 +4035,8 @@ int string app_name 0x7f110035
 int string app_version 0x7f110036
 int string appbar_scrolling_view_behavior 0x7f110037
 int string apps_count 0x7f110038
+int string attempt_reset_confirm_message 0x7f11019f
+int string attempt_reset_success 0x7f1101a0
 int string backup_accessibility_followup 0x7f110039
 int string backup_creating 0x7f11003a
 int string backup_file_too_large 0x7f11003b
@@ -4295,6 +4320,9 @@ int string select_apps_title 0x7f11014a
 int string service_required_title 0x7f11014b
 int string service_warning 0x7f11014c
 int string settings_apps_section 0x7f11014d
+int string settings_attempt_reset_button 0x7f1101a1
+int string settings_attempt_tracking_hint 0x7f1101a2
+int string settings_attempt_tracking_section 0x7f1101a3
 int string settings_backup_hint 0x7f11014e
 int string settings_backup_section 0x7f11014f
 int string settings_emergency_hint 0x7f110150
@@ -4314,6 +4342,17 @@ int string stats_achievement_locked 0x7f11015d
 int string stats_achievement_unlocked_on 0x7f11015e
 int string stats_achievements_title 0x7f11015f
 int string stats_apps_label 0x7f110160
+int string stats_attempts_chart_title_month 0x7f1101a4
+int string stats_attempts_chart_title_week 0x7f1101a5
+int string stats_attempts_empty 0x7f1101a6
+int string stats_attempts_most_frequent_label 0x7f1101a7
+int string stats_attempts_per_app_title 0x7f1101a8
+int string stats_attempts_section_title 0x7f1101a9
+int string stats_attempts_share_format 0x7f1101aa
+int string stats_attempts_today_label 0x7f1101ab
+int string stats_attempts_total_label 0x7f1101ac
+int string stats_attempts_uninstalled_label 0x7f1101ad
+int string stats_attempts_week_label 0x7f1101ae
 int string stats_chart_title_month 0x7f110161
 int string stats_chart_title_week 0x7f110162
 int string stats_completed_count_label 0x7f110163
@@ -4321,6 +4360,7 @@ int string stats_duration_hours_minutes 0x7f110164
 int string stats_duration_minutes_only 0x7f110165
 int string stats_empty_message 0x7f110166
 int string stats_history_active_label 0x7f110167
+int string stats_history_blocked_attempts_label 0x7f1101af
 int string stats_history_duration_label 0x7f110168
 int string stats_history_empty 0x7f110169
 int string stats_history_ended_automatic 0x7f11016a

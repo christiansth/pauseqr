@@ -205,6 +205,7 @@ object Prefs {
         blockedApps: Set<String>,
         friends: List<ScanOffFriend>,
         pauseHistory: List<PauseSession>,
+        blockedAttempts: List<BlockedAppAttempt>,
         resetBackupStatus: Boolean
     ) {
         var editor = sp(c).edit()
@@ -216,7 +217,8 @@ object Prefs {
             editor = editor.remove(KEY_BACKUP_STATUS).remove(KEY_BACKUP_QR_ID).remove(KEY_BACKUP_TIMESTAMP)
         }
         editor = FriendsStore.putFriends(editor, friends)
-        PauseHistoryStore.putSessions(editor, pauseHistory).apply()
+        editor = PauseHistoryStore.putSessions(editor, pauseHistory)
+        BlockedAttemptStore.putAttempts(editor, blockedAttempts).apply()
     }
 
     // ---------- Statistik ----------

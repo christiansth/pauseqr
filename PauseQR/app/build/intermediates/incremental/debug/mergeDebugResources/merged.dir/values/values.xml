@@ -1915,10 +1915,22 @@
     <integer name="mtrl_view_visible">0</integer>
     <integer name="show_password_duration">200</integer>
     <integer name="status_bar_notification_info_maxnum">999</integer>
+    <plurals name="attempts_count">
+        <item quantity="one">%d attempt</item>
+        <item quantity="other">%d attempts</item>
+    </plurals>
     <plurals description="Plural form content description for number of new notifications [CHAR_LIMIT=NONE]" name="mtrl_badge_content_description">
     <item quantity="one"><ns2:g id="count">%d</ns2:g> new notification</item>
     <item quantity="other"><ns2:g id="count">%d</ns2:g> new notifications</item>
   </plurals>
+    <plurals name="pause_summary_attempts">
+        <item quantity="one">%1$d app launch attempt was blocked during this pause.</item>
+        <item quantity="other">%1$d app launch attempts were blocked during this pause.</item>
+    </plurals>
+    <plurals name="pause_summary_top_app">
+        <item quantity="one">Most frequent: %1$s (%2$d attempt)</item>
+        <item quantity="other">Most frequent: %1$s (%2$d attempts)</item>
+    </plurals>
     <plurals name="streak_days_count">
         <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>
@@ -1992,6 +2004,8 @@
     <string name="app_version" translatable="false">null</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="apps_count">%1$d app(s) selected</string>
+    <string name="attempt_reset_confirm_message">Do you really want to delete the entire blocked app attempt statistics? This action cannot be undone.</string>
+    <string name="attempt_reset_success">Attempt statistics have been deleted.</string>
     <string name="backup_accessibility_followup">Enable the accessibility service again so ScanOff can block apps on this device.</string>
     <string name="backup_creating">Creating backup…</string>
     <string name="backup_file_too_large">This file is too large to be read as a ScanOff backup.</string>
@@ -2006,7 +2020,7 @@
     <string name="backup_password_title">Set backup password</string>
     <string name="backup_password_too_short">The password must be at least 12 characters long.</string>
     <string name="backup_password_warning">Keep your backup password safe. Without it, the backup cannot be restored.</string>
-    <string name="backup_preview_message">Username: %1$s\nCreated on: %2$s\nScanOff friends: %3$d\nBlocked apps: %4$d of %5$d installed on this device\nPause history: %6$d entries\n\nDo you want to restore this data?</string>
+    <string name="backup_preview_message">Username: %1$s\nCreated on: %2$s\nScanOff friends: %3$d\nBlocked apps: %4$d of %5$d installed on this device\nPause history: %6$d entries\nBlocked app attempts: %7$d\n\nDo you want to restore this data?</string>
     <string name="backup_preview_title">Restore backup?</string>
     <string name="backup_read_failed">The file could not be read.</string>
     <string name="backup_restore_confirm">Restore</string>
@@ -2285,6 +2299,9 @@
     <string name="service_required_title">Accessibility service required</string>
     <string name="service_warning">To block apps, \"ScanOff\" must be enabled under Settings → Accessibility.</string>
     <string name="settings_apps_section">Blocked apps</string>
+    <string name="settings_attempt_reset_button">Delete attempt statistics</string>
+    <string name="settings_attempt_tracking_hint">Counts how often you try to open a blocked app during a pause. Screen content or text input is never captured.</string>
+    <string name="settings_attempt_tracking_section">Track Blocked App Attempts</string>
     <string name="settings_backup_hint">Back up your personal QR code and your settings so you can restore ScanOff on a new device.</string>
     <string name="settings_backup_section">Backup &amp; Restore</string>
     <string name="settings_emergency_hint">If you can\'t use your QR code, you can release your apps here in an emergency.</string>
@@ -2304,6 +2321,17 @@
     <string name="stats_achievement_unlocked_on">Unlocked on %1$s</string>
     <string name="stats_achievements_title">My Achievements</string>
     <string name="stats_apps_label">Blocked apps selected</string>
+    <string name="stats_attempts_chart_title_month">Blocked attempts per day of month</string>
+    <string name="stats_attempts_chart_title_week">Blocked attempts per day (Mon–Sun)</string>
+    <string name="stats_attempts_empty">No blocked app has been opened during a pause yet.</string>
+    <string name="stats_attempts_most_frequent_label">Most Frequent App</string>
+    <string name="stats_attempts_per_app_title">By App</string>
+    <string name="stats_attempts_section_title">Blocked App Attempts</string>
+    <string name="stats_attempts_share_format">%1$d%%</string>
+    <string name="stats_attempts_today_label">Today</string>
+    <string name="stats_attempts_total_label">Total</string>
+    <string name="stats_attempts_uninstalled_label">App no longer installed</string>
+    <string name="stats_attempts_week_label">This Week</string>
     <string name="stats_chart_title_month">Pause time per day of month</string>
     <string name="stats_chart_title_week">Pause time per day (Mon–Sun)</string>
     <string name="stats_completed_count_label">Completed pauses</string>
@@ -2311,6 +2339,7 @@
     <string name="stats_duration_minutes_only">%1$d min</string>
     <string name="stats_empty_message">No statistics yet. Start your first ScanOff pause!</string>
     <string name="stats_history_active_label">Ongoing pause</string>
+    <string name="stats_history_blocked_attempts_label">Blocked app attempts: %1$d</string>
     <string name="stats_history_duration_label">Duration: %1$s</string>
     <string name="stats_history_empty">No completed pauses in this period yet.</string>
     <string name="stats_history_ended_automatic">Ended automatically</string>

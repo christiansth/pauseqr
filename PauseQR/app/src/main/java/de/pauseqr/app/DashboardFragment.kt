@@ -61,6 +61,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     private lateinit var weekDayChecks: List<ImageView>
 
     private val zone: ZoneId = ZoneId.systemDefault()
+    private var activeToast: Toast? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -164,8 +165,10 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
             ScanVerdict.FriendDisabled -> toast(R.string.scan_friend_disabled)
             ScanVerdict.OwnCodeMatch -> {
                 if (Prefs.isLocked(context)) {
+                    val sessionId = PauseHistoryStore.getOpenSessionId(context)
                     Prefs.unlock(context, PauseEndReason.QR_CODE)
                     toast(R.string.unlocked)
+                    PauseSummaryHelper.showSummaryIfAny(context, sessionId)
                 } else {
                     lock()
                 }
@@ -175,12 +178,14 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                 // Ein Freund-Code darf eine Pause nur beenden, niemals starten – das bleibt dem
                 // eigenen Code mit der vollständigen PauseGate-Prüfung vorbehalten.
                 if (Prefs.isLocked(context)) {
+                    val sessionId = PauseHistoryStore.getOpenSessionId(context)
                     Prefs.unlock(context, PauseEndReason.QR_CODE)
                     Toast.makeText(
                         context,
                         getString(R.string.unlocked_by_friend, verdict.friendUsername),
                         Toast.LENGTH_LONG
                     ).show()
+                    PauseSummaryHelper.showSummaryIfAny(context, sessionId)
                     refresh()
                 } else {
                     toast(R.string.friend_cannot_start_pause)
@@ -237,7 +242,12 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
         btnPrimary.text = getString(if (locked) R.string.btn_pause_unlock else R.string.btn_pause_start)
         val canStart = PauseGate.canStartPause(context)
-        btnPrimary.isEnabled = locked || canStart
+        // Existiert bereits ein QR-Code, bleibt der Button auch dann klickbar, wenn er aus anderen
+        // Gründen (z. B. noch nicht gesichert) noch keine Pause starten darf – sonst könnte lock()
+        // den passenden Hinweis-Toast nie anzeigen. Die eigentliche Start-Prüfung in lock() bleibt
+        // davon unberührt und entscheidet weiterhin allein, ob tatsächlich gesperrt wird.
+        val hasQrCode = Prefs.getQrCode(context) != null
+        btnPrimary.isEnabled = locked || canStart || hasQrCode
         tvAppsCount.text = if (!locked && !canStart) {
             getString(R.string.pause_disabled_hint)
         } else {
@@ -362,7 +372,14 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         refresh()
     }
 
+    /**
+     * Ersetzt statt stapelt: bricht einen noch sichtbaren Toast ab, bevor ein neuer gezeigt wird.
+     * Verhindert eine Warteschlange aus Mehrfach-Toasts bei schnell wiederholt ausgelösten
+     * Events (z. B. mehrfaches Antippen von „Pause starten“).
+     */
     private fun toast(res: Int) {
-        context?.let { Toast.makeText(it, res, Toast.LENGTH_LONG).show() }
+        val context = context ?: return
+        activeToast?.cancel()
+        activeToast = Toast.makeText(context, res, Toast.LENGTH_LONG).also { it.show() }
     }
 }

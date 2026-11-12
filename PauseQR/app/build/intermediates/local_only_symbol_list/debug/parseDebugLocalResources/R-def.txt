@@ -52,6 +52,10 @@ drawable ic_warning
 drawable nav_item_bg
 id achievementsContainer
 id action_about
+id attemptsChartCard
+id attemptsContentGroup
+id attemptsPerAppContainer
+id barChartAttemptsView
 id barChartView
 id btnAccessibility
 id btnAddFriend
@@ -72,6 +76,7 @@ id btnRangeMonth
 id btnRangeToday
 id btnRangeWeek
 id btnRegenerateQr
+id btnResetAttempts
 id btnResetStats
 id btnRetryQr
 id btnSaveAsFriend
@@ -82,6 +87,7 @@ id btnShareQr
 id cardAccessibility
 id cardBackup
 id cardEmergencyUnlock
+id cardHistoryItem
 id cardLanguage
 id cardScanTest
 id cardSelectApps
@@ -102,6 +108,7 @@ id historyContainer
 id invalidGroup
 id ivAchievementCheck
 id ivAchievementIcon
+id ivBlockedAppIcon
 id ivDetailQr
 id ivDetailUnlockIcon
 id ivIcon
@@ -145,6 +152,7 @@ id statsContentGroup
 id statusBadge
 id statusCard
 id streakCountRow
+id switchAttemptTracking
 id switchUnlock
 id tilBackupPassword
 id tilBackupPasswordConfirm
@@ -159,6 +167,16 @@ id tvAchievementTitle
 id tvAnswer
 id tvAppVersion
 id tvAppsCount
+id tvAttemptsChartTitle
+id tvAttemptsEmpty
+id tvAttemptsMostFrequent
+id tvAttemptsToday
+id tvAttemptsTotal
+id tvAttemptsWeek
+id tvBlockedAppCount
+id tvBlockedAppName
+id tvBlockedAppShare
+id tvBlockedAppUninstalled
 id tvChartTitle
 id tvCompletedCount
 id tvCountdown
@@ -170,6 +188,7 @@ id tvDetailUsername
 id tvFriendCreatedAt
 id tvFriendUsername
 id tvFriendsEmpty
+id tvHistoryBlockedAttempts
 id tvHistoryDate
 id tvHistoryDuration
 id tvHistoryEmpty
@@ -230,6 +249,7 @@ layout fragment_settings
 layout fragment_stats
 layout item_achievement
 layout item_app
+layout item_blocked_app
 layout item_faq
 layout item_friend
 layout item_pause_history
@@ -239,6 +259,9 @@ menu drawer_menu
 menu toolbar_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
+plurals attempts_count
+plurals pause_summary_attempts
+plurals pause_summary_top_app
 plurals streak_days_count
 plurals streak_subtitle
 string about_description
@@ -276,6 +299,8 @@ string action_scan_title
 string added_at_label
 string app_name
 string apps_count
+string attempt_reset_confirm_message
+string attempt_reset_success
 string backup_accessibility_followup
 string backup_creating
 string backup_file_too_large
@@ -415,6 +440,9 @@ string select_apps_title
 string service_required_title
 string service_warning
 string settings_apps_section
+string settings_attempt_reset_button
+string settings_attempt_tracking_hint
+string settings_attempt_tracking_section
 string settings_backup_hint
 string settings_backup_section
 string settings_emergency_hint
@@ -432,6 +460,17 @@ string stats_achievement_locked
 string stats_achievement_unlocked_on
 string stats_achievements_title
 string stats_apps_label
+string stats_attempts_chart_title_month
+string stats_attempts_chart_title_week
+string stats_attempts_empty
+string stats_attempts_most_frequent_label
+string stats_attempts_per_app_title
+string stats_attempts_section_title
+string stats_attempts_share_format
+string stats_attempts_today_label
+string stats_attempts_total_label
+string stats_attempts_uninstalled_label
+string stats_attempts_week_label
 string stats_chart_title_month
 string stats_chart_title_week
 string stats_completed_count_label
@@ -439,6 +478,7 @@ string stats_duration_hours_minutes
 string stats_duration_minutes_only
 string stats_empty_message
 string stats_history_active_label
+string stats_history_blocked_attempts_label
 string stats_history_duration_label
 string stats_history_empty
 string stats_history_ended_automatic

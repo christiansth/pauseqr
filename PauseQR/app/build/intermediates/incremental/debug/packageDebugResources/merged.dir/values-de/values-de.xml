@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <plurals name="attempts_count">
+        <item quantity="one">%d Versuch</item>
+        <item quantity="other">%d Versuche</item>
+    </plurals>
+    <plurals name="pause_summary_attempts">
+        <item quantity="one">Während dieser Pause wurde %1$d App-Aufruf blockiert.</item>
+        <item quantity="other">Während dieser Pause wurden %1$d App-Aufrufe blockiert.</item>
+    </plurals>
+    <plurals name="pause_summary_top_app">
+        <item quantity="one">Am häufigsten: %1$s (%2$d Versuch)</item>
+        <item quantity="other">Am häufigsten: %1$s (%2$d Versuche)</item>
+    </plurals>
     <plurals name="streak_days_count">
         <item quantity="one">%d Tag</item>
         <item quantity="other">%d Tage</item>
@@ -43,6 +55,8 @@
     <string name="added_at_label">Hinzugefügt am %1$s</string>
     <string name="app_name">ScanOff</string>
     <string name="apps_count">%1$d App(s) ausgewählt</string>
+    <string name="attempt_reset_confirm_message">Möchtest du wirklich die gesamte Statistik der gesperrten App-Aufrufe löschen? Diese Aktion kann nicht rückgängig gemacht werden.</string>
+    <string name="attempt_reset_success">Aufrufstatistik wurde gelöscht.</string>
     <string name="backup_accessibility_followup">Aktiviere die Bedienungshilfe auf diesem Gerät erneut, damit ScanOff Apps blockieren kann.</string>
     <string name="backup_creating">Backup wird erstellt …</string>
     <string name="backup_file_too_large">Diese Datei ist zu groß, um als ScanOff-Backup gelesen zu werden.</string>
@@ -57,7 +71,7 @@
     <string name="backup_password_title">Backup-Passwort festlegen</string>
     <string name="backup_password_too_short">Das Passwort muss mindestens 12 Zeichen lang sein.</string>
     <string name="backup_password_warning">Bewahre dein Backup-Passwort sicher auf. Ohne dieses Passwort kann die Sicherung nicht wiederhergestellt werden.</string>
-    <string name="backup_preview_message">Benutzername: %1$s\nErstellt am: %2$s\nScanOff-Freunde: %3$d\nBlockierte Apps: %4$d von %5$d auf diesem Gerät installiert\nPausenhistorie: %6$d Einträge\n\nMöchtest du diese Daten wiederherstellen?</string>
+    <string name="backup_preview_message">Benutzername: %1$s\nErstellt am: %2$s\nScanOff-Freunde: %3$d\nBlockierte Apps: %4$d von %5$d auf diesem Gerät installiert\nPausenhistorie: %6$d Einträge\nBlockierte App-Aufrufe: %7$d\n\nMöchtest du diese Daten wiederherstellen?</string>
     <string name="backup_preview_title">Backup wiederherstellen?</string>
     <string name="backup_read_failed">Die Datei konnte nicht gelesen werden.</string>
     <string name="backup_restore_confirm">Wiederherstellen</string>
@@ -182,6 +196,9 @@
     <string name="service_required_title">Bedienungshilfe erforderlich</string>
     <string name="service_warning">Damit Apps blockiert werden können, muss „ScanOff“ unter Einstellungen → Bedienungshilfen aktiviert werden.</string>
     <string name="settings_apps_section">Blockierte Apps</string>
+    <string name="settings_attempt_reset_button">Aufrufstatistik löschen</string>
+    <string name="settings_attempt_tracking_hint">Zählt, wie oft du während einer Pause versuchst, eine gesperrte App zu öffnen. Bildschirminhalte oder Texteingaben werden dabei nie erfasst.</string>
+    <string name="settings_attempt_tracking_section">Gesperrte App-Aufrufe erfassen</string>
     <string name="settings_backup_hint">Sichere deinen persönlichen QR-Code und deine Einstellungen, um ScanOff auf einem neuen Gerät wiederherzustellen.</string>
     <string name="settings_backup_section">Backup &amp; Wiederherstellung</string>
     <string name="settings_emergency_hint">Falls du deinen QR-Code nicht verwenden kannst, kannst du hier deine Apps im Notfall wieder freigeben.</string>
@@ -199,6 +216,17 @@
     <string name="stats_achievement_unlocked_on">Freigeschaltet am %1$s</string>
     <string name="stats_achievements_title">Meine Erfolge</string>
     <string name="stats_apps_label">Blockierte Apps ausgewählt</string>
+    <string name="stats_attempts_chart_title_month">Blockierte Aufrufversuche pro Kalendertag</string>
+    <string name="stats_attempts_chart_title_week">Blockierte Aufrufversuche pro Tag (Mo–So)</string>
+    <string name="stats_attempts_empty">Noch keine gesperrte App während einer Pause geöffnet.</string>
+    <string name="stats_attempts_most_frequent_label">Häufigste App</string>
+    <string name="stats_attempts_per_app_title">Pro App</string>
+    <string name="stats_attempts_section_title">Gesperrte App-Aufrufe</string>
+    <string name="stats_attempts_share_format">%1$d%%</string>
+    <string name="stats_attempts_today_label">Heute</string>
+    <string name="stats_attempts_total_label">Gesamt</string>
+    <string name="stats_attempts_uninstalled_label">App nicht mehr installiert</string>
+    <string name="stats_attempts_week_label">Diese Woche</string>
     <string name="stats_chart_title_month">Pausenzeit pro Kalendertag</string>
     <string name="stats_chart_title_week">Pausenzeit pro Tag (Mo–So)</string>
     <string name="stats_completed_count_label">Abgeschlossene Pausen</string>
@@ -206,6 +234,7 @@
     <string name="stats_duration_minutes_only">%1$d Min.</string>
     <string name="stats_empty_message">Noch keine Statistiken vorhanden. Starte deine erste ScanOff-Pause!</string>
     <string name="stats_history_active_label">Laufende Pause</string>
+    <string name="stats_history_blocked_attempts_label">Blockierte App-Aufrufe: %1$d</string>
     <string name="stats_history_duration_label">Dauer: %1$s</string>
     <string name="stats_history_empty">In diesem Zeitraum noch keine abgeschlossenen Pausen.</string>
     <string name="stats_history_ended_automatic">Automatisch beendet</string>

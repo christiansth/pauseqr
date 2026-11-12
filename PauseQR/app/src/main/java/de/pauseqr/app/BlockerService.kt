@@ -3,6 +3,7 @@ package de.pauseqr.app
 import android.accessibilityservice.AccessibilityService
 import android.content.Intent
 import android.graphics.PixelFormat
+import android.os.SystemClock
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +37,12 @@ class BlockerService : AccessibilityService() {
     // Fenster dieser Pakete ändern nichts am Overlay (Statusleiste, Benachrichtigungen …)
     private val ignored = setOf("com.android.systemui")
 
+    // Entprellung der Aufrufversuch-Erfassung (siehe recordAttemptIfNew): schützt zusätzlich zur
+    // overlay==null-Prüfung gegen kurzzeitiges Event-Flackern für dasselbe Paket.
+    private var lastAttemptPackage: String? = null
+    private var lastAttemptAtElapsed: Long = 0L
+    private val attemptDebounceMs = 1500L
+
     override fun onServiceConnected() {
         super.onServiceConnected()
         instance = this
@@ -48,10 +55,31 @@ class BlockerService : AccessibilityService() {
         if (pkg == packageName || pkg in ignored) return
 
         if (Prefs.isLocked(this) && pkg in Prefs.getBlockedApps(this)) {
+            // Ein neuer Öffnungsversuch liegt genau dann vor, wenn das Overlay noch nicht sichtbar
+            // ist – wiederholte Accessibility-Events bei bereits sichtbarem Overlay lösen hier
+            // nichts aus. Verlässt der Nutzer die App (Overlay wird woanders entfernt) und öffnet
+            // sie erneut, ist overlay wieder null und ein neuer Versuch zählt erneut.
+            if (overlay == null) {
+                recordAttemptIfNew(pkg)
+            }
             showOverlay()
         } else {
             hideOverlay()
         }
+    }
+
+    /** Zusätzliche, zeitbasierte Entprellung über die overlay==null-Prüfung hinaus (siehe Feld-Doku). */
+    private fun recordAttemptIfNew(pkg: String) {
+        val now = SystemClock.elapsedRealtime()
+        if (pkg == lastAttemptPackage && now - lastAttemptAtElapsed < attemptDebounceMs) return
+        lastAttemptPackage = pkg
+        lastAttemptAtElapsed = now
+
+        val context = applicationContext
+        Thread {
+            val sessionId = PauseHistoryStore.getOpenSessionId(context) ?: return@Thread
+            BlockedAttemptStore.recordAttempt(context, sessionId, pkg)
+        }.start()
     }
 
     private fun showOverlay() {
